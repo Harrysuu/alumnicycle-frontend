@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Pagination } from 'antd';
 import axios from 'axios';
-import { Card,Button } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function AnnouncementCard() {
 
@@ -27,7 +28,7 @@ function AnnouncementCard() {
 
   useEffect(() => {
     fetchData();
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [current]);
 
 
@@ -35,29 +36,30 @@ function AnnouncementCard() {
     setCurrent(page);
     setPageSize(pageSize);
   };
- 
+
   return (
     <div>
       <h5>Check All Announcements</h5>
-      
-        <div className="announcement-cards">
-            {data.map((announcement) => (
-                    <Card style={{ width: '50rem' }} key={announcement.id} >
-                    {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-                    <Card.Body>
-                      <Card.Title>{announcement.title}</Card.Title>
-                      <Card.Text>
-                        {announcement.content}
-                      </Card.Text>
-                      <Card.Text>
-                        {announcement.star}
-                      </Card.Text>
-                      <Button variant="primary">Go somewhere</Button>
-                    </Card.Body>
-                  </Card>
-              ))}
-          </div>
-      
+
+      <div className="announcement-cards">
+        {data.map((announcement) => (
+          <Card style={{ width: '50rem' }} key={announcement.id} >
+            {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
+            <Card.Body>
+              <Card.Title>{announcement.title}</Card.Title>
+              {/* <Card.Text>
+                {announcement.content}
+              </Card.Text> */}
+              <Card.Text>
+                {announcement.star}
+              </Card.Text>
+              <Link to={`/announcement/${announcement.id}`}>
+                <Button variant="primary">View Details</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
 
       <div className="d-flex justify-content-center">
         <Pagination
@@ -67,12 +69,12 @@ function AnnouncementCard() {
           // showSizeChanger
           showQuickJumper
           onChange={handlePageChange}
-          // onShowSizeChange={(current, size) => {
-          //   setPageSize(size);
-          // }}
+        // onShowSizeChange={(current, size) => {
+        //   setPageSize(size);
+        // }}
         />
-      </div> 
-      
+      </div>
+
     </div>
   );
 }
