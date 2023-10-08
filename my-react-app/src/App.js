@@ -8,18 +8,35 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 function App() {
   return (
     <>
-      <Navigator/>
-      <div>
-        <Router>
-          <Switch>
-            <Route exact path ="/"> <HomePage/></Route>
+      <Navigator />
 
-            <Route> <NotFound/></Route>
-          </Switch>
-        </Router>
-        
-      
+      <div className="container">
+        <div className="row">
+          <div className="col-md-10">
+            <div>
+              <Router>
+                <Switch>
+                  <Route exact path="/"> <HomePage /></Route>
+
+                  <Route> <NotFound /></Route>
+                </Switch>
+              </Router>
+
+            </div>
+
+          </div>
+          <div className="col-md-2">
+            <div className="d-flex justify-content-end align-items-start" style={{ minHeight: '100vh' }}>
+
+              <p>This is a right-top div</p>
+            </div>
+          </div>
+        </div>
       </div>
+
+
+
+
     </>
   );
 }

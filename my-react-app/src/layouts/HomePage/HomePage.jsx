@@ -6,8 +6,8 @@ import AnnouncementCard from './components/AnnouncementCard'
 export default function HomePage() {
   return (
     
-    <div>
-      ff
+    <div className="d-flex justify-content-center">
+      
       <AnnouncementCard/>
       
     </div>
