@@ -39,11 +39,11 @@ function AnnouncementCard() {
 
   return (
     <div>
-      <h5>Check All Announcements</h5>
+      <div className="mb-4"></div>
 
       <div className="announcement-cards">
         {data.map((announcement) => (
-          <Card style={{ width: '50rem' }} key={announcement.id} >
+          <Card className="mb-3" style={{ width: '50rem' }} key={announcement.id} >
             {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
             <Card.Body>
               <Card.Title>{announcement.title}</Card.Title>
