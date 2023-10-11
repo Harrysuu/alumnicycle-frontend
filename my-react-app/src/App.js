@@ -11,6 +11,10 @@ import LifePostShow from './layouts/LifePost/components/LifePostShow';
 import LifePostCard from './layouts/LifePost/components/LifePostCard';
 import Footer from './layouts/Navigator/Footer';
 import LifePostAdd from './layouts/LifePost/components/LifePostAdd';
+import UserPage from './layouts/UserPage/UserPage';
+import UserSetting from './layouts/UserPage/components/UserSetting';
+import UserPosts from './layouts/UserPage/components/UserPosts';
+import UserFavorites from './layouts/UserPage/components/UserFavorites';
 
 function App() {
   return (
@@ -28,6 +32,11 @@ function App() {
                   <Route path="/lifepost/page" component={LifePostCard} />
                   <Route path="/lifepost/:id" component={LifePostShow} />
                   <Route path="/addNewLifePost" component={LifePostAdd} />
+
+                  <Route path="/user/page" component={UserPage} />
+                  <Route path="/user/addcredit" component={UserSetting} />
+                  <Route path="/user/posts" component={UserPosts} />
+                  <Route path="/user/favorites" component={UserFavorites} />
 
 
                   <Route> <NotFound /></Route>

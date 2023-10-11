@@ -18,12 +18,15 @@ export default function Navigator() {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/lifepost/page">LifePost</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link href="/">Academic</Nav.Link>
+            <Nav.Link href="/">UniTrade</Nav.Link>
           </Nav>
 
-          <Button>Register</Button>
+          <Button href="/user/page">User</Button>
 
-          <Button>Sign In</Button>
+          <Button href="/">Login</Button>
+
+          <Button href="/">Logout</Button>
 
         </Container>
       </Navbar>
@@ -42,8 +45,8 @@ export default function Navigator() {
                 <p>This is the LifePost description.</p>
               </Route>
               {/* 修改此处 */}
-              <Route path="/announcement">
-                <h1>Welcome to the Other Page</h1>
+              <Route path="/user">
+                <h1>Welcome to the Your Profile</h1>
                 <p>This is the other page description.</p>
               </Route>
               <Route path="/">
