@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
 
 export default function LifePostShow(props) {
   const [lifePost, setLifePost] = useState(null);
@@ -25,7 +26,7 @@ export default function LifePostShow(props) {
       .catch(error => {
         console.error('Error checking enrol status:', error);
       });
-  }, [lifePostId]);
+  }, [lifePostId,enrolled]);
 
   const handleEnrolClick = () => {
     if (enrolled) {
@@ -51,13 +52,27 @@ export default function LifePostShow(props) {
     }
   };
 
+  function getCategoryName(category) {
+    switch (category) {
+      case 1:
+        return "Social";
+      case 2:
+        return "Study";
+      case 3:
+        return "Sports";
+      default:
+        return "Unknown"; // 处理未知的类别值
+    }
+  }
+
   return (
     <div>
       <div>
         {lifePost ? (
           <div>
             <h1>{lifePost.title}</h1>
-            <p>Category: {lifePost.category}</p>
+            {/* <img src={lifePost.picture}></img> */}
+            <p>Category: {getCategoryName(lifePost.category)}</p>
             <p>Content: {lifePost.content}</p>
             <p>The number of people enrolled: {lifePost.peopleEnrol}</p>
             {/* Display other LifePost information */}
@@ -68,9 +83,9 @@ export default function LifePostShow(props) {
       </div>
 
       <div>
-        <button onClick={handleEnrolClick}>
+        <Button variant="primary" onClick={handleEnrolClick}>
           {enrolled ? 'Unregister' : 'Register'}
-        </button>
+        </Button>
       </div>
     </div>
   );

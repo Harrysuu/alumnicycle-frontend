@@ -80,6 +80,7 @@ function AnnouncementCard() {
       </div>
 
       <div className="d-flex justify-content-center">
+
         <Pagination
           current={current}
           pageSize={pageSize}
