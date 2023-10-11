@@ -47,8 +47,24 @@ function LifePostCard() {
     marginRight: '10px', // 添加右侧外边距
   };
 
+  function getCategoryName(category) {
+    switch (category) {
+      case 1:
+        return "Social";
+      case 2:
+        return "Study";
+      case 3:
+        return "Sports";
+      default:
+        return "All Life Posts"; // 处理未知的类别值
+    }
+  }
+
   return (
     <div>
+
+      <div className="mb-4"></div>
+
       <Card style={{ width: '50rem' }} >
         <Card.Body style={{ width: '50rem', display: 'flex', justifyContent: 'space-between' }}>
           <div className="category-buttons">
@@ -76,7 +92,8 @@ function LifePostCard() {
 
 
       <div className="mb-4"></div>
-
+      
+      <p>Category: {getCategoryName(category)}</p>
 
       <div className="life-post-cards" style={{ width: '50rem' }}>
         {data.map((lifePost) => (

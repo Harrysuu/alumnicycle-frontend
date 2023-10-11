@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Navbar, Nav, Button } from 'react-bootstrap';
 import { Card } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
 export default function Navigator() {
@@ -27,17 +28,33 @@ export default function Navigator() {
         </Container>
       </Navbar>
 
+      <Router>
+      <Navbar bg="dark" data-bs-theme="dark">
+        {/* ... navigation bar content */}
+      </Navbar>
+
       <Card bg="light" text="dark" style={cardStyle}>
         <Card.Body>
           <Container>
-            <h1>Welcome to Alumni Circle</h1>
-            <p>
-              This is an Alumni Connection platform for all USYD students.
-            </p>
+            <Switch>
+              <Route path="/lifepost">
+                <h1>Welcome to the LifePost Page</h1>
+                <p>This is the LifePost description.</p>
+              </Route>
+              {/* 修改此处 */}
+              <Route path="/announcement">
+                <h1>Welcome to the Other Page</h1>
+                <p>This is the other page description.</p>
+              </Route>
+              <Route path="/">
+                <h1>Welcome to Alumni Circle</h1>
+                <p>This is an Alumni Connection platform for all USYD students.</p>
+              </Route>
+            </Switch>
           </Container>
         </Card.Body>
       </Card>
-
+    </Router>
 
 
     </>
