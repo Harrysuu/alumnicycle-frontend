@@ -29,11 +29,6 @@ function App() {
                   <Route path="/lifepost/:id" component={LifePostShow} />
                   <Route path="/addNewLifePost" component={LifePostAdd} />
 
-      
-
-
-
-
 
                   <Route> <NotFound /></Route>
                 </Switch>

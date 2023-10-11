@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom'; // 导入 useHistory
 
 
 export default function LifePostAdd() {
@@ -13,6 +14,8 @@ export default function LifePostAdd() {
     picture: '',
   });
 
+  const history = useHistory(); // 获取 history 对象
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -20,6 +23,8 @@ export default function LifePostAdd() {
       const response = await axios.post('/lifePost/add', lifePost);
       console.log(response.data);
       // 清除表单或进行其他操作
+      //go back to history page
+      history.push('/lifepost/page');
     } catch (error) {
       console.error(error);
       // 处理错误

@@ -7,7 +7,7 @@ export default function AnnouncementShow(props) {
 
   useEffect(() => {
     // 发送 GET 请求以获取公告
-    axios.get(`/announcement/getAnnouncementbyId?id=${announcementId}`)
+    axios.get(`/announcement/getAnnouncementById?id=${announcementId}`)
       .then(response => {
         setAnnouncement(response.data.result); // 设置公告数据到状态中
       })

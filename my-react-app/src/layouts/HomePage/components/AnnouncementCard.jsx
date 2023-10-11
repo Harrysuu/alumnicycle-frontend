@@ -11,26 +11,44 @@ function AnnouncementCard() {
   const [pageSize, setPageSize] = useState(3);
   const [current, setCurrent] = useState(1);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.post('/announcement/page', {
-        // 发送的请求数据，根据需要进行更改
-        page: current,
-        pageSize: pageSize,
-      });
-      const { records, total } = response.data.result;
-      setData(records); // 假设返回的数据包含在 response.data.results 中
-      setTotal(total); // 假设总记录数在 response.data.total 中
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.post('/announcement/page', {
+  //       // 发送的请求数据，根据需要进行更改
+  //       page: current,
+  //       pageSize: pageSize,
+  //     });
+  //     const { records, total } = response.data.result;
+  //     setData(records); // 假设返回的数据包含在 response.data.results 中
+  //     setTotal(total); // 假设总记录数在 response.data.total 中
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchData();
+  //   // eslint-disable-next-line
+  // }, [current]);
 
   useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line
-  }, [current]);
+    const fetchData = async () => {
+      try {
+        const response = await axios.post('/announcement/page', {
+          page: current,
+          pageSize: pageSize,
+        });
+        console.log(response);
+        const { records, total } = response.data.result;
+        setData(records);
+        setTotal(total);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
+    fetchData(); // 在 useEffect 中直接调用 fetchData，确保只在组件挂载后调用一次
+  }, [current, pageSize]);
 
   const handlePageChange = (page, pageSize) => {
     setCurrent(page);
