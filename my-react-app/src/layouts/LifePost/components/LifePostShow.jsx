@@ -71,7 +71,7 @@ export default function LifePostShow(props) {
         {lifePost ? (
           <div>
             <h1>{lifePost.title}</h1>
-            {/* <img src={lifePost.picture}></img> */}
+            {/* <img src={lifePost.picture} alt='Life Post Image'></img> */}
             <p>Category: {getCategoryName(lifePost.category)}</p>
             <p>Content: {lifePost.content}</p>
             <p>The number of people enrolled: {lifePost.peopleEnrol}</p>
