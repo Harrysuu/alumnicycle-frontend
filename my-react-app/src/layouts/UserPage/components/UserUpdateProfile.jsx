@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { Form } from 'react-bootstrap';
 
 
-export default function UpdateProfile() {
+export default function UserUpdateProfile() {
   const [user, setUser] = useState(null);
   const [college, setCollege] = useState('');
   const [description, setDescription] = useState('');
@@ -74,7 +74,7 @@ export default function UpdateProfile() {
           <Nav.Link as={Link} to="/user/updateProfile" active>Update Profile</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/favorites">Reset Password</Nav.Link>
+          <Nav.Link as={Link} to="/user/reset">Reset Password</Nav.Link>
         </Nav.Item>
 
 

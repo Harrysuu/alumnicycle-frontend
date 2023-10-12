@@ -59,7 +59,7 @@ export default function UserCredit() {
           <Nav.Link as={Link} to="/user/updateProfile">Update Profile</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/favorites">Reset Password</Nav.Link>
+          <Nav.Link as={Link} to="/user/reset">Reset Password</Nav.Link>
         </Nav.Item>
 
 
@@ -86,10 +86,6 @@ export default function UserCredit() {
           {/* 可以根据需要渲染其他用户信息 */}
         </div>
       )}
-
-      <div>
-        here
-      </div>
 
       <div>
 

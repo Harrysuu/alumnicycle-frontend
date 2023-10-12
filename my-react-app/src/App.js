@@ -14,9 +14,9 @@ import LifePostAdd from './layouts/LifePost/components/LifePostAdd';
 import UserPage from './layouts/UserPage/UserPage';
 import UserPosts from './layouts/UserPage/components/UserPosts';
 import UserFavorites from './layouts/UserPage/components/UserFavorites';
-
-import UpdateProfile from './layouts/UserPage/components/UpdateProfile';
 import UserCredit from './layouts/UserPage/components/UserCredit';
+import UserResetPassword from './layouts/UserPage/components/UserResetPassword';
+import UserUpdateProfile from './layouts/UserPage/components/UserUpdateProfile';
 
 function App() {
   return (
@@ -37,9 +37,11 @@ function App() {
 
                   <Route path="/user/page" component={UserPage} />
                   <Route path="/user/addcredit" component={UserCredit} />
+                  <Route path="/user/updateProfile" component={UserUpdateProfile} />
+                  <Route path="/user/reset" component={UserResetPassword} />
                   <Route path="/user/posts" component={UserPosts} />
                   <Route path="/user/favorites" component={UserFavorites} />
-                  <Route path="/user/updateProfile" component={UpdateProfile} />
+                  
 
                   
 
