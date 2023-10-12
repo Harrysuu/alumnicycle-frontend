@@ -11,11 +11,11 @@ export default function UserPosts() {
         <Nav.Link as={Link} to="/user/page" >Profile</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link as={Link} to="/user/settings">Add Credit</Nav.Link>
+        <Nav.Link as={Link} to="/user/addcredit">Add Credit</Nav.Link>
       </Nav.Item>
 
       <Nav.Item>
-          <Nav.Link as={Link} to="/user/favorites">Update Profile</Nav.Link>
+          <Nav.Link as={Link} to="/user/updateProfile">Update Profile</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link as={Link} to="/user/favorites">Reset Password</Nav.Link>

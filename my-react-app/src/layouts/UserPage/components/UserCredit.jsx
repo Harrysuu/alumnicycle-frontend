@@ -10,6 +10,15 @@ export default function UserCredit() {
   const [creditToAdd, setCreditToAdd] = useState(0);
   const [user, setUser] = useState(null);
 
+  // // 在需要访问用户ID的地方，从Session Storage中检索它
+  // const storedUserId = sessionStorage.getItem('userId');
+  // if (storedUserId) {
+  //   const userId = parseInt(storedUserId, 10);
+  //   // 现在您可以使用userId进行其他操作
+  // } else {
+  //   // 如果未找到存储的用户ID，可以采取适当的措施，如跳转到登录页面
+  // }
+
   useEffect(() => {
     // 发起HTTP请求来获取用户信息
     axios.get('/user/getById', { params: { userId: 99 } }) // 1 是示例的 userId，您可以根据需要传入实际的 userId
@@ -37,17 +46,17 @@ export default function UserCredit() {
 
   return (
     <div style={{ width: '50rem' }}>
-      <Nav fill variant="tabs" defaultActiveKey="/user/settings" style={{ fontSize: '16px', padding: '10px' }}>
+      <Nav fill variant="tabs" defaultActiveKey="/user/addcredit" style={{ fontSize: '16px', padding: '10px' }}>
         <Nav.Item >
           <Nav.Link as={Link} to="/user/page" >Profile</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/settings" active>Add Credit</Nav.Link>
+          <Nav.Link as={Link} to="/user/addcredit" active>Add Credit</Nav.Link>
         </Nav.Item>
 
 
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/favorites">Update Profile</Nav.Link>
+          <Nav.Link as={Link} to="/user/updateProfile">Update Profile</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link as={Link} to="/user/favorites">Reset Password</Nav.Link>
@@ -77,6 +86,10 @@ export default function UserCredit() {
           {/* 可以根据需要渲染其他用户信息 */}
         </div>
       )}
+
+      <div>
+        here
+      </div>
 
       <div>
 
