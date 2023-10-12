@@ -10,7 +10,7 @@ export default function UserPage() {
 
   useEffect(() => {
     // 发起HTTP请求来获取用户信息
-    axios.get('/user/getById', { params: { userId: 99 } }) // 1 是示例的 userId，您可以根据需要传入实际的 userId
+    axios.get('/user/getById', { params: { userId: 98 } }) // 1 是示例的 userId，您可以根据需要传入实际的 userId
       .then(response => {
         console.log(response.data.result);
         setUser(response.data.result); // 设置用户信息到状态
