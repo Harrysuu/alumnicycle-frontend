@@ -88,20 +88,25 @@ export default function UserCredit() {
       )}
 
       <div>
-
         <Form.Group controlId="inputCredit">
           <Form.Label>Add Credit:</Form.Label>
           <Form.Control
-            type="number"
-            inputMode="none"
+            type="text" // 使用 text 类型
             value={creditToAdd}
-            onChange={(e) => setCreditToAdd(Number(e.target.value))}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (/^\d*\.?\d*$/.test(value)) {
+                setCreditToAdd(value);
+              }
+            }}
           />
           <Form.Text muted>
             Please enter the amount of credit you want to add.
           </Form.Text>
         </Form.Group>
         <Button onClick={handleAddCredit}>Add Credit</Button>
+
+      
       </div>
 
 

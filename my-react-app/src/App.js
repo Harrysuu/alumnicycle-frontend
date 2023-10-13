@@ -17,6 +17,8 @@ import UserFavorites from './layouts/UserPage/components/UserFavorites';
 import UserCredit from './layouts/UserPage/components/UserCredit';
 import UserResetPassword from './layouts/UserPage/components/UserResetPassword';
 import UserUpdateProfile from './layouts/UserPage/components/UserUpdateProfile';
+import LifePostUpdate from './layouts/LifePost/components/LifePostUpdate';
+import LifePostDelete from './layouts/LifePost/components/LifePostDelete';
 
 function App() {
   return (
@@ -34,6 +36,10 @@ function App() {
                   <Route path="/lifepost/page" component={LifePostCard} />
                   <Route path="/lifepost/:id" component={LifePostShow} />
                   <Route path="/addNewLifePost" component={LifePostAdd} />
+                  <Route path="/updateLifePost/:postId" component={LifePostUpdate} />
+                  <Route path="/deleteLifePost/:postId" component={LifePostDelete} />
+
+
 
                   <Route path="/user/page" component={UserPage} />
                   <Route path="/user/addcredit" component={UserCredit} />

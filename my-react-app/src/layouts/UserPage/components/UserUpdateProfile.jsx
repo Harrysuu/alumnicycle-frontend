@@ -93,7 +93,7 @@ export default function UserUpdateProfile() {
 
 
           <Form.Group controlId="inputCollege">
-            <Form.Label>College:{user.college}</Form.Label>
+            <Form.Label>College</Form.Label>
             <Form.Control
               type="text"
               value={college}
@@ -101,7 +101,7 @@ export default function UserUpdateProfile() {
             />
           </Form.Group>
           <Form.Group controlId="inputDescription">
-            <Form.Label>Description:{user.description}</Form.Label>
+            <Form.Label>Description</Form.Label>
             <Form.Control
               type="text"
               value={description}
@@ -109,7 +109,7 @@ export default function UserUpdateProfile() {
             />
           </Form.Group>
           <Form.Group controlId="inputEmail">
-            <Form.Label>Email:{user.email}</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
               value={email}
@@ -117,7 +117,7 @@ export default function UserUpdateProfile() {
             />
           </Form.Group>
           <Form.Group controlId="inputPicture">
-            <Form.Label>Picture:{user.picture}</Form.Label>
+            <Form.Label>Picture</Form.Label>
             <Form.Control
               type="text"
               value={picture}

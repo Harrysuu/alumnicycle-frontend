@@ -41,6 +41,9 @@ export default function LifePostAdd() {
 
   return (
     <div style={{ width: '50rem' }} >
+      <div>
+        <h3>Create your own Life Post</h3>
+      </div>
       <Form onSubmit={handleSubmit}>
 
         <Form.Group controlId="category">
