@@ -21,7 +21,9 @@ export default function AnnouncementShow(props) {
       {announcement ? (
         <div>
           <h1>{announcement.title}</h1>
+          <p>{announcement.star}</p>
           <p>{announcement.content}</p>
+          <p>{announcement.detail}</p>
           {/* 其他公告信息展示 */}
         </div>
       ) : (

@@ -65,9 +65,7 @@ function AnnouncementCard() {
             {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
             <Card.Body>
               <Card.Title>{announcement.title}</Card.Title>
-              {/* <Card.Text>
-                {announcement.content}
-              </Card.Text> */}
+              <Card.Text>{announcement.content}</Card.Text>
               <Card.Text>
                 {announcement.star}
               </Card.Text>

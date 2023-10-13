@@ -71,7 +71,6 @@ export default function UserPosts() {
 
       <Nav fill variant="tabs" defaultActiveKey="/user/posts" style={{ fontSize: '14px', padding: '10px' }}>
 
-
         <Nav.Item>
           <Nav.Link as={Link} to="/user/posts" active>Life Posts</Nav.Link>
         </Nav.Item>
@@ -90,6 +89,8 @@ export default function UserPosts() {
               <div style={{ flexGrow: 1 }}>
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text>{post.content}</Card.Text>
+                <Card.Text>{post.peopleEnrol} people enrolled</Card.Text>
+                <Card.Text>Time: {post.activityTime}</Card.Text>
                 <Link to={`/lifepost/${post.id}`}>
                   <Button variant="primary">View Details</Button>
                 </Link>

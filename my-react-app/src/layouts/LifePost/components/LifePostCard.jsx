@@ -99,8 +99,12 @@ function LifePostCard() {
         {data.map((lifePost) => (
           <Card className="mb-3" style={{ width: '50rem' }} key={lifePost.id}>
             <Card.Body>
+              {/* <img src={lifePost.picture} alt='Life Post Image'></img> */}
               <Card.Title>{lifePost.title}</Card.Title>
               <Card.Text>{lifePost.content}</Card.Text>
+              <Card.Text>{lifePost.peopleEnrol} people enrolled</Card.Text>
+              <Card.Text>Time: {lifePost.activityTime}</Card.Text>
+              
               <Link to={`/lifepost/${lifePost.id}`}>
                 <Button variant="primary">View Details</Button>
               </Link>

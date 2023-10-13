@@ -18,8 +18,8 @@ export default function Navigator() {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/lifepost/page">LifePost</Nav.Link>
-            <Nav.Link href="/">Academic</Nav.Link>
-            <Nav.Link href="/">UniTrade</Nav.Link>
+            <Nav.Link href="/academic/page">AcademicPost</Nav.Link>
+            <Nav.Link href="/uniTrade/page">UniTrade</Nav.Link>
           </Nav>
 
           <Button href="/user/page">User</Button>

@@ -19,6 +19,10 @@ import UserResetPassword from './layouts/UserPage/components/UserResetPassword';
 import UserUpdateProfile from './layouts/UserPage/components/UserUpdateProfile';
 import LifePostUpdate from './layouts/LifePost/components/LifePostUpdate';
 import LifePostDelete from './layouts/LifePost/components/LifePostDelete';
+import AcademicPost from './layouts/AcademicPost/AcademicPost';
+import UniTrade from './layouts/UniTrade/UniTrade';
+import UserAcademic from './layouts/UserPage/components/UserAcademic';
+import UserUniTrade from './layouts/UserPage/components/UserUniTrade';
 
 function App() {
   return (
@@ -33,21 +37,28 @@ function App() {
                 <Switch>
                   <Route exact path="/"> <HomePage /></Route>
                   <Route path="/announcement/:id" component={AnnouncementShow} />
+                
                   <Route path="/lifepost/page" component={LifePostCard} />
                   <Route path="/lifepost/:id" component={LifePostShow} />
                   <Route path="/addNewLifePost" component={LifePostAdd} />
                   <Route path="/updateLifePost/:postId" component={LifePostUpdate} />
                   <Route path="/deleteLifePost/:postId" component={LifePostDelete} />
 
+                  <Route path="/academic/page" component={AcademicPost} />
 
+                  <Route path="/uniTrade/page" component={UniTrade} />
 
                   <Route path="/user/page" component={UserPage} />
                   <Route path="/user/addcredit" component={UserCredit} />
                   <Route path="/user/updateProfile" component={UserUpdateProfile} />
                   <Route path="/user/reset" component={UserResetPassword} />
                   <Route path="/user/posts" component={UserPosts} />
+                  <Route path="/user/academicPost" component={UserAcademic} />
+                  <Route path="/user/uniTradePost" component={UserUniTrade} />
+
                   <Route path="/user/favorites" component={UserFavorites} />
                   
+
 
                   
 
