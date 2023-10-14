@@ -9,7 +9,7 @@ import GuideSide from './layouts/GuideSide/GuideSide';
 import AnnouncementShow from './layouts/HomePage/components/AnnouncementShow';
 import LifePostShow from './layouts/LifePost/components/LifePostShow';
 import LifePostCard from './layouts/LifePost/components/LifePostCard';
-import Footer from './layouts/Navigator/Footer';
+// import Footer from './layouts/Navigator/Footer';
 import LifePostAdd from './layouts/LifePost/components/LifePostAdd';
 import UserPage from './layouts/UserPage/UserPage';
 import UserPosts from './layouts/UserPage/components/UserPosts';
@@ -81,7 +81,7 @@ function App() {
 
 
       </div>
-      <Footer />
+      {/* <Footer /> */}
 
 
 

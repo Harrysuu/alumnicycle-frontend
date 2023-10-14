@@ -100,6 +100,7 @@ function LifePostCard() {
           <Card className="mb-3" style={{ width: '50rem' }} key={lifePost.id}>
             <Card.Body>
               {/* <img src={lifePost.picture} alt='Life Post Image'></img> */}
+              <img src={`/common/download?name=${lifePost.picture}`}  alt='Life Post'></img>
               <Card.Title>{lifePost.title}</Card.Title>
               <Card.Text>{lifePost.content}</Card.Text>
               <Card.Text>{lifePost.peopleEnrol} people enrolled</Card.Text>
