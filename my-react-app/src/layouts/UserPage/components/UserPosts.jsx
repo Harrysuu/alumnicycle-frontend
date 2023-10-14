@@ -82,6 +82,16 @@ export default function UserPosts() {
         </Nav.Item>
       </Nav>
 
+      <br></br>
+
+      <div >
+        <Link to={`/addNewLifePost`} >
+          <Button variant="outline-primary">Create</Button>
+        </Link>
+      </div>
+
+      <br></br>
+
       <div className="life-post-cards" style={{ width: '50rem' }}>
         {posts.map((post) => (
           <Card className="mb-3" style={{ width: '50rem' }} key={post.id}>
@@ -96,9 +106,7 @@ export default function UserPosts() {
                 </Link>
               </div>
               <div style={{ alignSelf: 'flex-end' }}>
-                <Link to={`/addNewLifePost`}>
-                  <Button variant="outline-primary">Create</Button>
-                </Link>
+
                 <Link to={`/updateLifePost/${post.id}`}> {/* 传递 post.id */}
                   <Button variant="outline-primary">Update</Button>
                 </Link>
