@@ -23,6 +23,7 @@ import AcademicPost from './layouts/AcademicPost/AcademicPost';
 import UniTrade from './layouts/UniTrade/UniTrade';
 import UserAcademic from './layouts/UserPage/components/UserAcademic';
 import UserUniTrade from './layouts/UserPage/components/UserUniTrade';
+import Login from './layouts/Login/Login';
 
 function App() {
   return (
@@ -57,6 +58,8 @@ function App() {
                   <Route path="/user/uniTradePost" component={UserUniTrade} />
 
                   <Route path="/user/favorites" component={UserFavorites} />
+
+                  <Route path="/login/page" component={Login} />
                   
 
 

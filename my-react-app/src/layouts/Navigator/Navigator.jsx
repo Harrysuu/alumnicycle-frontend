@@ -24,7 +24,7 @@ export default function Navigator() {
 
           <Button href="/user/page">User</Button>
 
-          <Button href="/">Login</Button>
+          <Button href="/login/page">Login</Button>
 
           <Button href="/">Logout</Button>
 
