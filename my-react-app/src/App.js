@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -26,10 +26,21 @@ import UserUniTrade from './layouts/UserPage/components/UserUniTrade';
 import Login from './layouts/Login/Login';
 
 function App() {
+  const [isLoginPage, setIsLoginPage] = useState(false);
+
+  useEffect(() => {
+      // 根据当前路径判断是否为登录页
+    const currentPath = window.location.pathname;
+    if (currentPath === '/login/page') {
+      setIsLoginPage(true);
+    } else {
+      setIsLoginPage(false);
+    }
+  }, []);
+
   return (
     <>
-      <Navigator />
-
+    {!isLoginPage && <Navigator />}
       <div className="container">
         <div className="row">
           <div className="col-md-10">
@@ -59,13 +70,7 @@ function App() {
 
                   <Route path="/user/favorites" component={UserFavorites} />
 
-                  <Route path="/login/page" component={Login} />
-                  
-
-
-                  
-
-
+                  {isLoginPage && <Route path="/login/page" component={Login} />}
                   <Route> <NotFound /></Route>
                 </Switch>
               </Router>
@@ -75,17 +80,18 @@ function App() {
 
 
           <div className="col-md-2" >
-            <div className="d-flex justify-content-end align-items-start" style={{ minHeight: '100vh'}}>
+            {isLoginPage ? null :(
+              <div className="d-flex justify-content-end align-items-start" style={{ minHeight: '100vh'}}>
 
               <GuideSide />
             </div>
+            )}
           </div>
         </div>
 
 
       </div>
       {/* <Footer /> */}
-
 
 
 
