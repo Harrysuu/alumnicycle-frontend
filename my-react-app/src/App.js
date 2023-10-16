@@ -13,7 +13,6 @@ import LifePostCard from './layouts/LifePost/components/LifePostCard';
 import LifePostAdd from './layouts/LifePost/components/LifePostAdd';
 import UserPage from './layouts/UserPage/UserPage';
 import UserPosts from './layouts/UserPage/components/UserPosts';
-import UserFavorites from './layouts/UserPage/components/UserFavorites';
 import UserCredit from './layouts/UserPage/components/UserCredit';
 import UserResetPassword from './layouts/UserPage/components/UserResetPassword';
 import UserUpdateProfile from './layouts/UserPage/components/UserUpdateProfile';
@@ -24,6 +23,7 @@ import UniTrade from './layouts/UniTrade/UniTrade';
 import UserAcademic from './layouts/UserPage/components/UserAcademic';
 import UserUniTrade from './layouts/UserPage/components/UserUniTrade';
 import Login from './layouts/Login/Login';
+import UserPicture from './layouts/UserPage/components/UserPicture';
 
 function App() {
   const [isLoginPage, setIsLoginPage] = useState(false);
@@ -68,7 +68,7 @@ function App() {
                   <Route path="/user/academicPost" component={UserAcademic} />
                   <Route path="/user/uniTradePost" component={UserUniTrade} />
 
-                  <Route path="/user/favorites" component={UserFavorites} />
+                  <Route path="/user/picture" component={UserPicture} />
 
                   {isLoginPage && <Route path="/login/page" component={Login} />}
                   <Route> <NotFound /></Route>

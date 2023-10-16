@@ -1,110 +1,133 @@
-import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import Nav from 'react-bootstrap/Nav';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom'; // 导入 useHistory
+import Button from 'react-bootstrap/Button';
+import { Form } from 'react-bootstrap';
 
 
 export default function beifen() {
-  const [lifePost, setLifePost] = useState({
-    category: null,
-    title: '',
-    peopleEnrol: 0,
-    address: '',
-    activityTime: '',
-    picture: '',
-  });
+  const [user, setUser] = useState('');
+  const [college, setCollege] = useState('');
+  const [description, setDescription] = useState('');
+  const [email, setEmail] = useState('');
+  const [picture, setPicture] = useState('');
 
-  const history = useHistory(); // 获取 history 对象
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // // 在需要访问用户ID的地方，从Session Storage中检索它
+  // const storedUserId = sessionStorage.getItem('userId');
+  // if (storedUserId) {
+  //   const userId = parseInt(storedUserId, 10);
+  //   // 现在您可以使用userId进行其他操作
+  // } else {
+  //   // 如果未找到存储的用户ID，可以采取适当的措施，如跳转到登录页面
+  // }
 
-    try {
-      const response = await axios.post('/lifePost/add', lifePost);
-      console.log(response.data);
-      // 清除表单或进行其他操作
-      //go back to history page
-      history.push('/lifepost/page');
-    } catch (error) {
-      console.error(error);
-      // 处理错误
-    }
+  useEffect(() => {
+    // 发起HTTP请求来获取用户信息
+    axios.get('/user/getById', { params: { userId: 99 } }) // 1 是示例的 userId，您可以根据需要传入实际的 userId
+      .then(response => {
+        console.log(response.data.result);
+        setUser(response.data.result);
+        setCollege(response.data.result.college);
+        setDescription(response.data.result.description);
+        setEmail(response.data.result.email);
+        setPicture(response.data.result.picture);
+      })
+      .catch(error => {
+        console.error('Error fetching user:', error);
+      });
+  }, []); // 请确保只在组件挂载时获取用户信息，因此依赖为空数组
+
+
+  const handleUpdate = () => {
+
+    axios.post('/user/updateUser', { ...user, college: college, description: description, email: email })
+      .then(response => {
+        setUser(response.data.result);
+        setCollege(''); // 清空输入字段
+        setDescription(''); // 清空输入字段
+        setEmail(''); // 清空输入字段
+        setPicture(''); // 清空输入字段
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error('Error updating user:', error);
+      });
+
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setLifePost((prevLifePost) => ({
-      ...prevLifePost,
-      [name]: value,
-    }));
-  };
 
   return (
-    <div style={{ width: '50rem' }} >
-      <div>
-        <h3>Create your own Life Post</h3>
-      </div>
-      <Form onSubmit={handleSubmit}>
+    <div style={{ width: '50rem' }}>
+      {/* ... 标签导航栏等 ... */}
+      <Nav fill variant="tabs" defaultActiveKey="/user/updateProfile" style={{ fontSize: '16px', padding: '10px' }}>
+        <Nav.Item >
+          <Nav.Link as={Link} to="/user/page" >Profile</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/addcredit" >Add Credit</Nav.Link>
+        </Nav.Item>
 
-        <Form.Group controlId="category">
-          <Form.Label>Category</Form.Label>
-          <Form.Control
-            as="select"
-            name="category"
-            value={lifePost.category}
-            onChange={handleChange}
-          >
-            <option value="">Choose a category</option>
-            <option value="1">Social</option>
-            <option value="2">Study</option>
-            <option value="3">Sports</option>
-          </Form.Control>
-        </Form.Group>
 
-        <Form.Group controlId="title">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            type="text"
-            name="title"
-            value={lifePost.title}
-            onChange={handleChange}
-          />
-        </Form.Group>
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/updateProfile" active>Update Profile</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/reset">Reset Password</Nav.Link>
+        </Nav.Item>
 
-        <Form.Group controlId="address">
-          <Form.Label>Address</Form.Label>
-          <Form.Control
-            type="text"
-            name="address" // 注意此处的 name 属性应与 LifePost 实体中的属性名匹配
-            value={lifePost.address}
-            onChange={handleChange}
-          />
-        </Form.Group>
 
-        <Form.Group controlId="activityTime">
-          <Form.Label>Activity Time</Form.Label>
-          <Form.Control
-            type="datetime-local" // 根据需要选择适当的输入类型
-            name="activityTime" // 注意此处的 name 属性应与 LifePost 实体中的属性名匹配
-            value={lifePost.activityTime}
-            onChange={handleChange}
-          />
-        </Form.Group>
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/posts">Posts</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/favorites">Favorites</Nav.Link>
+        </Nav.Item>
+      </Nav>
 
-        <Form.Group controlId="picture">
-          <Form.Label>Picture</Form.Label>
-          <Form.Control
-            type="file"
-            name="picture" // 注意此处的 name 属性应与 LifePost 实体中的属性名匹配
-            value={lifePost.picture}
-            onChange={handleFileChange}
-          />
-        </Form.Group>
 
-        <Button variant="outline-primary" type="submit">
-          Create
-        </Button>
-      </Form>
+      {user && (
+        <div>
+          <h3>Update Your Profile</h3>
+
+
+          <Form.Group controlId="inputCollege">
+            <Form.Label>College</Form.Label>
+            <Form.Control
+              type="text"
+              value={college}
+              onChange={(e) => setCollege(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="inputDescription">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="inputEmail">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="inputPicture">
+            <Form.Label>Picture</Form.Label>
+            <Form.Control
+              type="text"
+              value={picture}
+              onChange={(e) => setPicture(e.target.value)}
+            />
+          </Form.Group>
+          <Button onClick={handleUpdate}>Update</Button>
+        </div>
+      )}
+
     </div>
-  );
+  )
 }

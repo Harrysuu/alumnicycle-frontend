@@ -45,18 +45,22 @@ export default function UserResetPassword() {
         <Nav.Item>
           <Nav.Link as={Link} to="/user/updateProfile">Update Profile</Nav.Link>
         </Nav.Item>
+
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/picture">Set Photo</Nav.Link>
+        </Nav.Item>
+
         <Nav.Item>
           <Nav.Link as={Link} to="/user/reset" active>Reset Password</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link as={Link} to="/user/posts">Posts</Nav.Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/favorites">Favorites</Nav.Link>
-        </Nav.Item>
+
       </Nav>
 
       <div>
+      <h3>Set password</h3>
         <Form.Group controlId="inputOldPassword">
           <Form.Label>Old Password:</Form.Label>
           <Form.Control

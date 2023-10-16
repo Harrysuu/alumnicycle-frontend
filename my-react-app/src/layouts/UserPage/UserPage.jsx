@@ -57,6 +57,11 @@ export default function UserPage() {
         <Nav.Item>
           <Nav.Link as={Link} to="/user/updateProfile">Update Profile</Nav.Link>
         </Nav.Item>
+
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/picture">Set Photo</Nav.Link>
+        </Nav.Item>
+
         <Nav.Item>
           <Nav.Link as={Link} to="/user/reset">Reset Password</Nav.Link>
         </Nav.Item>
@@ -64,9 +69,7 @@ export default function UserPage() {
         <Nav.Item>
           <Nav.Link as={Link} to="/user/posts">Posts</Nav.Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/favorites">Favorites</Nav.Link>
-        </Nav.Item>
+ 
 
       </Nav>
 
