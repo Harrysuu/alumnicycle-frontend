@@ -24,6 +24,10 @@ import UserAcademic from './layouts/UserPage/components/UserAcademic';
 import UserUniTrade from './layouts/UserPage/components/UserUniTrade';
 import Login from './layouts/Login/Login';
 import UserPicture from './layouts/UserPage/components/UserPicture';
+import ViewOtherUser from './layouts/ViewOtherUser/ViewOtherUser';
+import ViewLifePost from './layouts/ViewOtherUser/components/ViewLifePost';
+import ViewAcademic from './layouts/ViewOtherUser/components/ViewAcademic';
+import ViewUniTrade from './layouts/ViewOtherUser/components/ViewUniTrade';
 
 function App() {
   const [isLoginPage, setIsLoginPage] = useState(false);
@@ -71,6 +75,15 @@ function App() {
                   <Route path="/user/picture" component={UserPicture} />
 
                   {isLoginPage && <Route path="/login/page" component={Login} />}
+
+
+                  <Route path="/ViewOtherUser/:userId" component={ViewOtherUser} />
+                  <Route path="/ViewLifePost/:userId" component={ViewLifePost} />
+                  <Route path="/ViewAcademic/:userId" component={ViewAcademic} />
+                  <Route path="/ViewUniTrade/:userId" component={ViewUniTrade} />
+            
+
+
                   <Route> <NotFound /></Route>
                 </Switch>
               </Router>

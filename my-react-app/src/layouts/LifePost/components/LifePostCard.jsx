@@ -115,7 +115,7 @@ function LifePostCard() {
                 </Col>
                 <Col xs={3}>
                   {/* 放置 LifePostUserCreator 组件在右上角 */}
-                  <div className="text-right">
+                  <div className="d-flex justify-content-end">
                     <LifePostUserCreator postId={lifePost.id} />
                   </div>
                 </Col>

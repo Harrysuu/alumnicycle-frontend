@@ -78,7 +78,8 @@ export default function LifePostShow(props) {
             <p>Address: {lifePost.address}</p>
             <p>Time: {lifePost.activityTime}</p>
             
-            {/* Display other LifePost information */}
+            {/* Display all user enrolled */}
+
           </div>
         ) : (
           <p>Loading...</p>

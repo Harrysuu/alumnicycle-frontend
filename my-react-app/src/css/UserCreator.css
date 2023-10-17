@@ -1,0 +1,14 @@
+.circular-image {
+  width: 100px; /* 调整图片容器的宽度 */
+  height: 100px; /* 调整图片容器的高度 */
+  border-radius: 50%; /* 将容器剪裁为正圆形 */
+  overflow: hidden; /* 隐藏溢出部分 */
+}
+
+.circular-image img {
+  width: 100%; /* 让图片占满整个容器 */
+  height: 100%; /* 让图片占满整个容器 */
+  object-fit: cover; /* 保持图片比例并填充整个容器 */
+  clip-path: circle(50% at 50% 50%); /* 裁剪图片为圆形，以容器的中心为圆心 */
+}
+
