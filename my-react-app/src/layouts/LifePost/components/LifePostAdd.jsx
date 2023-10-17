@@ -130,10 +130,10 @@ export default function LifePostAdd() {
           />
         </Form.Group>
 
-        <Button onClick={handleUpload} variant="outline-primary">
+        <Button onClick={handleUpload} variant="outline-primary" style={{ marginTop: '10px' }}>
           upload
         </Button>
-        <Button variant="outline-primary" type="submit">
+        <Button variant="outline-primary" type="submit" style={{ marginTop: '10px',marginLeft: '10px' }}>
           Create
         </Button>
       </Form>

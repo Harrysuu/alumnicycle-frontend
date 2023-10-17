@@ -28,7 +28,7 @@ export default function GuideSide() {
     <div >
       <Container className="d-flex justify-content-center align-items-center">
         <CardGroup className="my-card-group">
-          <Card className="mb-3" style={{ width: '18rem', ...customStyle, }} >
+          <Card className="mb-3" style={{ width: '18rem', marginTop: '10px',...customStyle, }} >
             <Card.Body>
               <Card.Title>Starred Announcement</Card.Title>
               <Card.Text>
