@@ -12,7 +12,7 @@ export default function Login() {
     width: '800px', // 自定义Card的宽度
     height: '200px',
     position: 'fixed',
-    top: '400px',
+    top: '500px',
     left: '90px',
     margin: 'auto',
     display: 'flex',
