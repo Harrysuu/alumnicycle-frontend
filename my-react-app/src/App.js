@@ -28,6 +28,7 @@ import ViewOtherUser from './layouts/ViewOtherUser/ViewOtherUser';
 import ViewLifePost from './layouts/ViewOtherUser/components/ViewLifePost';
 import ViewAcademic from './layouts/ViewOtherUser/components/ViewAcademic';
 import ViewUniTrade from './layouts/ViewOtherUser/components/ViewUniTrade';
+import EnrolledUser from './layouts/LifePost/components/EnrolledUser';
 
 function App() {
   const [isLoginPage, setIsLoginPage] = useState(false);
@@ -59,6 +60,7 @@ function App() {
                   <Route path="/addNewLifePost" component={LifePostAdd} />
                   <Route path="/updateLifePost/:postId" component={LifePostUpdate} />
                   <Route path="/deleteLifePost/:postId" component={LifePostDelete} />
+                  {/* <Route path="/ViewUser" component={EnrolledUser} /> */}
 
                   <Route path="/academic/page" component={AcademicPost} />
 
@@ -81,7 +83,7 @@ function App() {
                   <Route path="/ViewLifePost/:userId" component={ViewLifePost} />
                   <Route path="/ViewAcademic/:userId" component={ViewAcademic} />
                   <Route path="/ViewUniTrade/:userId" component={ViewUniTrade} />
-            
+                  
 
 
                   <Route> <NotFound /></Route>

@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+// import { useState, useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
+
 
 export default function ViewUniTrade(props) {
   const userId = props.match.params.userId;

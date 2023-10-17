@@ -4,24 +4,21 @@ import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom'; // 导入 Link 组件
 import '../../../css/UserCreator.css'; // 导入样式文件
 
-function LifePostUserCreator({ postId }) {
+function EnrolledUser({ userId }) {
   const [creator, setCreator] = useState(null);
 
   useEffect(() => {
-  const fetchUser = async () => {
-      try {
-        const response = await axios.get(`/lifePost/getUser?id=${postId}`);
-        setCreator(response.data.result);
-      } catch (error) {
-        console.error('Error fetching creator data:', error);
-      }
-    };
+    // 发起HTTP请求来获取用户信息
+    axios.get('/user/getById', { params: { userId: userId } }) // 1 是示例的 userId，您可以根据需要传入实际的 userId
+      .then(response => {
+        console.log(response.data.result);
+        setCreator(response.data.result); // 设置用户信息到状态
+      })
+      .catch(error => {
+        console.error('Error fetching user:', error);
+      });
+  }, []); // 请确保只在组件挂载时获取用户信息，因此依赖为空数组
 
-    if (postId) {
-      fetchUser();
-    }
-    // eslint-disable-next-line
-  }, [postId]);
 
   return (
     creator ? (
@@ -37,4 +34,4 @@ function LifePostUserCreator({ postId }) {
   );
 }
 
-export default LifePostUserCreator;
+export default EnrolledUser;

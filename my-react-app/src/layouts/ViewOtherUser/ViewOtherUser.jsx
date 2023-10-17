@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Pagination } from 'antd';
-import { Card, Button } from 'react-bootstrap';
 
 export default function ViewOtherUser(props) {
 

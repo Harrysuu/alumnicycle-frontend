@@ -1,44 +1,96 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Image } from 'react-bootstrap';
-import '../../../css/UserCreator.css' // 导入样式文件
+import Button from 'react-bootstrap/Button';
 
-function beifen({ postId }) {
-  const [creator, setCreator] = useState(null);
+export default function beifen(props) {
+  const [lifePost, setLifePost] = useState(null);
+  const [enrolled, setEnrolled] = useState(false); // 是否已经enrol的状态
+  const lifePostId = props.match.params.id; // Get the ID from the route parameters
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(`/lifePost/getUser?id=${postId}`); // 发送请求以获取创建者信息
-        setCreator(response.data.result);
-        console.log(creator);
-      } catch (error) {
-        console.error('Error fetching creator data:', error);
-      }
-    };
+    // Send a GET request to fetch the LifePost
+    axios.get(`/lifePost/getPostById?id=${lifePostId}`)
+      .then(response => {
+        console.log(response.data.result);
+        setLifePost(response.data.result); // Set the LifePost data to the state
+      })
+      .catch(error => {
+        console.error('Error fetching LifePost:', error);
+      });
 
-    if (postId) {
-      fetchUser();
+    // 发送请求来检查是否已经enrol
+    axios.get(`/lifePost/enrolCheck?lifePostId=${lifePostId}`)
+      .then(response => {
+        setEnrolled(response.data); // 设置是否已经enrol的状态
+      })
+      .catch(error => {
+        console.error('Error checking enrol status:', error);
+      });
+  }, [lifePostId,enrolled]);
+
+  const handleEnrolClick = () => {
+    if (enrolled) {
+      // 如果已经enrol，取消enrol
+      axios.get(`/lifePost/cancelEnrolById?lifePostId=${lifePostId}`)
+        .then(response => {
+          console.log('Unregistered:', response.data);
+          setEnrolled(false); // 更新状态为未enrol
+        })
+        .catch(error => {
+          console.error('Error canceling enrol:', error);
+        });
+    } else {
+      // 如果未enrol，进行enrol
+      axios.get(`/lifePost/enrolById?lifePostId=${lifePostId}`)
+        .then(response => {
+          console.log('Registered:', response.data);
+          setEnrolled(true); // 更新状态为已enrol
+        })
+        .catch(error => {
+          console.error('Error enrolling:', error);
+        });
     }
-    // eslint-disable-next-line
-  }, [postId]);
+  };
+
+  function getCategoryName(category) {
+    switch (category) {
+      case 1:
+        return "Social";
+      case 2:
+        return "Study";
+      case 3:
+        return "Sports";
+      default:
+        return "Unknown"; // 处理未知的类别值
+    }
+  }
 
   return (
-    creator ? (
+    <div>
       <div>
+        {lifePost ? (
+          <div>
+            <h1>{lifePost.title}</h1>
+            <img src={`/common/download?name=${lifePost.picture}`}  alt='Life Post'></img>
+            <p>Category: {getCategoryName(lifePost.category)}</p>
+            <p>Content: {lifePost.content}</p>
+            <p>{lifePost.peopleEnrol}  people enrolled</p>
+            <p>Address: {lifePost.address}</p>
+            <p>Time: {lifePost.activityTime}</p>
+            
+            {/* Display all user enrolled */}
 
-        <div className="circular-image">
-          <Image src={`/common/download?name=${creator.picture}`} fluid roundedCircle />
-        </div>
-
-        <p>Created by: {creator.username}</p>
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
       </div>
-    ) : null
+
+      <div>
+        <Button variant="primary" onClick={handleEnrolClick}>
+          {enrolled ? 'Unregister' : 'Register'}
+        </Button>
+      </div>
+    </div>
   );
-
-
 }
-
-export default LifePostUserCreator;
-
-
