@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Pagination } from 'antd';
 import axios from 'axios';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import LifePostUserCreator from './LifePostUserCreator';
 
 function LifePostCard() {
   const [data, setData] = useState([]);
@@ -92,23 +93,35 @@ function LifePostCard() {
 
 
       <div className="mb-4"></div>
-      
+
       <p>Category: {getCategoryName(category)}</p>
 
       <div className="life-post-cards" style={{ width: '50rem' }}>
         {data.map((lifePost) => (
           <Card className="mb-3" style={{ width: '50rem' }} key={lifePost.id}>
             <Card.Body>
-              {/* <img src={lifePost.picture} alt='Life Post Image'></img> */}
-              <img src={`/common/download?name=${lifePost.picture}`}  alt='Life Post'></img>
-              <Card.Title>{lifePost.title}</Card.Title>
-              <Card.Text>{lifePost.content}</Card.Text>
-              <Card.Text>{lifePost.peopleEnrol} people enrolled</Card.Text>
-              <Card.Text>Time: {lifePost.activityTime}</Card.Text>
-              
-              <Link to={`/lifepost/${lifePost.id}`}>
-                <Button variant="primary">View Details</Button>
-              </Link>
+              <Row>
+                <Col xs={9}>
+                  <img src={`/common/download?name=${lifePost.picture}`} alt='Life Post'></img>
+                  <Card.Title>{lifePost.title}</Card.Title>
+                  <Card.Text>{lifePost.content}</Card.Text>
+                  <Card.Text>{lifePost.peopleEnrol} people enrolled</Card.Text>
+                  <Card.Text>Time: {lifePost.activityTime}</Card.Text>
+
+                  <Link to={`/lifepost/${lifePost.id}`}>
+                    <Button variant="primary">View Details</Button>
+                  </Link>
+
+                </Col>
+                <Col xs={3}>
+                  {/* 放置 LifePostUserCreator 组件在右上角 */}
+                  <div className="text-right">
+                    <LifePostUserCreator postId={lifePost.id} />
+                  </div>
+                </Col>
+              </Row>
+
+
             </Card.Body>
           </Card>
         ))}
