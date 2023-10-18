@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import LifePostUserCreator from './LifePostUserCreator';
+import { Card, Button, Row, Col } from 'react-bootstrap';
 import EnrolledUser from './EnrolledUser';
+import LifePostUserCreator from './LifePostUserCreator';
 
 export default function LifePostShow(props) {
   const [lifePost, setLifePost] = useState(null);
@@ -15,7 +14,7 @@ export default function LifePostShow(props) {
     // 发送 GET 请求来获取 LifePost 数据
     axios.get(`/lifePost/getPostById?id=${lifePostId}`)
       .then(response => {
-        // console.log(response.data.result);
+        console.log(response.data.result);
         setLifePost(response.data.result); // 设置 LifePost 数据到状态
       })
       .catch(error => {
@@ -89,45 +88,105 @@ export default function LifePostShow(props) {
 
   return (
     <div>
-      <div>
-        {lifePost ? (
+
+      <Card className="mb-3" style={{ width: '50rem' }}>
+        <Card.Body>
+          {lifePost ? (
+            <div>
+              <h1>{lifePost.title}</h1>
+              <img src={`/common/download?name=${lifePost.picture}`} alt='Life Post' style={{ maxWidth: '800px', maxHeight: '600px' }} />
+
+              <div className="mb-4"></div>
+
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src="/catagoryLogo.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <Card.Text>Category: {getCategoryName(lifePost.category)}</Card.Text>
+              </div>
+
+              <div className="mb-2"></div>
+
+              <div className="mb-2"></div>
+              <Card.Text>{lifePost.content}</Card.Text>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src="/people.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <Card.Text>{lifePost.peopleEnrol} people enrolled</Card.Text>
+              </div>
+
+              <div className="mb-2"></div>
+
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src="/map.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <Card.Text>Address: {lifePost.address}</Card.Text>
+              </div>
+
+              <div className="mb-2"></div>
+
+
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src="/calendar.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <Card.Text>Activity Time: {lifePost.activityTime}</Card.Text>
+              </div>
+
+              <div className="mb-2"></div>
+
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src="/editTime.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <Card.Text>Post Time: {lifePost.postTime}</Card.Text>
+              </div>
+
+              <div className="mb-4"></div>
+
+
+              <div>
+                <Button variant="primary" onClick={handleEnrolClick}>
+                  {enrolled ? 'Unregister' : 'Register'}
+                </Button>
+              </div>
+
+              <div className="mb-4"></div>
+
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src="/creator.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <h5>Creator</h5>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                <LifePostUserCreator postId={lifePost.id} />
+              </div>
+
+            </div>
+
+
+          ) : (
+            <p>Loading...</p>
+          )}
+
+
+          <div className="mb-2"></div>
+
           <div>
-            <h1>{lifePost.title}</h1>
-            <img src={`/common/download?name=${lifePost.picture}`} alt='Life Post'></img>
-            <p>Category: {getCategoryName(lifePost.category)}</p>
-            <p>Content: {lifePost.content}</p>
-            <p>{lifePost.peopleEnrol}  people enrolled</p>
-            <p>Address: {lifePost.address}</p>
-            <p>Time: {lifePost.activityTime}</p>
-
-
-
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src="/people.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <h5>Enrolled Users</h5>
+              </div>
+            
+            <div className="enrolled-users">
+              <Row>
+                {enrolledUsers.map(user => (
+                  <Col key={user.id} xs={4}>
+                    <EnrolledUser userId={user.id} />
+                  </Col>
+                ))}
+              </Row>
+            </div>
           </div>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
 
-      <div>
-        <Button variant="primary" onClick={handleEnrolClick}>
-          {enrolled ? 'Unregister' : 'Register'}
-        </Button>
-      </div>
+        </Card.Body>
+      </Card>
 
-      <br></br>
 
-      <div>
-        <h3>Enrolled Users:</h3>
-        <div className="enrolled-users">
-          <Row>
-            {enrolledUsers.map(user => (
-              <Col key={user.id} xs={4}>
-                <EnrolledUser userId={user.id} />
-              </Col>
-            ))}
-          </Row>
-        </div>
-      </div>
+
+
 
 
 

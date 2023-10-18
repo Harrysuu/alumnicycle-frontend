@@ -48,10 +48,15 @@ function App() {
     }
   }, []);
 
+    const customStyle = {
+    backgroundColor: '#ccdce8', // 设置背景颜色为浅蓝色
+    // 可以添加其他样式属性，例如颜色、边框等
+  };
+
   return (
     <>
     {!isLoginPage && isLoggedIn && <Navigator/>}
-      <div className="container">
+      <div className="container " style= {customStyle}>
         <div className="row">
           <div className="col-md-10">
             <div>
