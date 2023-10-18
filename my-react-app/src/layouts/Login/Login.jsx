@@ -1,10 +1,12 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Container, Nav, Navbar, Button, Card, Col, Form, Row } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 export default function Login() {
   const [isPhoneLogin, setIsPhoneLogin] = useState(false);
   const [showVerification, setShowVerification] = useState(false);
-  const [countdown, setCountdown] = useState(60);
+  const [countdown, setCountdown] = useState(180);
   const [timer, setTimer] = useState(null);
 
   const imageStyle = {
@@ -16,6 +18,39 @@ export default function Login() {
     height: '100vh',
   };
 
+  const [loginData, setLoginData] = useState({
+    userName: '',
+    password: '',
+    phoneNumber: '',
+    code: '',
+  });
+
+  const history = useHistory();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/user/login', loginData);
+      // 处理登录成功的逻辑，可能会存储用户信息等
+      console.log('Login successful:', response.data);
+      localStorage.setItem('userId', response.data.id);
+      console.log(localStorage.getItem('userId'))
+      // 重定向到其他页面，例如用户主页
+      history.push('/');
+    } catch (error) {
+      console.error('Login error:', error);
+      // 处理登录失败的逻辑，例如显示错误消息
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginData((prevLoginData) => ({
+      ...prevLoginData,
+      [name]: value,
+    }));
+  };
+  
   const handleToggleLogin = () => {
     setIsPhoneLogin(!isPhoneLogin);
     setShowVerification(false); // Hide the verification input
@@ -23,7 +58,7 @@ export default function Login() {
 
   const handleGetVerificationCode = () => {
     setShowVerification(true);
-    setCountdown(60); // Reset countdown
+    setCountdown(180); // Reset countdown
 
     const timer = setInterval(() => {
       if (countdown > 1) {
@@ -65,23 +100,41 @@ export default function Login() {
                 <Row>
                   <Col md={6}>
                     <h1>{isPhoneLogin ? 'Phone Login' : 'Login'}</h1>
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                     {isPhoneLogin ? (
                       <Form.Group controlId="phone">
                         <Form.Label>Phone Number</Form.Label>
                         <div style={{ display: 'flex' }}>
-                          <Form.Control type="text" placeholder="Enter your phone number" />
-                        </div>
+                          <Form.Control 
+                          type="text" 
+                          placeholder="Enter your phone number"
+                          name='phoneNumber' 
+                          value={loginData.phoneNumber}
+                          onChange={handleChange}
+                          />
+                        </div> 
                       </Form.Group>
                     ): (
                         <>
                           <Form.Group controlId="username">
                             <Form.Label>Username</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your username" />
+                            <Form.Control 
+                            type="text" 
+                            placeholder="Enter your username" 
+                            name='userName'
+                            value={loginData.userName}
+                            onChange={handleChange}
+                            />
                           </Form.Group>
                           <Form.Group controlId="password" >
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Enter your password" />
+                            <Form.Control 
+                            type="password" 
+                            placeholder="Enter your password" 
+                            name= 'password'
+                            value={loginData.password}
+                            onChange={handleChange}
+                            />
                           </Form.Group>
                           <Button variant="primary" type="submit" style={{marginTop: '5px'}}>
                             Login
@@ -93,10 +146,18 @@ export default function Login() {
                         <>
                           <Form.Group controlId="verification">
                             <Form.Label>Verification Code</Form.Label>
-                            <Form.Control type="text" placeholder="Enter verification code" />
+                            <Form.Control 
+                            type="text" 
+                            placeholder="Enter verification code" 
+                            name='code'
+                            value={loginData.code}
+                            onChange={handleChange}
+                            />
                             {showVerification ? (
-                            <div style={{ position: 'absolute', top: '0', right: '0', bottom: '0', display: 'flex', alignItems: 'center', paddingRight: '10px', color: 'lightgray' }}>
+                            <div className="col-auto">
+                              <span id="codeHelpInline" class="form-text">
                               {`(${countdown}s)`}
+                              </span>
                             </div>
                           ) : null}
                           </Form.Group>
@@ -107,7 +168,7 @@ export default function Login() {
                       ) : (
                         isPhoneLogin && (
                           <Button variant="primary" onClick={handleGetVerificationCode} style={{marginTop: '5px'}}>
-                            Get Verification Code ({countdown} seconds)
+                            Get verification code
                           </Button>
                         )
                       )}

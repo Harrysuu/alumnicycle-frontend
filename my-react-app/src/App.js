@@ -28,10 +28,10 @@ import ViewOtherUser from './layouts/ViewOtherUser/ViewOtherUser';
 import ViewLifePost from './layouts/ViewOtherUser/components/ViewLifePost';
 import ViewAcademic from './layouts/ViewOtherUser/components/ViewAcademic';
 import ViewUniTrade from './layouts/ViewOtherUser/components/ViewUniTrade';
-import EnrolledUser from './layouts/LifePost/components/EnrolledUser';
 
 function App() {
   const [isLoginPage, setIsLoginPage] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
       // 根据当前路径判断是否为登录页
@@ -41,11 +41,16 @@ function App() {
     } else {
       setIsLoginPage(false);
     }
+    if (localStorage.getItem('userId')) {
+      setIsLoggedIn(true);
+    } else{
+      setIsLoggedIn(false);
+    }
   }, []);
 
   return (
     <>
-    {!isLoginPage && <Navigator />}
+    {!isLoginPage && isLoggedIn && <Navigator/>}
       <div className="container">
         <div className="row">
           <div className="col-md-10">
