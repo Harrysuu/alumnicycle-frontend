@@ -112,12 +112,12 @@ function LifePostCard() {
               <Row>
                 <Col xs={9}>
                   <img src={`/common/download?name=${lifePost.picture}`} alt='Life Post' style={{ maxWidth: '400px', maxHeight: '300px' }}></img>
-                  <div className="mb-4"></div>
+<div className="mb-4"></div>
                   <Card.Title>{lifePost.title}</Card.Title>
                   <Card.Text>{lifePost.content}</Card.Text>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
+<div style={{ display: 'flex', alignItems: 'center' }}>
                     <img src="/people.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
-                    <Card.Text>{lifePost.peopleEnrol} people enrolled</Card.Text>
+                  <Card.Text>{lifePost.peopleEnrol} people enrolled</Card.Text>
                   </div>
 
                   <div className="mb-2"></div>

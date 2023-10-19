@@ -17,7 +17,6 @@ function EnrolledUser({ userId }) {
       .catch(error => {
         console.error('Error fetching user:', error);
       });
-      // eslint-disable-next-line 
   }, []); // 请确保只在组件挂载时获取用户信息，因此依赖为空数组
 
 

@@ -1,13 +1,19 @@
 import React from 'react';
 import { Container, Navbar, Nav, Button } from 'react-bootstrap';
 import { Card } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch ,useHistory} from 'react-router-dom';
 
 
 export default function Navigator() {
   const cardStyle = {
     height: '200px', // 设置高度
   };
+
+  const history = useHistory ()
+  function logout (){
+    localStorage.removeItem("userId")
+    history.push('login/page')
+  }
 
 
   return (
@@ -26,7 +32,7 @@ export default function Navigator() {
 
           <Button href="/login/page">Login</Button>
 
-          <Button href="/">Logout</Button>
+          <Button href="/" onClick={logout}>Logout</Button>
 
         </Container>
       </Navbar>

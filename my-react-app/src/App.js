@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch,useHistory } from 'react-router-dom';
 
 import HomePage from './layouts/HomePage/HomePage';
 import Navigator from './layouts/Navigator/Navigator';
@@ -30,17 +30,22 @@ import ViewAcademic from './layouts/ViewOtherUser/components/ViewAcademic';
 import ViewUniTrade from './layouts/ViewOtherUser/components/ViewUniTrade';
 
 function App() {
-  const [isLoginPage, setIsLoginPage] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoginPage, setIsLoginPage] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const history = useHistory();
 
   useEffect(() => {
-      // 根据当前路径判断是否为登录页
+
+    // 根据当前路径判断是否为登录页
     const currentPath = window.location.pathname;
+    console.log(currentPath)
     if (currentPath === '/login/page') {
       setIsLoginPage(true);
     } else {
       setIsLoginPage(false);
     }
+    //
     if (localStorage.getItem('userId')) {
       setIsLoggedIn(true);
     } else{

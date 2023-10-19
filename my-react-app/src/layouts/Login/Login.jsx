@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Container, Nav, Navbar, Button, Card, Col, Form, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import "./Login.css"
 
 export default function Login() {
   const [isPhoneLogin, setIsPhoneLogin] = useState(false);
@@ -19,28 +20,75 @@ export default function Login() {
   };
 
   const [loginData, setLoginData] = useState({
-    userName: '',
+    username: '',
     password: '',
     phoneNumber: '',
     code: '',
   });
 
+  const [tips,setTips] = useState("")
+
   const history = useHistory();
+
+  // 是否显示错误
+  const [isShowErrortips,setIsShowErrortips]=useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const  regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,}$/;
+
+    const {username,password,phoneNumber,code} = loginData
+    if (isPhoneLogin){
+      const phoneRex = /^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\d{8}$/;
+      const {phoneNumber} = loginData
+      if (!phoneNumber){
+        setIsShowErrortips (true)
+        setTips ('please input your phoneNumber ')
+        return
+      }
+      else if (!phoneRex.test(phoneNumber)){
+        setIsShowErrortips (true)
+        setTips ('phoneNumber does not meet the requirement')
+        return
+      }else if (code.length!==4){
+          setIsShowErrortips (true)
+          setTips("The verification code should be 4 digits")
+          return
+      }
+    }else{
+      if (!username){
+        setIsShowErrortips (true)
+        setTips ('please input your username')
+        return
+      }
+      else if (!regex.test(password)){
+        setIsShowErrortips (true)
+        setTips ('password does not meet the requirement')
+        return
+      }
+      else{
+        setIsShowErrortips (false)
+      }
+    }
     try {
       const response = await axios.post('/user/login', loginData);
+      console.log(response)
       // 处理登录成功的逻辑，可能会存储用户信息等
       console.log('Login successful:', response.data);
-      localStorage.setItem('userId', response.data.id);
-      console.log(localStorage.getItem('userId'))
-      // 重定向到其他页面，例如用户主页
-      history.push('/');
+      if (response.data.res===0){
+        setIsShowErrortips (true)
+        setTips (response.data.resMsg)
+      }else{
+        localStorage.setItem('userId', response.data.result.id);
+        // 重定向到其他页面，例如用户主页
+        history.push('/');
+        window.location.reload()
+      }
     } catch (error) {
       console.error('Login error:', error);
       // 处理登录失败的逻辑，例如显示错误消息
     }
+
   };
 
   const handleChange = (e) => {
@@ -53,13 +101,27 @@ export default function Login() {
   
   const handleToggleLogin = () => {
     setIsPhoneLogin(!isPhoneLogin);
+    setIsShowErrortips(false)
     setShowVerification(false); // Hide the verification input
   };
 
-  const handleGetVerificationCode = () => {
+  const handleGetVerificationCode = async () => {
+    const phoneRex = /^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\d{8}$/;
+    const {phoneNumber} = loginData
+    if (!phoneNumber){
+      setIsShowErrortips (true)
+      setTips ('please input your phoneNumber ')
+      return
+    }
+    else if (!phoneRex.test(phoneNumber)){
+      setIsShowErrortips (true)
+      setTips ('phoneNumber does not meet the requirement')
+      return
+    }
     setShowVerification(true);
     setCountdown(180); // Reset countdown
-
+    const   response=  await axios.post(`/user/loginWithPhone?phoneNumber=${phoneNumber}`);
+    console.log(response)
     const timer = setInterval(() => {
       if (countdown > 1) {
         setCountdown((prevCountdown) => prevCountdown - 1); // Use closure to ensure using the latest countdown value
@@ -72,6 +134,9 @@ export default function Login() {
   };
 
   useEffect(() => {
+    if (localStorage.getItem('userId')){
+      history.push('/')
+    }
     // Clear the timer
     return () => {
       if (timer) {
@@ -121,8 +186,8 @@ export default function Login() {
                             <Form.Control 
                             type="text" 
                             placeholder="Enter your username" 
-                            name='userName'
-                            value={loginData.userName}
+                            name='username'
+                            value={loginData.username}
                             onChange={handleChange}
                             />
                           </Form.Group>
@@ -136,9 +201,13 @@ export default function Login() {
                             onChange={handleChange}
                             />
                           </Form.Group>
-                          <Button variant="primary" type="submit" style={{marginTop: '5px'}}>
-                            Login
-                          </Button>
+                          <div className="loginButton">
+                            <p style={{display: isShowErrortips ? "block":"none"}}>{tips}</p>
+                            <Button variant="primary" type="submit" style={{marginTop: '5px'}}>
+                              Login
+                            </Button>
+                          </div>
+
                         </>
                       )}
 
@@ -155,21 +224,28 @@ export default function Login() {
                             />
                             {showVerification ? (
                             <div className="col-auto">
-                              <span id="codeHelpInline" class="form-text">
+                              <span id="codeHelpInline" className="form-text">
                               {`(${countdown}s)`}
                               </span>
                             </div>
                           ) : null}
                           </Form.Group>
-                          <Button variant="primary" type="submit" style={{marginTop: '5px'}}>
-                            Login
-                          </Button>
+                          <div className="loginButton">
+                            <p style={{display: isShowErrortips ? "block":"none"}}>{tips}</p>
+                            <Button variant="primary" type="submit" style={{marginTop: '5px'}}>
+                              Login
+                            </Button>
+                          </div>
+
                         </>
                       ) : (
                         isPhoneLogin && (
-                          <Button variant="primary" onClick={handleGetVerificationCode} style={{marginTop: '5px'}}>
-                            Get verification code
-                          </Button>
+                              <div className="loginButton">
+                                  <p style={{display: isShowErrortips ? "block":"none"}}>{tips}</p>
+                                  <Button variant="primary" onClick={handleGetVerificationCode} style={{marginTop: '5px'}}>
+                                    Get verification code
+                                  </Button>
+                              </div>
                         )
                       )}
                     </Form>
