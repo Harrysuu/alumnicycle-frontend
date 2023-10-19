@@ -79,6 +79,7 @@ export default function Login() {
         setIsShowErrortips (true)
         setTips (response.data.resMsg)
       }else{
+        //id储存在localStorage中
         localStorage.setItem('userId', response.data.result.id);
         // 重定向到其他页面，例如用户主页
         history.push('/');
@@ -149,7 +150,7 @@ export default function Login() {
     <div style={{ position: 'fixed', top: '0', right: '0', bottom: '0', left: '0', overflow: 'auto', backgroundColor: 'white' }}>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="/"><img src="/Logo.png" alt="" style={{width: '40%'}} /></Navbar.Brand>
+          <Navbar.Brand href="/"><img src="/Logo.png" alt="" style={{width: '50%'}} /></Navbar.Brand>
           <Navbar.Brand href="/">Alumni Circle</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/">About us</Nav.Link>
