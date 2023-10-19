@@ -20,10 +20,14 @@ import UserUpdateProfile from './layouts/UserPage/components/UserUpdateProfile';
 import LifePostUpdate from './layouts/LifePost/components/LifePostUpdate';
 import LifePostDelete from './layouts/LifePost/components/LifePostDelete';
 import AcademicPost from './layouts/AcademicPost/AcademicPost';
-import UniTrade from './layouts/UniTrade/UniTrade';
 import UserAcademic from './layouts/UserPage/components/UserAcademic';
-import UserUniTrade from './layouts/UserPage/components/UserUniTrade';
 import Login from './layouts/Login/Login';
+import SecondPostAdd from './layouts/SecondPost/components/SecondPostAdd';
+import SecondPost from './layouts/SecondPost/SecondPost';
+import SecondPostCard from './layouts/SecondPost/components/SecondPostCard';
+import SecondPostDelete from './layouts/SecondPost/components/SecondPostDelete';
+import SecondPostShow from './layouts/SecondPost/components/SecondPostShow';
+import SecondPostUpdate from './layouts/SecondPost/components/SecondPostUpdate';
 
 function App() {
   const [isLoginPage, setIsLoginPage] = useState(false);
@@ -58,7 +62,12 @@ function App() {
 
                   <Route path="/academic/page" component={AcademicPost} />
 
-                  <Route path="/uniTrade/page" component={UniTrade} />
+
+                  <Route path="/secondpost/page" component={SecondPostCard} />
+                  <Route path="/secondpost/:id" component={SecondPostShow} />
+                  <Route path="/addNewSecondPost" component={SecondPostAdd} />
+                  <Route path="/updateSecondPost/:postId" component={SecondPostUpdate} />
+                  <Route path="/deleteSecondPost/:postId" component={SecondPostDelete} />
 
                   <Route path="/user/page" component={UserPage} />
                   <Route path="/user/addcredit" component={UserCredit} />
@@ -66,7 +75,7 @@ function App() {
                   <Route path="/user/reset" component={UserResetPassword} />
                   <Route path="/user/posts" component={UserPosts} />
                   <Route path="/user/academicPost" component={UserAcademic} />
-                  <Route path="/user/uniTradePost" component={UserUniTrade} />
+                  <Route path="/user/uniTradePost" component={SecondPost} />
 
                   <Route path="/user/favorites" component={UserFavorites} />
 
