@@ -3,9 +3,6 @@ import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom'; // 导入 useHistory
 
-
-
-
 export default function LifePostAdd() {
   const [lifePost, setLifePost] = useState({
     category: null,
@@ -35,6 +32,7 @@ export default function LifePostAdd() {
         console.log("before"+lifePost.picture);
         console.log("File uploaded:", response.data.result);
         // 更新 lifePost 对象中的 picture 字段为文件名
+
         setLifePost((prevLifePost) => ({
           ...prevLifePost,
           picture: response.data.result
@@ -132,7 +130,10 @@ export default function LifePostAdd() {
           />
         </Form.Group>
 
-        <Button onClick={handleUpload} variant="outline-primary" type="submit">
+        <Button onClick={handleUpload} variant="outline-primary" style={{ marginTop: '10px' }}>
+          upload
+        </Button>
+        <Button variant="outline-primary" type="submit" style={{ marginTop: '10px',marginLeft: '10px' }}>
           Create
         </Button>
       </Form>

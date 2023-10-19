@@ -7,11 +7,11 @@ import { Form } from 'react-bootstrap';
 
 
 export default function UserUpdateProfile() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState('');
   const [college, setCollege] = useState('');
   const [description, setDescription] = useState('');
   const [email, setEmail] = useState('');
-  const [picture, setPicture] = useState('');
+  // const [picture, setPicture] = useState('');
 
 
   // // 在需要访问用户ID的地方，从Session Storage中检索它
@@ -32,7 +32,7 @@ export default function UserUpdateProfile() {
         setCollege(response.data.result.college);
         setDescription(response.data.result.description);
         setEmail(response.data.result.email);
-        setPicture(response.data.result.picture);
+        // setPicture(response.data.result.picture);
       })
       .catch(error => {
         console.error('Error fetching user:', error);
@@ -48,7 +48,7 @@ export default function UserUpdateProfile() {
         setCollege(''); // 清空输入字段
         setDescription(''); // 清空输入字段
         setEmail(''); // 清空输入字段
-        setPicture(''); // 清空输入字段
+        // setPicture(''); // 清空输入字段
         window.location.reload();
       })
       .catch(error => {
@@ -73,6 +73,11 @@ export default function UserUpdateProfile() {
         <Nav.Item>
           <Nav.Link as={Link} to="/user/updateProfile" active>Update Profile</Nav.Link>
         </Nav.Item>
+
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/picture">Set Photo</Nav.Link>
+        </Nav.Item>
+        
         <Nav.Item>
           <Nav.Link as={Link} to="/user/reset">Reset Password</Nav.Link>
         </Nav.Item>
@@ -81,9 +86,7 @@ export default function UserUpdateProfile() {
         <Nav.Item>
           <Nav.Link as={Link} to="/user/posts">Posts</Nav.Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/favorites">Favorites</Nav.Link>
-        </Nav.Item>
+
       </Nav>
 
 
@@ -116,14 +119,14 @@ export default function UserUpdateProfile() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
-          <Form.Group controlId="inputPicture">
+          {/* <Form.Group controlId="inputPicture">
             <Form.Label>Picture</Form.Label>
             <Form.Control
               type="text"
               value={picture}
               onChange={(e) => setPicture(e.target.value)}
             />
-          </Form.Group>
+          </Form.Group> */}
           <Button onClick={handleUpdate}>Update</Button>
         </div>
       )}

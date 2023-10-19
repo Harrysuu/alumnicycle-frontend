@@ -18,17 +18,17 @@ export default function GuideSide() {
       });
   }, []);
 
-  const customStyle = {
-    backgroundColor: '#87CEEB', // 设置背景颜色为浅蓝色
-    // 可以添加其他样式属性，例如颜色、边框等
-  };
+  // const customStyle = {
+    //   backgroundColor: '#87CEEB', // 设置背景颜色为浅蓝色
+    //   // 可以添加其他样式属性，例如颜色、边框等
+  // };
 
   return (
 
     <div >
       <Container className="d-flex justify-content-center align-items-center">
         <CardGroup className="my-card-group">
-          <Card className="mb-3" style={{ width: '18rem', ...customStyle, }} >
+          <Card className="mb-3 bg-light" style={{ width: '18rem', marginTop: '10px' }} >
             <Card.Body>
               <Card.Title>Starred Announcement</Card.Title>
               <Card.Text>
@@ -48,7 +48,7 @@ export default function GuideSide() {
           </Card>
 
           <div>
-          <Card className="mb-3" style={{ width: '18rem', ...customStyle, }} >
+          <Card className="mb-3 bg-light" style={{ width: '18rem' }} >
               <Card.Body>
                 <Card.Title>External Links</Card.Title>
                 <Card.Text>

@@ -6,20 +6,13 @@ import { Pagination } from 'antd';
 import { Card, Button } from 'react-bootstrap';
 
 
-export default function UserPosts() {
+export default function ViewLifePost(props) {
+  const userId = props.match.params.userId;
+
   const [posts, setPosts] = useState([]);
   const [current, setCurrent] = useState(1);
   const [total, setTotal] = useState(0);
   const [pageSize, setPageSize] = useState(3);
-
-  // // 在需要访问用户ID的地方，从Session Storage中检索它
-  // const storedUserId = sessionStorage.getItem('userId');
-  // if (storedUserId) {
-  //   const userId = parseInt(storedUserId, 10);
-  //   // 现在您可以使用userId进行其他操作
-  // } else {
-  //   // 如果未找到存储的用户ID，可以采取适当的措施，如跳转到登录页面
-  // }
 
   const fetchData = async () => {
     try {
@@ -44,54 +37,23 @@ export default function UserPosts() {
   };
 
   return (
-
     <div style={{ width: '50rem' }}>
-      <Nav fill variant="tabs" defaultActiveKey="/user/posts" style={{ fontSize: '16px', padding: '10px' }}>
-        <Nav.Item >
-          <Nav.Link as={Link} to="/user/page" >Profile</Nav.Link>
-        </Nav.Item>
+      <Nav fill variant="tabs" defaultActiveKey={`/ViewOtherUser/${userId}`} style={{ fontSize: '16px', padding: '10px' }}>
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/addcredit">Add Credit</Nav.Link>
+          <Nav.Link as={Link} to={`/ViewOtherUser/${userId}`} >Profile</Nav.Link>
         </Nav.Item>
 
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/updateProfile">Update Profile</Nav.Link>
+          <Nav.Link as={Link} to={`/ViewLifePost/${userId}`}  active>Life Posts</Nav.Link>
         </Nav.Item>
-
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/picture">Set Photo</Nav.Link>
+          <Nav.Link as={Link} to={`/ViewAcademic/${userId}`} >Academic</Nav.Link>
         </Nav.Item>
-
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/reset">Reset Password</Nav.Link>
-        </Nav.Item>
-
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/posts" active>Posts</Nav.Link>
+          <Nav.Link as={Link} to={`/ViewUniTrade/${userId}`} >UniTrade</Nav.Link>
         </Nav.Item>
 
       </Nav>
-
-      <Nav fill variant="tabs" defaultActiveKey="/user/posts" style={{ fontSize: '14px', padding: '10px' }}>
-
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/posts" active>Life Posts</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/academicPost">Academic</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/uniTradePost">UniTrade</Nav.Link>
-        </Nav.Item>
-      </Nav>
-
-      <br></br>
-
-      <div >
-        <Link to={`/addNewLifePost`} >
-          <Button variant="outline-primary">Create</Button>
-        </Link>
-      </div>
 
       <br></br>
 
@@ -108,23 +70,13 @@ export default function UserPosts() {
                   <Button variant="primary">View Details</Button>
                 </Link>
               </div>
-              <div style={{ alignSelf: 'flex-end' }}>
 
-                <Link to={`/updateLifePost/${post.id}`}> {/* 传递 post.id */}
-                  <Button variant="outline-primary">Update</Button>
-                </Link>
-                <Link to={`/deleteLifePost/${post.id}`}> {/* 传递 post.id */}
-                  <Button variant="outline-primary">Delete</Button>
-                </Link>
-              </div>
+     
             </Card.Body>
           </Card>
 
         ))}
       </div>
-
-
-
 
       <div className="d-flex justify-content-center">
         <Pagination
@@ -136,7 +88,9 @@ export default function UserPosts() {
         />
       </div>
 
-    </div>
 
+
+
+    </div>
   )
 }

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Pagination } from 'antd';
 import axios from 'axios';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import LifePostUserCreator from './LifePostUserCreator';
 
 function LifePostCard() {
   const [data, setData] = useState([]);
@@ -65,13 +66,16 @@ function LifePostCard() {
 
       <div className="mb-4"></div>
 
+
       <Card style={{ width: '50rem' }} >
         <Card.Body style={{ width: '50rem', display: 'flex', justifyContent: 'space-between' }}>
           <div className="category-buttons">
+            <img src="/catagoryLogo.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+
             {categories.map((cat, index) => (
               <Button
                 key={index}
-                variant="outline-primary"
+                variant="dark"
                 onClick={() => handleCategoryChange(index)}
                 style={buttonStyle}
               >
@@ -83,8 +87,10 @@ function LifePostCard() {
           {/* <div>
             <Button variant="outline-primary" onClick={LifePostAdd} >Create</Button>
           </div> */}
+
           <Link to={`/addNewLifePost`}>
-            <Button variant="outline-primary">Create</Button>
+            <img src="/create.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+            <Button variant="dark" style={buttonStyle}>Create</Button>
           </Link>
         </Card.Body>
 
@@ -92,23 +98,59 @@ function LifePostCard() {
 
 
       <div className="mb-4"></div>
-      
-      <p>Category: {getCategoryName(category)}</p>
+
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+    
+        <h5>Category: {getCategoryName(category)}</h5>
+      </div>
+
 
       <div className="life-post-cards" style={{ width: '50rem' }}>
         {data.map((lifePost) => (
           <Card className="mb-3" style={{ width: '50rem' }} key={lifePost.id}>
             <Card.Body>
-              {/* <img src={lifePost.picture} alt='Life Post Image'></img> */}
-              <img src={`/common/download?name=${lifePost.picture}`}  alt='Life Post'></img>
-              <Card.Title>{lifePost.title}</Card.Title>
-              <Card.Text>{lifePost.content}</Card.Text>
-              <Card.Text>{lifePost.peopleEnrol} people enrolled</Card.Text>
-              <Card.Text>Time: {lifePost.activityTime}</Card.Text>
-              
-              <Link to={`/lifepost/${lifePost.id}`}>
-                <Button variant="primary">View Details</Button>
-              </Link>
+              <Row>
+                <Col xs={9}>
+                  <img src={`/common/download?name=${lifePost.picture}`} alt='Life Post' style={{ maxWidth: '400px', maxHeight: '300px' }}></img>
+<div className="mb-4"></div>
+                  <Card.Title>{lifePost.title}</Card.Title>
+                  <Card.Text>{lifePost.content}</Card.Text>
+<div style={{ display: 'flex', alignItems: 'center' }}>
+                    <img src="/people.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                  <Card.Text>{lifePost.peopleEnrol} people enrolled</Card.Text>
+                  </div>
+
+                  <div className="mb-2"></div>
+
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <img src="/calendar.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                    <Card.Text>Activity Time: {lifePost.activityTime}</Card.Text>
+                  </div>
+
+                   <div className="mb-2"></div>
+
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <img src="/editTime.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                    <Card.Text>Post Time: {lifePost.postTime}</Card.Text>
+                  </div>
+
+                  <div className="mb-4"></div>
+
+
+                  <Link to={`/lifepost/${lifePost.id}`}>
+                    <Button variant="primary">View Details</Button>
+                  </Link>
+
+                </Col>
+                <Col xs={3}>
+                  {/* 放置 LifePostUserCreator 组件在右上角 */}
+                  <div className="d-flex justify-content-end">
+                    <LifePostUserCreator postId={lifePost.id} />
+                  </div>
+                </Col>
+              </Row>
+
+
             </Card.Body>
           </Card>
         ))}
