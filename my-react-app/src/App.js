@@ -14,6 +14,7 @@ import LifePostAdd from './layouts/LifePost/components/LifePostAdd';
 import UserPage from './layouts/UserPage/UserPage';
 import UserPosts from './layouts/UserPage/components/UserPosts';
 import UserCredit from './layouts/UserPage/components/UserCredit';
+import UserPicture from './layouts/UserPage/components/UserPicture';
 import UserResetPassword from './layouts/UserPage/components/UserResetPassword';
 import UserUpdateProfile from './layouts/UserPage/components/UserUpdateProfile';
 import LifePostUpdate from './layouts/LifePost/components/LifePostUpdate';
@@ -21,6 +22,16 @@ import LifePostDelete from './layouts/LifePost/components/LifePostDelete';
 import AcademicPost from './layouts/AcademicPost/AcademicPost';
 import UserAcademic from './layouts/UserPage/components/UserAcademic';
 import Login from './layouts/Login/Login';
+import SecondPostCard from './layouts/SecondPost/components/SecondPostCard';
+import SecondPostShow from './layouts/SecondPost/components/SecondPostShow';
+import SecondPostAdd from './layouts/SecondPost/components/SecondPostAdd';
+import SecondPost from './layouts/SecondPost/SecondPost';
+import SecondPostUpdate from './layouts/SecondPost/components/SecondPostUpdate';
+import SecondPostDelete from './layouts/SecondPost/components/SecondPostDelete';
+import ViewOtherUser from './layouts/ViewOtherUser/ViewOtherUser'
+import ViewAcademic from './layouts/ViewOtherUser/components/ViewAcademic'
+import ViewLifePost from './layouts/ViewOtherUser/components/ViewLifePost'
+import ViewUniTrade from './layouts/ViewOtherUser/components/ViewUniTrade';
 
 function App() {
   const [isLoginPage, setIsLoginPage] = useState(true);
@@ -62,9 +73,9 @@ function App() {
                 <Switch>
                   <Route exact path="/"> <HomePage /></Route>
                   <Route path="/announcement/:id" component={AnnouncementShow} />
-                
-                  <Route path="/lifepost/page" component={LifePostCard} />
-                  <Route path="/lifepost/:id" component={LifePostShow} />
+                1
+                  <Route path="/lifePost/page" component={LifePostCard} />
+                  <Route path="/lifePost/:id" component={LifePostShow} />
                   <Route path="/addNewLifePost" component={LifePostAdd} />
                   <Route path="/updateLifePost/:postId" component={LifePostUpdate} />
                   <Route path="/deleteLifePost/:postId" component={LifePostDelete} />
@@ -73,14 +84,14 @@ function App() {
                   <Route path="/academic/page" component={AcademicPost} />
 
 
-                  <Route path="/secondpost/page" component={SecondPostCard} />
-                  <Route path="/secondpost/:id" component={SecondPostShow} />
+                  <Route path="/secondPost/page" component={SecondPostCard} />
+                  <Route path="/secondPost/:id" component={SecondPostShow} />
                   <Route path="/addNewSecondPost" component={SecondPostAdd} />
                   <Route path="/updateSecondPost/:postId" component={SecondPostUpdate} />
                   <Route path="/deleteSecondPost/:postId" component={SecondPostDelete} />
 
                   <Route path="/user/page" component={UserPage} />
-                  <Route path="/user/addcredit" component={UserCredit} />
+                  <Route path="/user/addCredit" component={UserCredit} />
                   <Route path="/user/updateProfile" component={UserUpdateProfile} />
                   <Route path="/user/reset" component={UserResetPassword} />
                   <Route path="/user/posts" component={UserPosts} />

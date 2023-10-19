@@ -9,6 +9,7 @@ export default function Login() {
   const [showVerification, setShowVerification] = useState(false);
   const [countdown, setCountdown] = useState(180);
   const [timer, setTimer] = useState(null);
+  const [isRegister, setIsRegister] = useState(false);
 
   const imageStyle = {
     width: '100%',
@@ -25,6 +26,14 @@ export default function Login() {
     phoneNumber: '',
     code: '',
   });
+
+  const [SignData,setSignData] = useState({
+    college: "",
+    email: "", 
+    password: "",
+    phoneNumber: "",
+    username: ""
+  })
 
   const [tips,setTips] = useState("")
 
@@ -102,8 +111,9 @@ export default function Login() {
   
   const handleToggleLogin = () => {
     setIsPhoneLogin(!isPhoneLogin);
-    setIsShowErrortips(false)
+    setIsShowErrortips(false);
     setShowVerification(false); // Hide the verification input
+    setIsRegister(!isRegister);
   };
 
   const handleGetVerificationCode = async () => {
@@ -155,6 +165,7 @@ export default function Login() {
           <Nav className="me-auto">
             <Nav.Link href="/">About us</Nav.Link>
           </Nav>
+          <Button href="/">Sign up</Button>
         </Container>
       </Navbar>
 
@@ -192,7 +203,7 @@ export default function Login() {
                             onChange={handleChange}
                             />
                           </Form.Group>
-                          <Form.Group controlId="password" >
+                          <Form.Group controlId="password">
                             <Form.Label>Password</Form.Label>
                             <Form.Control 
                             type="password" 
