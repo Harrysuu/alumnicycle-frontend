@@ -27,13 +27,13 @@ export default function Login() {
     code: '',
   });
 
-  const [SignData,setSignData] = useState({
-    college: "",
-    email: "", 
-    password: "",
-    phoneNumber: "",
-    username: ""
-  })
+  // const [SignData,setSignData] = useState({
+  //   college: "",
+  //   email: "", 
+  //   password: "",
+  //   phoneNumber: "",
+  //   username: ""
+  // })
 
   const [tips,setTips] = useState("")
 

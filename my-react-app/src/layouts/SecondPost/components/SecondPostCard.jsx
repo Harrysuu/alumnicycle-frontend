@@ -31,6 +31,7 @@ function SecondPostCard() {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [current, category]);
 
   const handlePageChange = (page, pageSize) => {
