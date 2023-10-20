@@ -71,6 +71,7 @@ export default function LifePostAdd() {
 
   return (
     <div style={{ width: '50rem' }} >
+      <div className="mb-4"></div>
       <div>
         <h3>Create your own Life Post</h3>
       </div>
@@ -141,10 +142,13 @@ export default function LifePostAdd() {
           />
         </Form.Group>
 
-        <Button onClick={handleUpload} variant="outline-primary" style={{ marginTop: '10px' }}>
+        <Button onClick={handleUpload} variant="dark" style={{ marginTop: '10px' }}>
           upload
         </Button>
-        <Button variant="outline-primary" type="submit" style={{ marginTop: '10px', marginLeft: '10px' }}>
+
+        <div className="mb-4"></div>
+
+        <Button variant="dark" type="submit" style={{ marginTop: '10px'}}>
           Create
         </Button>
       </Form>

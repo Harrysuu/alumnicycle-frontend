@@ -28,6 +28,7 @@ export default function Navigator() {
     localStorage.removeItem("userId");
     history.push('login/page');
   }
+  
 
   return (
     <>
@@ -105,7 +106,7 @@ export default function Navigator() {
                     </>
                   );
                 }} />
-                <Route path="/uniTrade" render={() => {
+                <Route path="/secondPost" render={() => {
                   const newStyle = {
                     height: '300px',
                     background: `url(${bg4})`,

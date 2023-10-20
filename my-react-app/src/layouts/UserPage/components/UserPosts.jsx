@@ -79,9 +79,9 @@ export default function UserPosts() {
 
       <div className="mb-4"></div>
 
-      <div >
+      <div className="d-flex justify-content-end">
         <Link to={`/addNewLifePost`} >
-          <Button variant="outline-primary">Create</Button>
+          <Button variant="dark">Create</Button>
         </Link>
       </div>
 
@@ -92,21 +92,46 @@ export default function UserPosts() {
           <Card className="mb-3" style={{ width: '50rem' }} key={post.id}>
             <Card.Body style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ flexGrow: 1 }}>
+
+                <img src={`/common/download?name=${post.picture}`} alt='Life Post' style={{ maxWidth: '400px', maxHeight: '300px' }}></img>
+                <div className="mb-4"></div>
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text>{post.content}</Card.Text>
-                <Card.Text>{post.peopleEnrol} people enrolled</Card.Text>
-                <Card.Text>Time: {post.activityTime}</Card.Text>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img src="/people.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                  <Card.Text>{post.peopleEnrol} people enrolled</Card.Text>
+                </div>
+
+                <div className="mb-2"></div>
+
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img src="/calendar.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                  <Card.Text>Activity Time: {post.activityTime}</Card.Text>
+                </div>
+
+                <div className="mb-2"></div>
+
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img src="/editTime.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                  <Card.Text>Post Time: {post.postTime}</Card.Text>
+                </div>
+
+                <div className="mb-4"></div>
+
+
                 <Link to={`/lifepost/${post.id}`}>
                   <Button variant="primary">View Details</Button>
                 </Link>
+
+
               </div>
               <div style={{ alignSelf: 'flex-end' }}>
 
                 <Link to={`/updateLifePost/${post.id}`}> {/* 传递 post.id */}
-                  <Button variant="outline-primary">Update</Button>
+                  <Button variant="dark">Update</Button>
                 </Link>
                 <Link to={`/deleteLifePost/${post.id}`}> {/* 传递 post.id */}
-                  <Button variant="outline-primary">Delete</Button>
+                  <Button variant="dark">Delete</Button>
                 </Link>
               </div>
             </Card.Body>

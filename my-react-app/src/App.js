@@ -59,7 +59,7 @@ function App() {
   }, []);
 
     const customStyle = {
-    backgroundColor: '#55738a', // 设置背景颜色为深蓝色 #55738a #ccdce8
+    backgroundColor: '#8d9da8', // 设置背景颜色为深蓝色 #55738a #ccdce8
     width: '100%',               // 设置宽度为100%
     padding: '0px 300px',             // 设置padding值
     boxSizing: 'border-box'      // 使用box-sizing: border-box;
