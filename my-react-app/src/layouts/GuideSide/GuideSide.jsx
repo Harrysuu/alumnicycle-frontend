@@ -19,22 +19,30 @@ export default function GuideSide() {
   }, []);
 
   // const customStyle = {
-    //   backgroundColor: '#87CEEB', // 设置背景颜色为浅蓝色
-    //   // 可以添加其他样式属性，例如颜色、边框等
+  //   backgroundColor: '#87CEEB', // 设置背景颜色为浅蓝色
+  //   // 可以添加其他样式属性，例如颜色、边框等
   // };
 
   return (
 
     <div >
+
+      <div className="mb-4"></div>
+
       <Container className="d-flex justify-content-center align-items-center">
         <CardGroup className="my-card-group">
           <Card className="mb-3 bg-light" style={{ width: '18rem', marginTop: '10px' }} >
             <Card.Body>
-              <Card.Title>Starred Announcement</Card.Title>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src="/star.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <Card.Title>Starred Announcement</Card.Title>
+              </div>
+
               <Card.Text>
                 Don't miss latest starred announcements from Alumni Circle.
               </Card.Text>
               <Card.Body>
+                {/* <img src="/calendar.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} /> */}
                 {staredAnnouncements.map((announcement) => (
                   <div key={announcement.id}>
                     <Card.Link href={`/announcement/${announcement.id}`}>
@@ -44,11 +52,12 @@ export default function GuideSide() {
                   </div>
                 ))}
               </Card.Body>
+
             </Card.Body>
           </Card>
 
           <div>
-          <Card className="mb-3 bg-light" style={{ width: '18rem' }} >
+            <Card className="mb-3 bg-light" style={{ width: '18rem' }} >
               <Card.Body>
                 <Card.Title>External Links</Card.Title>
                 <Card.Text>
@@ -72,7 +81,7 @@ export default function GuideSide() {
         </CardGroup>
       </Container>
 
-     
+
 
     </div>
   )

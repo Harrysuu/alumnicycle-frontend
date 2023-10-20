@@ -9,7 +9,7 @@ export default function HomePage() {
         if (!localStorage.getItem('userId')){
             history.push('/login/page')
         }
-    }, []);
+    }, [history]);
   return (
 
     <div >

@@ -11,19 +11,11 @@ export default function UserPosts() {
   const [current, setCurrent] = useState(1);
   const [total, setTotal] = useState(0);
   const [pageSize, setPageSize] = useState(3);
-
-  // // 在需要访问用户ID的地方，从Session Storage中检索它
-  // const storedUserId = sessionStorage.getItem('userId');
-  // if (storedUserId) {
-  //   const userId = parseInt(storedUserId, 10);
-  //   // 现在您可以使用userId进行其他操作
-  // } else {
-  //   // 如果未找到存储的用户ID，可以采取适当的措施，如跳转到登录页面
-  // }
+  const userId = localStorage.getItem('userId');
 
   const fetchData = async () => {
     try {
-      const response = await axios.post('/lifePost/getByUserId', { userId: 99, page: { current: current, size: pageSize } });
+      const response = await axios.post('/lifePost/getByUserId', { userId: userId, page: { current: current, size: pageSize } });
       console.log(response.data.result.records);
       console.log(response.data.result.total);
       setPosts(response.data.result.records);
@@ -48,26 +40,26 @@ export default function UserPosts() {
     <div style={{ width: '50rem' }}>
       <Nav fill variant="tabs" defaultActiveKey="/user/posts" style={{ fontSize: '16px', padding: '10px' }}>
         <Nav.Item >
-          <Nav.Link as={Link} to="/user/page" >Profile</Nav.Link>
+          <Nav.Link as={Link} to="/user/page" style={{ color: 'white' }}>Profile</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/addcredit">Add Credit</Nav.Link>
-        </Nav.Item>
-
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/updateProfile">Update Profile</Nav.Link>
+          <Nav.Link as={Link} to="/user/addcredit" style={{ color: 'white' }}>Add Credit</Nav.Link>
         </Nav.Item>
 
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/picture">Set Photo</Nav.Link>
+          <Nav.Link as={Link} to="/user/updateProfile" style={{ color: 'white' }}>Update Profile</Nav.Link>
         </Nav.Item>
 
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/reset">Reset Password</Nav.Link>
+          <Nav.Link as={Link} to="/user/picture" style={{ color: 'white' }}>Set Photo</Nav.Link>
         </Nav.Item>
 
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/posts" active>Posts</Nav.Link>
+          <Nav.Link as={Link} to="/user/reset" style={{ color: 'white' }}>Reset Password</Nav.Link>
+        </Nav.Item>
+
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/posts" active style={{ color: 'dark' }}>Posts</Nav.Link>
         </Nav.Item>
 
       </Nav>
@@ -75,17 +67,17 @@ export default function UserPosts() {
       <Nav fill variant="tabs" defaultActiveKey="/user/posts" style={{ fontSize: '14px', padding: '10px' }}>
 
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/posts" active>Life Posts</Nav.Link>
+          <Nav.Link as={Link} to="/user/posts" active style={{ color: 'dark' }}>Life Posts</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/academicPost">Academic</Nav.Link>
+          <Nav.Link as={Link} to="/user/academicPost" style={{ color: 'white' }}>Academic</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/uniTradePost">UniTrade</Nav.Link>
+          <Nav.Link as={Link} to="/user/uniTradePost" style={{ color: 'white' }}>UniTrade</Nav.Link>
         </Nav.Item>
       </Nav>
 
-      <br></br>
+      <div className="mb-4"></div>
 
       <div >
         <Link to={`/addNewLifePost`} >
@@ -93,7 +85,7 @@ export default function UserPosts() {
         </Link>
       </div>
 
-      <br></br>
+      <div className="mb-4"></div>
 
       <div className="life-post-cards" style={{ width: '50rem' }}>
         {posts.map((post) => (

@@ -35,6 +35,7 @@ function App() {
 
   const history = useHistory();
 
+
   useEffect(() => {
 
     // 根据当前路径判断是否为登录页
@@ -54,16 +55,19 @@ function App() {
   }, []);
 
     const customStyle = {
-    backgroundColor: '#ccdce8', // 设置背景颜色为浅蓝色
-    // 可以添加其他样式属性，例如颜色、边框等
+    backgroundColor: '#55738a', // 设置背景颜色为深蓝色 #55738a #ccdce8
+    width: '100%',               // 设置宽度为100%
+    padding: '0px 300px',             // 设置padding值
+    boxSizing: 'border-box'      // 使用box-sizing: border-box;
+
   };
 
   return (
     <>
     {!isLoginPage && isLoggedIn && <Navigator/>}
-      <div className="container " style= {customStyle}>
-        <div className="row">
-          <div className="col-md-10">
+      <div className="container-fluid  " style= {customStyle}>
+      <div className="d-flex justify-content-center">
+          <div className="col-md-10" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             <div>
               <Router>
                 <Switch>
@@ -109,9 +113,9 @@ function App() {
           </div>
 
 
-          <div className="col-md-2" >
+          <div className="col-md-2" style={{ marginLeft: 'auto', marginRight: 'auto' }} >
             {isLoginPage ? null :(
-              <div className="d-flex justify-content-end align-items-start" style={{ minHeight: '100vh'}}>
+              <div className="d-flex justify-content-end align-items-start" style={{ minHeight: '100vh' }}>
 
               <GuideSide />
             </div>

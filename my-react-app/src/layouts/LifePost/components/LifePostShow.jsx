@@ -88,20 +88,22 @@ export default function LifePostShow(props) {
 
   return (
     <div>
-      
+
+      <div className="mb-4"></div>
+
       <Card className="mb-3" style={{ width: '50rem' }}>
         <Card.Body>
-        {lifePost ? (
-          <div>
-            <h1>{lifePost.title}</h1>
-            <img src={`/common/download?name=${lifePost.picture}`} alt='Life Post' style={{ maxWidth: '800px', maxHeight: '600px' }} />
+          {lifePost ? (
+            <div>
+              <h1>{lifePost.title}</h1>
+              <img src={`/common/download?name=${lifePost.picture}`} alt='Life Post' style={{ maxWidth: '800px', maxHeight: '600px' }} />
 
               <div className="mb-4"></div>
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src="/catagoryLogo.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
                 <Card.Text>Category: {getCategoryName(lifePost.category)}</Card.Text>
-            </div>
+              </div>
 
               <div className="mb-2"></div>
 
@@ -125,25 +127,25 @@ export default function LifePostShow(props) {
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src="/calendar.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
                 <Card.Text>Activity Time: {lifePost.activityTime}</Card.Text>
-          </div>
-        
+              </div>
+
               <div className="mb-2"></div>
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src="/editTime.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
                 <Card.Text>Post Time: {lifePost.postTime}</Card.Text>
-      </div>
+              </div>
 
               <div className="mb-4"></div>
 
 
-      <div>
-        <Button variant="primary" onClick={handleEnrolClick}>
-          {enrolled ? 'Unregister' : 'Register'}
-        </Button>
-      </div>
+              <div>
+                <Button variant="primary" onClick={handleEnrolClick}>
+                  {enrolled ? 'Unregister' : 'Register'}
+                </Button>
+              </div>
 
-      <div className="mb-4"></div>
+              <div className="mb-4"></div>
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src="/creator.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
@@ -164,25 +166,25 @@ export default function LifePostShow(props) {
 
           <div className="mb-2"></div>
 
-      <div>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src="/people.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
-                <h5>Enrolled Users</h5>
-              </div>
-            
-        <div className="enrolled-users">
-          <Row>
-            {enrolledUsers.map(user => (
-              <Col key={user.id} xs={4}>
-                <EnrolledUser userId={user.id} />
-              </Col>
-            ))}
-          </Row>
-        </div>
-      </div>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <img src="/people.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+              <h5>Enrolled Users</h5>
+            </div>
 
-      </Card.Body>
-    </Card>
+            <div className="enrolled-users">
+              <Row>
+                {enrolledUsers.map(user => (
+                  <Col key={user.id} xs={4}>
+                    <EnrolledUser userId={user.id} />
+                  </Col>
+                ))}
+              </Row>
+            </div>
+          </div>
+
+        </Card.Body>
+      </Card>
 
 
 

@@ -144,6 +144,7 @@ export default function Login() {
         clearInterval(timer);
       }
     };
+    // eslint-disable-next-line
   }, [timer]);
 
   return (

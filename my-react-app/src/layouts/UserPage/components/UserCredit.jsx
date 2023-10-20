@@ -4,24 +4,17 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import { Form } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 export default function UserCredit() {
   // const [credit, setCredit] = useState(0);
   const [creditToAdd, setCreditToAdd] = useState(0);
   const [user, setUser] = useState(null);
-
-  // // 在需要访问用户ID的地方，从Session Storage中检索它
-  // const storedUserId = sessionStorage.getItem('userId');
-  // if (storedUserId) {
-  //   const userId = parseInt(storedUserId, 10);
-  //   // 现在您可以使用userId进行其他操作
-  // } else {
-  //   // 如果未找到存储的用户ID，可以采取适当的措施，如跳转到登录页面
-  // }
+  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     // 发起HTTP请求来获取用户信息
-    axios.get('/user/getById', { params: { userId: 99 } }) // 1 是示例的 userId，您可以根据需要传入实际的 userId
+    axios.get('/user/getById', { params: { userId: userId} }) // 根据需要传入实际的 userId
       .then(response => {
         console.log(response.data.result);
         setUser(response.data.result); // 设置用户信息到状态
@@ -48,53 +41,51 @@ export default function UserCredit() {
     <div style={{ width: '50rem' }}>
       <Nav fill variant="tabs" defaultActiveKey="/user/addcredit" style={{ fontSize: '16px', padding: '10px' }}>
         <Nav.Item >
-          <Nav.Link as={Link} to="/user/page" >Profile</Nav.Link>
+          <Nav.Link as={Link} to="/user/page" style={{ color: 'white' }}>Profile</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/addcredit" active>Add Credit</Nav.Link>
-        </Nav.Item>
-
-
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/updateProfile">Update Profile</Nav.Link>
-        </Nav.Item>
-
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/picture">Set Photo</Nav.Link>
-        </Nav.Item>
-
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/reset">Reset Password</Nav.Link>
+          <Nav.Link as={Link} to="/user/addcredit" active style={{ color: 'dark' }}>Add Credit</Nav.Link>
         </Nav.Item>
 
 
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/posts">Posts</Nav.Link>
+          <Nav.Link as={Link} to="/user/updateProfile" style={{ color: 'white' }}>Update Profile</Nav.Link>
+        </Nav.Item>
+
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/picture" style={{ color: 'white' }}>Set Photo</Nav.Link>
+        </Nav.Item>
+
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/reset" style={{ color: 'white' }}>Reset Password</Nav.Link>
+        </Nav.Item>
+
+
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/posts" style={{ color: 'white' }}>Posts</Nav.Link>
         </Nav.Item>
 
       </Nav>
 
-      {user && (
-        <div>
-          <h3>User Profile</h3>
-          {/* <p>ID: {user.id}</p> */}
-          {/* <p>Username: {user.username}</p> */}
-          {/* <p>Email: {user.email}</p> */}
-          <p>Credit: {user.credit}</p>
-          {/* <p>College: {user.college}</p> */}
-          {/* <p>Status: {user.statusInformation}</p> */}
-          {/* <p>Description: {user.description}</p> */}
-          {/* <p>Picture: {user.picture}</p> */}
-          {/* <p>Edit Time: {user.editTime}</p> */}
-          {/* 可以根据需要渲染其他用户信息 */}
-        </div>
-      )}
+      <div className="mb-4"></div>
 
-      <div>
+   
+      <Card>
+      <Card.Body>
+        <h3>Top Up Credit</h3>
+        {user && (
+          <div>
+            <Card.Text>
+              <p>Credit: {user.credit}</p>
+              {/* 可以根据需要渲染其他用户信息 */}
+            </Card.Text>
+          </div>
+        )}
+
         <Form.Group controlId="inputCredit">
           <Form.Label>Add Credit:</Form.Label>
           <Form.Control
-            type="text" // 使用 text 类型
+            type="text"
             value={creditToAdd}
             onChange={(e) => {
               const value = e.target.value;
@@ -108,9 +99,8 @@ export default function UserCredit() {
           </Form.Text>
         </Form.Group>
         <Button onClick={handleAddCredit}>Add Credit</Button>
-
-      
-      </div>
+      </Card.Body>
+    </Card>
 
 
     </div>

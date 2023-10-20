@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Button from 'react-bootstrap/Button';
-import { Form } from 'react-bootstrap';
+import { Card, Button, Form } from 'react-bootstrap';
 
 
 export default function UserUpdateProfile() {
@@ -11,21 +10,12 @@ export default function UserUpdateProfile() {
   const [college, setCollege] = useState('');
   const [description, setDescription] = useState('');
   const [email, setEmail] = useState('');
-  // const [picture, setPicture] = useState('');
 
-
-  // // 在需要访问用户ID的地方，从Session Storage中检索它
-  // const storedUserId = sessionStorage.getItem('userId');
-  // if (storedUserId) {
-  //   const userId = parseInt(storedUserId, 10);
-  //   // 现在您可以使用userId进行其他操作
-  // } else {
-  //   // 如果未找到存储的用户ID，可以采取适当的措施，如跳转到登录页面
-  // }
+  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
     // 发起HTTP请求来获取用户信息
-    axios.get('/user/getById', { params: { userId: 99 } }) // 1 是示例的 userId，您可以根据需要传入实际的 userId
+    axios.get('/user/getById', { params: { userId: userId } }) // 根据需要传入实际的 userId
       .then(response => {
         console.log(response.data.result);
         setUser(response.data.result);
@@ -63,73 +53,70 @@ export default function UserUpdateProfile() {
       {/* ... 标签导航栏等 ... */}
       <Nav fill variant="tabs" defaultActiveKey="/user/updateProfile" style={{ fontSize: '16px', padding: '10px' }}>
         <Nav.Item >
-          <Nav.Link as={Link} to="/user/page" >Profile</Nav.Link>
+          <Nav.Link as={Link} to="/user/page" style={{ color: 'white' }} >Profile</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/addcredit" >Add Credit</Nav.Link>
-        </Nav.Item>
-
-
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/updateProfile" active>Update Profile</Nav.Link>
-        </Nav.Item>
-
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/picture">Set Photo</Nav.Link>
-        </Nav.Item>
-        
-        <Nav.Item>
-          <Nav.Link as={Link} to="/user/reset">Reset Password</Nav.Link>
+          <Nav.Link as={Link} to="/user/addcredit" style={{ color: 'white' }}>Add Credit</Nav.Link>
         </Nav.Item>
 
 
         <Nav.Item>
-          <Nav.Link as={Link} to="/user/posts">Posts</Nav.Link>
+          <Nav.Link as={Link} to="/user/updateProfile" active style={{ color: 'dark' }}>Update Profile</Nav.Link>
+        </Nav.Item>
+
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/picture" style={{ color: 'white' }}>Set Photo</Nav.Link>
+        </Nav.Item>
+
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/reset" style={{ color: 'white' }}>Reset Password</Nav.Link>
+        </Nav.Item>
+
+
+        <Nav.Item>
+          <Nav.Link as={Link} to="/user/posts" style={{ color: 'white' }}>Posts</Nav.Link>
         </Nav.Item>
 
       </Nav>
 
+      <div className="mb-4"></div>
 
-      {user && (
-        <div>
-          <h3>Update Your Profile</h3>
+      <Card>
+        <Card.Body>
+          {user && (
+            <div>
+              <h3>Update Your Profile</h3>
 
-
-          <Form.Group controlId="inputCollege">
-            <Form.Label>College</Form.Label>
-            <Form.Control
-              type="text"
-              value={college}
-              onChange={(e) => setCollege(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group controlId="inputDescription">
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group controlId="inputEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </Form.Group>
-          {/* <Form.Group controlId="inputPicture">
-            <Form.Label>Picture</Form.Label>
-            <Form.Control
-              type="text"
-              value={picture}
-              onChange={(e) => setPicture(e.target.value)}
-            />
-          </Form.Group> */}
-          <Button onClick={handleUpdate}>Update</Button>
-        </div>
-      )}
+              <Form.Group controlId="inputCollege">
+                <Form.Label>College</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={college}
+                  onChange={(e) => setCollege(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="inputDescription">
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="inputEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </Form.Group>
+              {/* 可以根据需要添加其他表单字段 */}
+              <Button onClick={handleUpdate}>Update</Button>
+            </div>
+          )}
+        </Card.Body>
+      </Card>
 
     </div>
   )

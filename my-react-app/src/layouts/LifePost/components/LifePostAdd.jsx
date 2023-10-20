@@ -7,6 +7,7 @@ export default function LifePostAdd() {
   const [lifePost, setLifePost] = useState({
     category: null,
     title: '',
+    content: '',
     peopleEnrol: 0,
     address: '',
     activityTime: '',
@@ -29,7 +30,7 @@ export default function LifePostAdd() {
 
     axios.post("/common/upload", formData)
       .then(response => {
-        console.log("before"+lifePost.picture);
+        console.log("before" + lifePost.picture);
         console.log("File uploaded:", response.data.result);
         // 更新 lifePost 对象中的 picture 字段为文件名
 
@@ -37,7 +38,7 @@ export default function LifePostAdd() {
           ...prevLifePost,
           picture: response.data.result
         }));
-        console.log("after"+lifePost.picture);
+        console.log("after" + lifePost.picture);
 
       })
       .catch(error => {
@@ -100,6 +101,16 @@ export default function LifePostAdd() {
           />
         </Form.Group>
 
+        <Form.Group controlId="title">
+          <Form.Label>Content</Form.Label>
+          <Form.Control
+            type="text"
+            name="content"
+            value={lifePost.content}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
         <Form.Group controlId="address">
           <Form.Label>Address</Form.Label>
           <Form.Control
@@ -133,7 +144,7 @@ export default function LifePostAdd() {
         <Button onClick={handleUpload} variant="outline-primary" style={{ marginTop: '10px' }}>
           upload
         </Button>
-        <Button variant="outline-primary" type="submit" style={{ marginTop: '10px',marginLeft: '10px' }}>
+        <Button variant="outline-primary" type="submit" style={{ marginTop: '10px', marginLeft: '10px' }}>
           Create
         </Button>
       </Form>

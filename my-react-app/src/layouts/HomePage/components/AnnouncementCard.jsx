@@ -64,11 +64,22 @@ function AnnouncementCard() {
           <Card className="mb-3" style={{ width: '50rem' }} key={announcement.id} >
             {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
             <Card.Body>
-              <Card.Title>{announcement.title}</Card.Title>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+              
+                {announcement.star ? (
+                  <img
+                    src="/star.png"
+                    alt=""
+                    style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }}
+                  />
+                ) : null}
+                <Card.Title >{announcement.title}</Card.Title>
+              </div>
+
+              <div className="mb-4"></div>
+
               <Card.Text>{announcement.content}</Card.Text>
-              <Card.Text>
-                {announcement.star}
-              </Card.Text>
+
               <Link to={`/announcement/${announcement.id}`}>
                 <Button variant="primary">View Details</Button>
               </Link>
