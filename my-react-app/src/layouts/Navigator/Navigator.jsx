@@ -40,7 +40,7 @@ export default function Navigator() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/lifepost/page">LifePost</Nav.Link>
             <Nav.Link href="/academic/page">AcademicPost</Nav.Link>
-            <Nav.Link href="/uniTrade/page">UniTrade</Nav.Link>
+            <Nav.Link href="/secondPost/page">SecondPost</Nav.Link>
           </Nav>
 
           <Button href="/user/page">User</Button>
