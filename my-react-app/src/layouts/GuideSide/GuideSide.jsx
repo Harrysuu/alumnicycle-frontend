@@ -59,7 +59,7 @@ export default function GuideSide() {
           <div>
             <Card className="mb-3 bg-light" style={{ width: '18rem' }} >
               <Card.Body>
-                <Card.Title>External Links</Card.Title>
+                <Card.Title>Link to USYD</Card.Title>
                 <Card.Text>
                   Explore more connection with USYD.
                 </Card.Text>
