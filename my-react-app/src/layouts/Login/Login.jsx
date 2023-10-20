@@ -7,9 +7,23 @@ import "./Login.css"
 export default function Login() {
   const [isPhoneLogin, setIsPhoneLogin] = useState(false);
   const [showVerification, setShowVerification] = useState(false);
+  // 是否显示注册页面 true 为显示
+  const [isShowRegister,setIsShowRegister] = useState(false)
   const [countdown, setCountdown] = useState(180);
   const [timer, setTimer] = useState(null);
   const [isRegister, setIsRegister] = useState(false);
+  // 是否显示错误
+  const [isShowErrortips,setIsShowErrortips]=useState(false)
+  // 错误信息
+  const [tips,setTips] = useState("")
+  const phoneRex = /^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\d{8}$/;
+  const  regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,}$/;
+
+  // 切换注册或登录方
+  function toggleLogin  (){
+    setIsShowRegister (!isShowRegister)
+    setIsShowErrortips (false)
+  }
 
   const imageStyle = {
     width: '100%',
@@ -27,28 +41,22 @@ export default function Login() {
     code: '',
   });
 
-  // const [SignData,setSignData] = useState({
-  //   college: "",
-  //   email: "", 
-  //   password: "",
-  //   phoneNumber: "",
-  //   username: ""
-  // })
-
-  const [tips,setTips] = useState("")
+  const [SignData,setSignData] = useState({
+    college: "",
+    email: "", 
+    password: "",
+    phoneNumber: "",
+    username: ""
+  })
 
   const history = useHistory();
 
-  // 是否显示错误
-  const [isShowErrortips,setIsShowErrortips]=useState(false)
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const  regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,}$/;
-
     const {username,password,phoneNumber,code} = loginData
     if (isPhoneLogin){
-      const phoneRex = /^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\d{8}$/;
       const {phoneNumber} = loginData
       if (!phoneNumber){
         setIsShowErrortips (true)
@@ -101,9 +109,57 @@ export default function Login() {
 
   };
 
+
+  const handleRegisterSubmit = async (e)=>{
+    e.preventDefault();
+      const {college,email,password,confirmPassword,phoneNumber,username} = SignData
+      if (!username){
+        setIsShowErrortips (true)
+        setTips ('please input your username')
+      }else if (!email){
+        setIsShowErrortips (true)
+        setTips ('please input your email')
+      }else if (!phoneRex.test(phoneNumber)){
+        setIsShowErrortips (true)
+        setTips ('phoneNumber does not meet the requirement')
+      }else if (!regex.test(password)){
+        setIsShowErrortips (true)
+        setTips ('password does not meet the requirement')
+      }else if (password!==confirmPassword){
+        setIsShowErrortips (true)
+        setTips ('The two password inputs are inconsistent')
+      }else if (!college){
+        setIsShowErrortips (true)
+        setTips ('please select college')
+      }else{
+        const response= await axios.post('/user/signup',{college,password,email,phoneNumber,username})
+        console.log(response)
+        if (response.data.res===0){
+          setIsShowErrortips (true)
+          setTips (response.data.resMsg)
+        }else{
+          //id储存在localStorage中
+          localStorage.setItem('userId', response.data.result.id);
+          // 重定向到其他页面，例如用户主页
+          history.push('/');
+          window.location.reload()
+        }
+      }
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginData((prevLoginData) => ({
+      ...prevLoginData,
+      [name]: value,
+    }));
+  };
+
+  const handleRegisterForm = (e) => {
+    console.log(e)
+    e.preventDefault()
+    const { name, value } = e.target;
+    setSignData((prevLoginData) => ({
       ...prevLoginData,
       [name]: value,
     }));
@@ -166,7 +222,7 @@ export default function Login() {
           <Nav className="me-auto">
             <Nav.Link href="/">About us</Nav.Link>
           </Nav>
-          <Button href="/">Sign up</Button>
+          <Button onClick={toggleLogin}>{isShowRegister ? 'Login':'Register'} </Button>
         </Container>
       </Navbar>
 
@@ -176,96 +232,178 @@ export default function Login() {
             <Card.Body>
               <Container>
                 <Row>
-                  <Col md={6}>
-                    <h1>{isPhoneLogin ? 'Phone Login' : 'Login'}</h1>
-                    <Form onSubmit={handleSubmit}>
-                    {isPhoneLogin ? (
-                      <Form.Group controlId="phone">
-                        <Form.Label>Phone Number</Form.Label>
-                        <div style={{ display: 'flex' }}>
-                          <Form.Control 
-                          type="text" 
-                          placeholder="Enter your phone number"
-                          name='phoneNumber' 
-                          value={loginData.phoneNumber}
-                          onChange={handleChange}
-                          />
-                        </div> 
-                      </Form.Group>
-                    ): (
-                        <>
-                          <Form.Group controlId="username">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control 
-                            type="text" 
-                            placeholder="Enter your username" 
-                            name='username'
-                            value={loginData.username}
-                            onChange={handleChange}
-                            />
-                          </Form.Group>
-                          <Form.Group controlId="password">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control 
-                            type="password" 
-                            placeholder="Enter your password" 
-                            name= 'password'
-                            value={loginData.password}
-                            onChange={handleChange}
-                            />
-                          </Form.Group>
-                          <div className="loginButton">
-                            <p style={{display: isShowErrortips ? "block":"none"}}>{tips}</p>
-                            <Button variant="primary" type="submit" style={{marginTop: '5px'}}>
-                              Login
-                            </Button>
-                          </div>
+                  {
+                    isShowRegister ?   <Col md={6}>
+                      <h1>Register</h1>
+                      <Form onSubmit={handleRegisterSubmit}>
+                              <Form.Group controlId="username">
+                                <Form.Label>Username</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter your username"
+                                    name='username'
+                                    value={SignData.username}
+                                    onChange={handleRegisterForm}
+                                />
+                              </Form.Group>
+                              <Form.Group controlId="username">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control
+                                    type="email"
+                                    placeholder="Enter your Email"
+                                    name='email'
+                                    value={SignData.email}
+                                    onChange={handleRegisterForm}
+                                />
+                              </Form.Group>
+                              <Form.Group controlId="phoneNumber">
+                                <Form.Label>Phone Number</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter your phone number"
+                                    name='phoneNumber'
+                                    value={SignData.phoneNumber}
+                                    onChange={handleRegisterForm}
+                                />
+                              </Form.Group>
+                              <Form.Group controlId="password">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    placeholder="Enter your password"
+                                    name= 'password'
+                                    value={SignData.password}
+                                    onChange={handleRegisterForm}
+                                />
+                              </Form.Group>
+                              <Form.Group controlId="confirmPassword">
+                                <Form.Label>Confirm Password</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    placeholder="Enter your password"
+                                    name= 'confirmPassword'
+                                    value={SignData.confirmPassword}
+                                    onChange={handleRegisterForm}
+                                />
+                              </Form.Group>
+                              <Form.Group controlId="password">
+                                <Form.Label>Faculty</Form.Label>
+                                <Form.Select aria-label="Default select example"  value={SignData.college} name="college" onChange={handleRegisterForm}>
+                                  {
+                                    ['Art & social sciences','Architecture, design and planning','Business','Economics',
+                                    'Education & social work','Engineering and computer science','Law',
+                                    'Medicine & health','Music','Science'].map((item,index)=>{
+                                      return <option value={item} key={index}>{item}</option>
+                                    })
+                                  }
+                                </Form.Select>
+                              </Form.Group>
+                              <div className="loginButton registerButton" >
+                                <p style={{display: isShowErrortips ? "block":"none"}}>{tips}</p>
+                                <Button variant="primary" type="submit" style={{marginTop: '5px'}}>
+                                  Register
+                                </Button>
+                              </div>
+                      </Form>
+                      <Button variant="link" onClick={toggleLogin}>
+                       login
+                      </Button>
+                    </Col> :
+                        <Col md={6}>
+                      <h1>{isPhoneLogin ? 'Phone Login' : 'Login'}</h1>
+                      <Form onSubmit={handleSubmit}>
+                        {isPhoneLogin ? (
+                            <Form.Group controlId="phone">
+                              <Form.Label>Phone Number</Form.Label>
+                              <div style={{ display: 'flex' }}>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter your phone number"
+                                    name='phoneNumber'
+                                    value={loginData.phoneNumber}
+                                    onChange={handleChange}
+                                />
+                              </div>
+                            </Form.Group>
+                        ): (
+                            <>
+                              <Form.Group controlId="username">
+                                <Form.Label>Username</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter your username"
+                                    name='username'
+                                    value={loginData.username}
+                                    onChange={handleChange}
+                                />
+                              </Form.Group>
+                              <Form.Group controlId="password">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    placeholder="Enter your password"
+                                    name= 'password'
+                                    value={loginData.password}
+                                    onChange={handleChange}
+                                />
+                              </Form.Group>
+                              <div className="loginButton">
+                                <p style={{display: isShowErrortips ? "block":"none"}}>{tips}</p>
+                                <Button variant="primary" type="submit" style={{marginTop: '5px'}}>
+                                  Login
+                                </Button>
+                              </div>
 
-                        </>
-                      )}
+                            </>
+                        )}
 
-                      {showVerification ? (
-                        <>
-                          <Form.Group controlId="verification">
-                            <Form.Label>Verification Code</Form.Label>
-                            <Form.Control 
-                            type="text" 
-                            placeholder="Enter verification code" 
-                            name='code'
-                            value={loginData.code}
-                            onChange={handleChange}
-                            />
-                            {showVerification ? (
-                            <div className="col-auto">
+
+                        {showVerification ? (
+                            <>
+                              <Form.Group controlId="verification">
+                                <Form.Label>Verification Code</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Enter verification code"
+                                    name='code'
+                                    value={loginData.code}
+                                    onChange={handleChange}
+                                />
+                                {showVerification ? (
+                                    <div className="col-auto">
                               <span id="codeHelpInline" className="form-text">
                               {`(${countdown}s)`}
                               </span>
-                            </div>
-                          ) : null}
-                          </Form.Group>
-                          <div className="loginButton">
-                            <p style={{display: isShowErrortips ? "block":"none"}}>{tips}</p>
-                            <Button variant="primary" type="submit" style={{marginTop: '5px'}}>
-                              Login
-                            </Button>
-                          </div>
-
-                        </>
-                      ) : (
-                        isPhoneLogin && (
+                                    </div>
+                                ) : null}
+                              </Form.Group>
                               <div className="loginButton">
+                                <p style={{display: isShowErrortips ? "block":"none"}}>{tips}</p>
+                                <Button variant="primary" type="submit" style={{marginTop: '5px'}}>
+                                  Login
+                                </Button>
+                              </div>
+
+                            </>
+                        ) : (
+                            isPhoneLogin && (
+                                <div className="loginButton">
                                   <p style={{display: isShowErrortips ? "block":"none"}}>{tips}</p>
                                   <Button variant="primary" onClick={handleGetVerificationCode} style={{marginTop: '5px'}}>
                                     Get verification code
                                   </Button>
-                              </div>
-                        )
-                      )}
-                    </Form>
-                    <Button variant="link" onClick={handleToggleLogin}>
-                      {isPhoneLogin ? 'Use Username and Password' : 'Use Phone Number'}
-                    </Button>
-                  </Col>
+                                </div>
+                            )
+                        )}
+                      </Form>
+                      <Button variant="link" onClick={handleToggleLogin}>
+                        {isPhoneLogin ? 'Use Username and Password' : 'Use Phone Number'}
+                      </Button>
+                      <Button variant="link" onClick={toggleLogin}>
+                        Register
+                      </Button>
+                    </Col>
+                  }
                 </Row>
               </Container>
             </Card.Body>
