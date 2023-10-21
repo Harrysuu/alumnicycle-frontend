@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Card } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 
 export default function ViewOtherUser(props) {
 
@@ -42,21 +44,48 @@ export default function ViewOtherUser(props) {
       </Nav>
 
 
-      {user && (
-        <div>
-          <h3>User Profile</h3>
-          {/* <p>ID: {user.id}</p> */}
+      <div className="mb-4"></div>
+
+<div>
+  {user && (
+    <Card>
+      <Card.Body>
+        <h3>User Profile</h3>
+        <Card.Text>
+          <div>
+            {user.picture ? (
+
+              <Image
+                src={`/common/download?name=${user.picture}`}
+                fluid
+                roundedCircle
+              />
+            ) : (
+              <img
+                src="/userprofile.png"  // 替换为实际的默认图片路径
+                alt="User"
+                style={{ maxWidth: '400px', maxHeight: '300px' }}
+              />
+            )}
+          </div>
+          
+          <div className="mb-4"></div>
+
           <p>Username: {user.username}</p>
           <p>Email: {user.email}</p>
+          <p>Phone: {user.phoneNumber}</p>
           <p>Credit: {user.credit}</p>
           <p>College: {user.college}</p>
-          <p>Status: {user.statusInformation}</p>
           <p>Description: {user.description}</p>
-          <p>Picture: {user.picture}</p>
-          {/* <p>Edit Time: {user.editTime}</p> */}
-          {/* 可以根据需要渲染其他用户信息 */}
-        </div>
-      )}
+
+
+
+
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  )}
+</div>
 
     </div>
   )

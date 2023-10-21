@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 
 
 export default function UserPage() {
@@ -21,7 +22,7 @@ export default function UserPage() {
       .catch(error => {
         console.error('Error fetching user:', error);
       });
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []); // 请确保只在组件挂载时获取用户信息，因此依赖为空数组
 
   return (
@@ -62,16 +63,35 @@ export default function UserPage() {
             <Card.Body>
               <h3>User Profile</h3>
               <Card.Text>
-                {/* <p>ID: {user.id}</p> */}
+                <div>
+                  {user.picture ? (
+
+                    <Image
+                      src={`/common/download?name=${user.picture}`}
+                      fluid
+                      roundedCircle
+                    />
+                  ) : (
+                    <img
+                      src="/userprofile.png"  // 替换为实际的默认图片路径
+                      alt="User"
+                      style={{ maxWidth: '400px', maxHeight: '300px' }}
+                    />
+                  )}
+                </div>
+                
+                <div className="mb-4"></div>
+
                 <p>Username: {user.username}</p>
                 <p>Email: {user.email}</p>
                 <p>Phone: {user.phoneNumber}</p>
                 <p>Credit: {user.credit}</p>
                 <p>College: {user.college}</p>
                 <p>Description: {user.description}</p>
-                <p>Picture: {user.picture}</p>
-                {/* <p>Edit Time: {user.editTime}</p> */}
-                {/* 可以根据需要渲染其他用户信息 */}
+
+
+
+
               </Card.Text>
             </Card.Body>
           </Card>

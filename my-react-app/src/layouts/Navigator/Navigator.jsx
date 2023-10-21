@@ -93,13 +93,16 @@ export default function Navigator() {
             <Nav.Link href="/secondPost/page">SecondPost</Nav.Link>
           </Nav>
 
-          <Button href="/user/page">User</Button>
+          <Button href="/user/page">Profile</Button>
 
-          <Button href="/login/page">Login</Button>
+          <span style={{ margin: '0 10px' }}></span>
+
+          {/* <Button href="/login/page">Login</Button> */}
 
           <Button href="/" onClick={logout}>
             Logout
           </Button>
+
         </Container>
       </Navbar>
 

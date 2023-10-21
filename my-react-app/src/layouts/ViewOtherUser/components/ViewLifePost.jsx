@@ -7,8 +7,8 @@ import { Card, Button } from 'react-bootstrap';
 
 
 export default function ViewLifePost(props) {
-  const userId = props.match.params.userId;
 
+  const userId = props.match.params.userId;
   const [posts, setPosts] = useState([]);
   const [current, setCurrent] = useState(1);
   const [total, setTotal] = useState(0);
@@ -16,7 +16,7 @@ export default function ViewLifePost(props) {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post('/lifePost/getByUserId', { userId: 99, page: { current: current, size: pageSize } });
+      const response = await axios.post('/lifePost/getByUserId', { userId: userId, page: { current: current, size: pageSize } });
       console.log(response.data.result.records);
       console.log(response.data.result.total);
       setPosts(response.data.result.records);
@@ -59,21 +59,46 @@ export default function ViewLifePost(props) {
 
       <div className="life-post-cards" style={{ width: '50rem' }}>
         {posts.map((post) => (
-          <Card className="mb-3" style={{ width: '50rem' }} key={post.id}>
+<Card className="mb-3" style={{ width: '50rem' }} key={post.id}>
             <Card.Body style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ flexGrow: 1 }}>
+
+                <img src={`/common/download?name=${post.picture}`} alt='Life Post' style={{ maxWidth: '400px', maxHeight: '300px' }}></img>
+                <div className="mb-4"></div>
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text>{post.content}</Card.Text>
-                <Card.Text>{post.peopleEnrol} people enrolled</Card.Text>
-                <Card.Text>Time: {post.activityTime}</Card.Text>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img src="/people.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                  <Card.Text>{post.peopleEnrol} people enrolled</Card.Text>
+                </div>
+
+                <div className="mb-2"></div>
+
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img src="/calendar.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                  <Card.Text>Activity Time: {post.activityTime}</Card.Text>
+                </div>
+
+                <div className="mb-2"></div>
+
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img src="/editTime.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                  <Card.Text>Post Time: {post.postTime}</Card.Text>
+                </div>
+
+                <div className="mb-4"></div>
+
+
                 <Link to={`/lifepost/${post.id}`}>
                   <Button variant="primary">View Details</Button>
                 </Link>
+
+
               </div>
 
-     
             </Card.Body>
           </Card>
+
 
         ))}
       </div>

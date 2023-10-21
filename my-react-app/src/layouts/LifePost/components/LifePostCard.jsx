@@ -107,7 +107,16 @@ function LifePostCard() {
             <Card.Body>
               <Row>
                 <Col xs={9}>
-                  <img src={`/common/download?name=${lifePost.picture}`} alt='Life Post' style={{ maxWidth: '400px', maxHeight: '300px' }}></img>
+                  {/* <img src={`/common/download?name=${lifePost.picture}`} alt='Life Post' style={{ maxWidth: '400px', maxHeight: '300px' }}></img> */}
+                  
+                  {lifePost.picture && (
+                    <img
+                      src={`/common/download?name=${lifePost.picture}`}
+                      alt='Life Post'
+                      style={{ maxWidth: '400px', maxHeight: '300px' }}
+                    />
+                  )}
+
                   <div className="mb-4"></div>
                   <Card.Title>{lifePost.title}</Card.Title>
                   <Card.Text>{lifePost.content}</Card.Text>

@@ -96,7 +96,14 @@ export default function LifePostShow(props) {
           {lifePost ? (
             <div>
               <h1>{lifePost.title}</h1>
-              <img src={`/common/download?name=${lifePost.picture}`} alt='Life Post' style={{ maxWidth: '800px', maxHeight: '600px' }} />
+
+              {lifePost.picture && (
+                <img
+                  src={`/common/download?name=${lifePost.picture}`}
+                  alt='Life Post'
+                  style={{ maxWidth: '400px', maxHeight: '300px' }}
+                />
+              )}
 
               <div className="mb-4"></div>
 
