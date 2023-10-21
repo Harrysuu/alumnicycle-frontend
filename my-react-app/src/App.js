@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter as Router, Route, Switch,useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import HomePage from './layouts/HomePage/HomePage';
 import Navigator from './layouts/Navigator/Navigator';
@@ -36,9 +36,6 @@ import ViewUniTrade from './layouts/ViewOtherUser/components/ViewUniTrade';
 function App() {
   const [isLoginPage, setIsLoginPage] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  const history = useHistory();
-
 
   useEffect(() => {
 
@@ -77,7 +74,7 @@ function App() {
                 <Switch>
                   <Route exact path="/"> <HomePage /></Route>
                   <Route path="/announcement/:id" component={AnnouncementShow} />
-                1
+                
                   <Route path="/lifePost/page" component={LifePostCard} />
                   <Route path="/lifePost/:id" component={LifePostShow} />
                   <Route path="/addNewLifePost" component={LifePostAdd} />

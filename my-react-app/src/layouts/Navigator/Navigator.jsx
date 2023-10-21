@@ -93,9 +93,7 @@ export default function Navigator() {
             <Nav.Link href="/secondPost/page">SecondPost</Nav.Link>
           </Nav>
 
-          <Button href="/user/page">User</Button>
-
-          <Button href="/login/page">Login</Button>
+          <Button href="/user/page" style={{marginRight: "5px"}}>User</Button>
 
           <Button href="/" onClick={logout}>
             Logout

@@ -55,7 +55,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const {username,password,phoneNumber,code} = loginData
+    const {username,password,code} = loginData
     if (isPhoneLogin){
       const {phoneNumber} = loginData
       if (!phoneNumber){
