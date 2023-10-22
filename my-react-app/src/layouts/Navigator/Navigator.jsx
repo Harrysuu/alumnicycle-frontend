@@ -12,6 +12,7 @@ import bg2 from './bg2.png'
 import bg3 from './bg3.png'
 import bg4 from './bg4.png'
 import bg5 from './bg5.png'
+import axios from 'axios'
 
 export default function Navigator() {
   console.log(111)
@@ -22,6 +23,18 @@ export default function Navigator() {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   })
+
+  // 函数用于执行退出登录
+  const handleLogout = async (e) => {
+    try {
+      await axios.get('/user/logout');
+      localStorage.removeItem('userId');
+      history.push('login/page')
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+
   // const newStyle = {
   //   height: '300px',
   //   backgroundSize: 'cover',
@@ -72,11 +85,6 @@ export default function Navigator() {
     }
   }, [])
 
-  function logout() {
-    localStorage.removeItem('userId')
-    history.push('login/page')
-  }
-
   return (
     <>
       <Navbar bg="dark" data-bs-theme="dark">
@@ -97,7 +105,7 @@ export default function Navigator() {
 
           <span style={{ margin: '0 10px' }}></span>
 
-          <Button href="/" onClick={logout}>
+          <Button href="/" onClick={handleLogout}>
             Logout
           </Button>
 
