@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import HomePage from './layouts/HomePage/HomePage';
 import Navigator from './layouts/Navigator/Navigator';
@@ -33,21 +33,17 @@ import ViewAcademic from './layouts/ViewOtherUser/components/ViewAcademic'
 import ViewLifePost from './layouts/ViewOtherUser/components/ViewLifePost'
 import ViewUniTrade from './layouts/ViewOtherUser/components/ViewUniTrade';
 
+const ProtectedRoute = ({ children }) => {
+  if (localStorage.getItem('userId')) {
+    return children;
+  }
+  return <Redirect to='/login/page' />
+}
+
 function App() {
-  const [isLoginPage, setIsLoginPage] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
-
-    // 根据当前路径判断是否为登录页
-    const currentPath = window.location.pathname;
-    console.log(currentPath)
-    if (currentPath === '/login/page') {
-      setIsLoginPage(true);
-    } else {
-      setIsLoginPage(false);
-    }
-    //
     if (localStorage.getItem('userId')) {
       setIsLoggedIn(true);
     } else{
@@ -65,52 +61,164 @@ function App() {
 
   return (
     <>
-    {!isLoginPage && isLoggedIn && <Navigator/>}
+    {isLoggedIn && <Navigator/>}
       <div className="container-fluid  " style= {customStyle}>
       <div className="d-flex justify-content-center">
           <div className="col-md-10" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             <div>
               <Router>
                 <Switch>
-                  <Route exact path="/"> <HomePage /></Route>
-                  <Route path="/announcement/:id" component={AnnouncementShow} />
+                  <Route path="/login/page" component={Login} />
+                  <Route exact path="/">
+                    <ProtectedRoute>
+                      <HomePage/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/announcement/:id">
+                    <ProtectedRoute>
+                      <AnnouncementShow/>
+                    </ProtectedRoute>
+                  </Route>
                 
-                  <Route path="/lifePost/page" component={LifePostCard} />
-                  <Route path="/lifePost/:id" component={LifePostShow} />
-                  <Route path="/addNewLifePost" component={LifePostAdd} />
-                  <Route path="/updateLifePost/:postId" component={LifePostUpdate} />
-                  <Route path="/deleteLifePost/:postId" component={LifePostDelete} />
+                  <Route path="/lifePost/page">
+                    <ProtectedRoute>
+                      <LifePostCard/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/lifePost/:id">
+                    <ProtectedRoute>
+                      <LifePostShow/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/addNewLifePost">
+                    <ProtectedRoute>
+                      <LifePostAdd/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/updateLifePost/:postId">
+                    <ProtectedRoute>
+                      <LifePostUpdate/>
+                    </ProtectedRoute>
+                  </Route>
+                  
+                  <Route path="/deleteLifePost/:postId">
+                    <ProtectedRoute>
+                      <LifePostDelete/>
+                    </ProtectedRoute>
+                  </Route>
                   {/* <Route path="/ViewUser" component={EnrolledUser} /> */}
 
-                  <Route path="/academic/page" component={AcademicPost} />
+                  <Route path="/academic/page">
+                    <ProtectedRoute>
+                      <AcademicPost/>
+                    </ProtectedRoute>
+                  </Route>
 
+                  <Route path="/secondPost/page">
+                    <ProtectedRoute>
+                      <SecondPostCard/>
+                    </ProtectedRoute>
+                  </Route>
 
-                  <Route path="/secondPost/page" component={SecondPostCard} />
-                  <Route path="/secondPost/:id" component={SecondPostShow} />
-                  <Route path="/addNewSecondPost" component={SecondPostAdd} />
-                  <Route path="/updateSecondPost/:postId" component={SecondPostUpdate} />
-                  <Route path="/deleteSecondPost/:postId" component={SecondPostDelete} />
+                  <Route path="/secondPost/:id">
+                    <ProtectedRoute>
+                      <SecondPostShow/>
+                    </ProtectedRoute>
+                  </Route>
 
-                  <Route path="/user/page" component={UserPage} />
-                  <Route path="/user/addCredit" component={UserCredit} />
-                  <Route path="/user/updateProfile" component={UserUpdateProfile} />
-                  <Route path="/user/reset" component={UserResetPassword} />
-                  <Route path="/user/posts" component={UserPosts} />
-                  <Route path="/user/academicPost" component={UserAcademic} />
-                  <Route path="/user/uniTradePost" component={SecondPost} />
+                  <Route path="/addNewSecondPost">
+                    <ProtectedRoute>
+                      <SecondPostAdd/>
+                    </ProtectedRoute>
+                  </Route>
 
-                  <Route path="/user/picture" component={UserPicture} />
+                  <Route path="/updateSecondPost/:postId">
+                    <ProtectedRoute>
+                      <SecondPostUpdate/>
+                    </ProtectedRoute>
+                  </Route>
 
-                  {isLoginPage && <Route path="/login/page" component={Login} />}
+                  <Route path="/deleteSecondPost/:postId">
+                    <ProtectedRoute>
+                      <SecondPostDelete/>
+                    </ProtectedRoute>
+                  </Route>
 
+                  <Route path="/user/page">
+                    <ProtectedRoute>
+                      <UserPage/>
+                    </ProtectedRoute>
+                  </Route>
 
-                  <Route path="/ViewOtherUser/:userId" component={ViewOtherUser} />
-                  <Route path="/ViewLifePost/:userId" component={ViewLifePost} />
-                  <Route path="/ViewAcademic/:userId" component={ViewAcademic} />
-                  <Route path="/ViewUniTrade/:userId" component={ViewUniTrade} />
+                  <Route path="/user/addCredit">
+                    <ProtectedRoute>
+                      <UserCredit/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/user/updateProfile">
+                    <ProtectedRoute>
+                      <UserUpdateProfile/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/user/reset">
+                    <ProtectedRoute>
+                      <UserResetPassword/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/user/posts">
+                    <ProtectedRoute>
+                      <UserPosts/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/user/academicPost">
+                    <ProtectedRoute>
+                      <UserAcademic/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/user/uniTradePost">
+                    <ProtectedRoute>
+                      <SecondPost/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/user/picture">
+                    <ProtectedRoute>
+                      <UserPicture/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/ViewOtherUser/:userId">
+                    <ProtectedRoute>
+                      <ViewOtherUser/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/ViewLifePost/:userId">
+                    <ProtectedRoute>
+                      <ViewLifePost/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/ViewAcademic/:userId">
+                    <ProtectedRoute>
+                      <ViewAcademic/>
+                    </ProtectedRoute>
+                  </Route>
+                  <Route path="/ViewUniTrade/:userId">
+                    <ProtectedRoute>
+                      <ViewUniTrade/>
+                    </ProtectedRoute>
+                  </Route>
                   
-
-
                   <Route> <NotFound /></Route>
                 </Switch>
               </Router>
@@ -120,12 +228,11 @@ function App() {
 
 
           <div className="col-md-2" style={{ marginLeft: 'auto', marginRight: 'auto' }} >
-            {isLoginPage ? null :(
+            {isLoggedIn &&
               <div className="d-flex justify-content-end align-items-start" style={{ minHeight: '100vh' }}>
-
               <GuideSide />
             </div>
-            )}
+            }
           </div>
         </div>
 
