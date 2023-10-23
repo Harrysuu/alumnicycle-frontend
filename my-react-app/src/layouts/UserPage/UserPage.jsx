@@ -70,6 +70,7 @@ export default function UserPage() {
                       src={`/common/download?name=${user.picture}`}
                       fluid
                       roundedCircle
+                      style={{ maxWidth: '400px', maxHeight: '300px' }}
                     />
                   ) : (
                     <img

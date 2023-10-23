@@ -27,7 +27,7 @@ export default function UserUpdateProfile() {
       .catch(error => {
         console.error('Error fetching user:', error);
       });
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []); // 请确保只在组件挂载时获取用户信息，因此依赖为空数组
 
 
@@ -90,12 +90,24 @@ export default function UserUpdateProfile() {
 
               <Form.Group controlId="inputCollege">
                 <Form.Label>College</Form.Label>
-                <Form.Control
-                  type="text"
+                <select
                   value={college}
                   onChange={(e) => setCollege(e.target.value)}
-                />
+                  className="form-select"
+                >
+                  {['Art & social sciences', 'Architecture, design and planning', 'Business', 'Economics',
+                    'Education & social work', 'Engineering and computer science', 'Law',
+                    'Medicine & health', 'Music', 'Science'].map((item, index) => {
+                      return (
+                        <option value={item} key={index}>
+                          {item}
+                        </option>
+                      );
+                    })
+                  }
+                </select>
               </Form.Group>
+
               <Form.Group controlId="inputDescription">
                 <Form.Label>Description</Form.Label>
                 <Form.Control

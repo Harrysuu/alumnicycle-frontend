@@ -88,6 +88,7 @@ function LifePostCard() {
             <img src="/create.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
             <Button variant="dark" style={buttonStyle}>Create</Button>
           </Link>
+
         </Card.Body>
 
       </Card>

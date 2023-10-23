@@ -106,7 +106,8 @@ export default function UserPicture() {
             {user && user.picture && (
               <div>
                 <p>Current Photo:</p>
-                <img src={`/common/download?name=${user.picture}`} alt="User" />
+                <img src={`/common/download?name=${user.picture}`} alt="User"  style={{ maxWidth: '400px', maxHeight: '300px' }}/>
+                
               </div>
             )}
           </div>
