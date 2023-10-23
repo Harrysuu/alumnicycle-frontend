@@ -26,32 +26,16 @@ export default function Navigator() {
     backgroundPosition: 'center',
   })
 
-  // const handleSearch = async () => {
-  //   try {
-  //     console.log("line 31+" + searchKeyword);
-  //     const response = await axios.post('/common/globalSearch', { keyword: searchKeyword });
-  //     console.log("line 33+" + response.data.result);
-  //     setSearchResults(response.data.result);
-  //   } catch (error) {
-  //     console.error('Error searching:', error);
-  //   }
-  // };
-
   const handleSearch = async () => {
     try {
-      console.log('line 31+' + searchKeyword)
-      const response = await axios.post(
-        `/common/globalSearch?keyword=${searchKeyword}`,
-        {
-          keyword: searchKeyword,
-        }
-      )
-      console.log('line 33+' + response.data.result)
-      setSearchResults(response.data.result)
+      console.log("line 31+" + searchKeyword);
+      const response = await axios.post('/common/globalSearch', { keyword: searchKeyword });
+      console.log("line 33+" + response.data.result);
+      setSearchResults(response.data.result);
     } catch (error) {
-      console.error('Error searching:', error)
+      console.error('Error searching:', error);
     }
-  }
+  };
 
   // 函数用于执行退出登录
   const handleLogout = async (e) => {
