@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
 
-export default function AnnouncementShow(props) {
+function AnnouncementShow(props) {
   const [announcement, setAnnouncement] = useState(null);
   const announcementId = props.match.params.id; // 从路由参数中获取 ID
 
@@ -53,3 +54,5 @@ export default function AnnouncementShow(props) {
     </div>
   );
 }
+
+export default withRouter(AnnouncementShow);

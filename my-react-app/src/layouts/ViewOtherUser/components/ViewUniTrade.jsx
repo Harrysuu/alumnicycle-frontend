@@ -3,9 +3,9 @@ import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 // import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-
-export default function ViewUniTrade(props) {
+function ViewUniTrade(props) {
   const userId = props.match.params.userId;
 
 
@@ -32,3 +32,6 @@ export default function ViewUniTrade(props) {
     </div>
   )
 }
+
+
+export default withRouter(ViewUniTrade);

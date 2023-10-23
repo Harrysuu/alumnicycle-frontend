@@ -3,8 +3,9 @@ import axios from 'axios';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import EnrolledUser from './EnrolledUser';
 import LifePostUserCreator from './LifePostUserCreator';
+import { withRouter } from 'react-router-dom';
 
-export default function LifePostShow(props) {
+function LifePostShow(props) {
   const [lifePost, setLifePost] = useState(null);
   const [enrolled, setEnrolled] = useState(false); // 是否已经enrol的状态
   const lifePostId = props.match.params.id; // Get the ID from the route parameters
@@ -202,3 +203,5 @@ export default function LifePostShow(props) {
     </div>
   );
 }
+
+export default withRouter(LifePostShow);

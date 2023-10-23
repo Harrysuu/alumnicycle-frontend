@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Pagination } from 'antd';
 import { Card, Button } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
 
-
-export default function ViewLifePost(props) {
+function ViewLifePost(props) {
 
   const userId = props.match.params.userId;
   const [posts, setPosts] = useState([]);
@@ -119,3 +119,6 @@ export default function ViewLifePost(props) {
     </div>
   )
 }
+
+
+export default withRouter(ViewLifePost);
