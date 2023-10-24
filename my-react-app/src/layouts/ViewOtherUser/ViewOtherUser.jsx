@@ -61,7 +61,10 @@ function ViewOtherUser(props) {
                 src={`/common/download?name=${user.picture}`}
                 fluid
                 roundedCircle
+                alt="User" 
+                style={{ maxWidth: '400px', maxHeight: '300px' }}
               />
+             
             ) : (
               <img
                 src="/userprofile.png"  // 替换为实际的默认图片路径
