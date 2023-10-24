@@ -1,9 +1,10 @@
 import React from 'react'
+import AcademicPostCard from './components/AcademicPostCard'
 
 export default function AcademicPost() {
   return (
     <div>
-      Academic post page ...
+      <AcademicPostCard/>
     </div>
   )
 }

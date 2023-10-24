@@ -98,6 +98,7 @@ export default function Login() {
       }else{
         //id储存在localStorage中
         localStorage.setItem('userId', response.data.result.id);
+        sessionStorage.setItem('User',response.data.result.id);
         // 重定向到其他页面，例如用户主页
         history.push('/');
         window.location.reload()

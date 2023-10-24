@@ -19,7 +19,12 @@ import UserResetPassword from './layouts/UserPage/components/UserResetPassword';
 import UserUpdateProfile from './layouts/UserPage/components/UserUpdateProfile';
 import LifePostUpdate from './layouts/LifePost/components/LifePostUpdate';
 import LifePostDelete from './layouts/LifePost/components/LifePostDelete';
+import AcademicPostUpdate from './layouts/AcademicPost/components/AcademicPostUpdate';
+import AcademicPostDelete from './layouts/AcademicPost/components/AcademicPostDelete';
 import AcademicPost from './layouts/AcademicPost/AcademicPost';
+import AcademicPostShow from './layouts/AcademicPost/components/AcademicPostShow';
+import AcademicPostCard from './layouts/AcademicPost/components/AcademicPostCard';
+import AcademicPostAdd from './layouts/AcademicPost/components/AcademicPostAdd';
 import UserAcademic from './layouts/UserPage/components/UserAcademic';
 import Login from './layouts/Login/Login';
 import SecondPostCard from './layouts/SecondPost/components/SecondPostCard';
@@ -114,9 +119,38 @@ function App() {
 
                   <Route path="/academic/page">
                     <ProtectedRoute>
-                      <AcademicPost/>
+                      <AcademicPostCard/>
                     </ProtectedRoute>
                   </Route>
+
+
+                  <Route path="/academicpost/:id">
+                    <ProtectedRoute>
+                      <AcademicPostShow/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/addNewAcademicPost">
+                    <ProtectedRoute>
+                      <AcademicPostAdd/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  
+                  <Route path="/updateAcademicPost/:postId">
+                    <ProtectedRoute>
+                      <AcademicPostUpdate/>
+                    </ProtectedRoute>
+                  </Route>
+                  
+                  <Route path="/deleteAcademicPost/:postId">
+                    <ProtectedRoute>
+                      <AcademicPostDelete/>
+                    </ProtectedRoute>
+                  </Route>
+
+
+
 
                   <Route path="/secondPost/page">
                     <ProtectedRoute>
@@ -213,6 +247,7 @@ function App() {
                       <ViewAcademic/>
                     </ProtectedRoute>
                   </Route>
+
                   <Route path="/ViewUniTrade/:userId">
                     <ProtectedRoute>
                       <ViewUniTrade/>
