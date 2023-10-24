@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Navbar, Nav, Button } from 'react-bootstrap'
+import { Container, Navbar, Nav, Button, Form, FormControl } from 'react-bootstrap'
 import { Card } from 'react-bootstrap'
 import {
   BrowserRouter as Router,
@@ -15,7 +15,9 @@ import bg5 from './bg5.png'
 import axios from 'axios'
 
 export default function Navigator() {
-  console.log(111)
+
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
   const [cardStyle, setCardStyle] = useState({
     height: '300px',
@@ -23,6 +25,17 @@ export default function Navigator() {
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   })
+
+  const handleSearch = async () => {
+    try {
+      console.log("line 31+" + searchKeyword);
+      const response = await axios.post('/common/globalSearch', { keyword: searchKeyword });
+      console.log("line 33+" + response.data.result);
+      setSearchResults(response.data.result);
+    } catch (error) {
+      console.error('Error searching:', error);
+    }
+  };
 
   // 函数用于执行退出登录
   const handleLogout = async (e) => {
@@ -35,16 +48,8 @@ export default function Navigator() {
     }
   };
 
-  // const newStyle = {
-  //   height: '300px',
-  //   backgroundSize: 'cover',
-  //   backgroundPosition: 'center',
-  // }
   const history = useHistory()
 
-  // function updateCardStyle(newStyle) {
-  //   setCardStyle(newStyle)
-  // }
   useEffect(() => {
     const url = window.location.href
     if (url.includes('lifepost')) {
@@ -90,8 +95,9 @@ export default function Navigator() {
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
           <Navbar.Brand href="/">
-            <img src="/Logo.png" alt="" style={{ width: '20%' }} /> Alumni
-            Circle
+            <img src="/Logo.png" alt="" style={{ width: '20%' }} /> 
+            <span style={{ margin: '0 10px' }}></span>
+            Alumni Circle
           </Navbar.Brand>
 
           <Nav className="me-auto">
@@ -101,6 +107,19 @@ export default function Navigator() {
             <Nav.Link href="/secondPost/page">SecondPost</Nav.Link>
           </Nav>
 
+          <Form className="d-flex">
+          <FormControl
+            type="text"
+            placeholder="Search"
+            className="mr-2"
+            value={searchKeyword}
+            onChange={(e) => setSearchKeyword(e.target.value)}
+          />
+          <Button variant="outline-success" onClick={handleSearch}>Search</Button>
+        </Form>
+
+        <span style={{ margin: '0 20px' }}></span>
+
           <Button href="/user/page">Profile</Button>
 
           <span style={{ margin: '0 10px' }}></span>
@@ -109,7 +128,10 @@ export default function Navigator() {
             Logout
           </Button>
 
+
+
         </Container>
+
       </Navbar>
 
       <Router>
