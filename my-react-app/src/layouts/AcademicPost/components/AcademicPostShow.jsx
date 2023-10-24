@@ -52,7 +52,7 @@ import { withRouter } from 'react-router-dom';
         console.error('Error fetching AcademicPost:', error);
       });
 
-      fetchComments();
+    fetchComments();
 }, [academicPostId, current, pageSize, userId]);
 
   function getCategoryName(category) {
@@ -147,7 +147,7 @@ import { withRouter } from 'react-router-dom';
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src="/catagoryLogo.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <img src="/college.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
                 <Card.Text>College: {getCollegeName(academicPost.college)}</Card.Text>
               </div>
 

@@ -52,7 +52,7 @@ export default function AcademicPostAdd() {
       console.log(response.data.result);
       // 清除表单或进行其他操作
       //go back to history page
-      history.push('/academicpost/page');
+      history.push('/academic/page');
     } catch (error) {
       console.error(error);
       // 处理错误
