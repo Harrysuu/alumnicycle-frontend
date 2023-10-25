@@ -37,7 +37,7 @@ import ViewOtherUser from './layouts/ViewOtherUser/ViewOtherUser'
 import ViewAcademic from './layouts/ViewOtherUser/components/ViewAcademic'
 import ViewLifePost from './layouts/ViewOtherUser/components/ViewLifePost'
 import ViewUniTrade from './layouts/ViewOtherUser/components/ViewUniTrade';
-import CurrentWeather from './layouts/CurrentWeather/CurrentWeather';
+
 
 const ProtectedRoute = ({ children }) => {
   if (localStorage.getItem('userId')) {
@@ -69,7 +69,6 @@ function App() {
     <>
     {isLoggedIn && <Navigator/>}
       <div className="container-fluid  " style= {customStyle}>
-        <div className='container'> <CurrentWeather/></div>
       <div className="d-flex justify-content-center">
           <div className="col-md-10" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             <div>
@@ -264,13 +263,13 @@ function App() {
           </div>
 
 
-          {/* <div className="col-md-2" style={{ marginLeft: 'auto', marginRight: 'auto' }} >
+          <div className="col-md-2" style={{ marginLeft: 'auto', marginRight: 'auto' }} >
             {isLoggedIn &&
               <div className="d-flex justify-content-end align-items-start" style={{ minHeight: '100vh' }}>
               <GuideSide />
             </div>
             }
-          </div> */}
+          </div>
         </div>
 
 
