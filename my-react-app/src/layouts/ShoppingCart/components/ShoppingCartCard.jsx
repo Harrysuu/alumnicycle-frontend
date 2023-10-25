@@ -13,6 +13,7 @@ function ShoppingCartCard() {
     const [modal, setModal] = useState(false);
     const [total, setTotal] = useState(0);
     const [carts, setCarts] = useState([]);
+    const [userBalance, setUserBalance] = useState(null);
 
     const getCartList = async () => {
         const userId = 99;
@@ -34,6 +35,21 @@ function ShoppingCartCard() {
     useEffect(() => {
         getCartList();
     }, [])
+
+    useEffect(() => {
+        const fetchUserBalance = async () => {
+            try {
+                const response = await axios.get('/user/getBalance', {
+                    params: { userId: 99 } // 请根据实际需要传递用户ID
+                });
+                setUserBalance(response.data.balance); // 假设后端返回的余额在 response.data.balance 中
+            } catch (error) {
+                console.error('Error fetching user balance:', error);
+            }
+        };
+    
+        fetchUserBalance();
+    }, []);
 
     const numChange = async (e, id) => {
         if(!e.target.value) return;
@@ -80,7 +96,7 @@ function ShoppingCartCard() {
         setModal(false);
     }
 
-    return (<div className="shopping-cart-card">
+    return (<div className="shopping-cart-card" style={{ width: '70rem' }}>
         <Form>
             {carts.map((item, idx) => (<div>
                 <Row className='title'>
@@ -89,9 +105,15 @@ function ShoppingCartCard() {
                     <Col className='inline-center'>Remove</Col>
                 </Row>
                 <Row className='goods'>
-                    <Col>
-                        <Image className='cart-img' src={item.picture} rounded />
-                    </Col>
+
+                    {carts.picture && (
+                    <img
+                      src={`/common/download?name=${carts.picture}`}
+                      alt=''
+                    //   style={{ maxWidth: '400px', maxHeight: '300px' }}
+                    />
+                  )}
+
                     <Col xs={4}>
                         <div className='inline-center pt-20'>CHINESE GALA</div>
                         <div className='inline-center'>{item.unitPrice}AU</div>

@@ -113,8 +113,15 @@ function SecondPostCard() {
         {data.map((secondPost) => (
           <Card className="mb-3" style={{ width: '50rem' }} key={secondPost.id}>
             <Card.Body>
-              {/* <img src={`/common/download?name=${secondPost.picture}`} alt='Second Post'></img> */}
-              <img className='cart-img' src={`${secondPost.picture}`} alt='Second Post'></img>
+            {secondPost.picture && (
+                    <img
+                      src={`/common/download?name=${secondPost.picture}`}
+                      alt=''
+                      style={{ maxWidth: '400px', maxHeight: '300px' }}
+                    />
+                  )}
+
+              {/* <img className='cart-img' src={`${secondPost.picture}`} alt='Second Post'></img> */}
               <Card.Title>{secondPost.commodityName}</Card.Title>
               <Card.Text>Price: {secondPost.price}</Card.Text>
               <Card.Text>Create Time: {secondPost.createTime}</Card.Text>
