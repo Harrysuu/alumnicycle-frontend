@@ -12,7 +12,6 @@ function SecondPostCard() {
   const [pageSize, setPageSize] = useState(3);
   const [current, setCurrent] = useState(1);
   const [category, setCategory] = useState(0);
-  const userId = localStorage.getItem('userId');
 
 
   const categories = ["All Category", "Articles for daily use", "Electronic goods", "Clothing"];
@@ -128,7 +127,7 @@ function SecondPostCard() {
 
               {/* <img className='cart-img' src={`${secondPost.picture}`} alt='Second Post'></img> */}
               <Card.Title>{secondPost.commodityName}</Card.Title>
-              <Card.Text>Price: {secondPost.price}</Card.Text>
+              <Card.Text>Price: {secondPost.price} AU</Card.Text>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                     <img src="/calendar.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
               <Card.Text>Create Time: {secondPost.createTime}</Card.Text>

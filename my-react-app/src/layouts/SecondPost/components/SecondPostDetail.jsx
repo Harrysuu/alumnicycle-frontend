@@ -8,7 +8,7 @@ function SecondPostDetail(props){
 
     const getDetail = async ()=>{
         const res = await axios.get('/secondPost/getCommodityById?id='+props.match.params.id);
-        if(res.data.res == 1){
+        if(res.data.res === 1){
             let _d = res.data.result || {};
             setDetail({..._d});
         }

@@ -128,8 +128,11 @@ export default function Navigator() {
               className="mr-2"
               value={searchKeyword}
               onChange={(e) => setSearchKeyword(e.target.value)}
+              onKeyDown={(e) => {
+                if(e.key === 'Enter'){handleSearch();}
+              }}
             />
-            <Button variant="outline-success" onClick={handleSearch}>
+            <Button variant="outline-success" onClick={handleSearch} style={{marginLeft:'5px'}}>
               Search
             </Button>
           </Form>
