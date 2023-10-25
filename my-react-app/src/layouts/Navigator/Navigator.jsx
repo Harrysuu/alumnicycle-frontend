@@ -118,6 +118,7 @@ export default function Navigator() {
             <Nav.Link href="/lifepost/page">LifePost</Nav.Link>
             <Nav.Link href="/academic/page">AcademicPost</Nav.Link>
             <Nav.Link href="/secondPost/page">SecondPost</Nav.Link>
+            <Nav.Link href="/shopping/cartCard">ShoppingCart</Nav.Link>
           </Nav>
 
           <Form className="d-flex">

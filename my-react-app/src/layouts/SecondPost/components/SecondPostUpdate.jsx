@@ -77,7 +77,7 @@ export default function SecondPostUpdate() {
             <option value="">Choose a category</option>
             <option value="1">Articles for daily use</option>
             <option value="2">Electronic goods</option>
-            <option value="3">Clothing and personal adornment</option>
+            <option value="3">Clothing</option>
             {/* Add more options as needed */}
           </Form.Control>
         </Form.Group>
