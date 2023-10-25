@@ -42,7 +42,7 @@ function SecondPostDetail(props){
               {detail.picture && (
                 <img
                   src={`/common/download?name=${detail.picture}`}
-                  alt='Academic Post'
+                  alt='UniTrade Post'
                   style={{ maxWidth: '400px', maxHeight: '300px' }}
                 />
               )}
@@ -58,27 +58,27 @@ function SecondPostDetail(props){
               
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src="/college.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <img src="/commodity.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
                 <Card.Text>CommodityName: {detail.commodityName}</Card.Text>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src="/college.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+              {/* <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src="/count.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
                 <Card.Text>count: {detail.count}</Card.Text>
-              </div>
+              </div> */}
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src="/college.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <img src="/createTime.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
                 <Card.Text>createTime: {detail.createTime}</Card.Text>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src="/college.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <img src="/newness.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
                 <Card.Text>newness: {detail.newness}</Card.Text>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src="/college.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <img src="/price.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
                 <Card.Text>price: {detail.price}AU</Card.Text>
               </div>
 

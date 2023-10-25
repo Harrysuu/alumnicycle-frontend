@@ -113,6 +113,18 @@ export default function SecondPostAdd() {
           />
         </Form.Group>
 
+        <Form.Group controlId="newness">
+           <Form.Label>Newness</Form.Label>
+           <Form.Control
+           type="text"
+           name="newness"
+          //  placeholder="Enter newness (e.g., 90% new)"
+           value={secondPost.newness}
+           onChange={handleChange}
+           />
+        </Form.Group>
+
+
         <Form.Group controlId="createTime">
           <Form.Label>Create Time</Form.Label>
           <Form.Control
