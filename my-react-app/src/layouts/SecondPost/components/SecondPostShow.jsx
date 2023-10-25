@@ -71,7 +71,8 @@ export default function SecondPostShow(props) {
         {secondPost ? (
           <div>
             <h1>{secondPost.title}</h1>
-            <img src={`/common/download?name=${secondPost.picture}`} alt='Second Post'></img>
+            {/* <img src={`/common/download?name=${secondPost.picture}`} alt='Second Post'></img> */}
+            <img src={`${secondPost.picture}`} alt='Second Post'></img>
             <p>Category: {getCategoryName(secondPost.category)}</p>
             <p>Commodity Name: {secondPost.commodityName}</p>
             <p>Price: {secondPost.price}</p>

@@ -1,0 +1,165 @@
+.head-search {
+    margin-bottom: 40px;
+    padding: 12px 14px;
+    box-shadow: 0 5px 10px rgba(60,60,60,0.5);
+}
+
+.head-search .btn{
+    font-size: 12px;
+}
+
+.catalogue-box{
+    width: 30%;
+}
+
+.head-search .catalogue-btn {
+    background-color: #808080;
+    border-color: #808080;
+}
+
+.head-search .heart-btn{
+    background-color: #eff3ff;
+    border-color: #eff3ff;
+    color: #5c6f9a;
+    margin:0 17px;
+}
+
+.head-search .cart-btn{
+    background-color: #e28d70;
+    border-color: #e28d70;
+    color: #6c64a0;
+}
+.title {
+    padding: 20px 0;
+    border-bottom: 1px solid #dde1e2;
+    color: #828282;
+    font-size: 18px;
+}
+
+.goods {
+    padding: 20px 0;
+}
+
+.cart-img {
+    width: 80px;
+    height: 80px;
+}
+
+.close {
+    display: block;
+    width: 45px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    border: 1px solid #d3d3d3;
+    font-size: 28px;
+    cursor: pointer;
+    color: #0c0c0c;
+}
+
+.count {
+    width: 66px;
+    height: 40px;
+    text-align: center;
+    background: transparent;
+    border-radius: 0;
+}
+
+.line{
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+    margin-bottom: 40px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.shopping-cart-card .row>* {
+    padding: 0;
+}
+
+.block-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inline-center {
+    text-align: center;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.check-out-btn {
+    width: 80%;
+    max-width: 300px;
+    height: 50px;
+    background-color: #5493f0;
+    border-color: #5493f0;
+}
+
+.label,
+.val {
+    text-align: right;
+    font-size: 14px;
+    padding: 6px 0;
+}
+
+.label {
+    color: #434343;
+}
+
+.val {
+    color: #1e1e1e;
+    font-weight: bold;
+}
+
+.last {
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e8e8ea;
+}
+
+.total {
+    padding-top: 12px;
+}
+
+.total.label {
+    color: #7691a6;
+    font-weight: bold;
+}
+
+.pt-20{
+    padding-top: 20px;
+}
+
+
+@font-face {
+    font-family: "iconfont";
+    /* Project id 4300137 */
+    src: url('iconfont.woff2?t=1698132471244') format('woff2'),
+        url('iconfont.woff?t=1698132471244') format('woff'),
+        url('iconfont.ttf?t=1698132471244') format('truetype');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gouwuchekong:before {
+    content: "\e600";
+}
+
+.icon-sousuo:before {
+    content: "\e601";
+}
+
+.icon-caidan:before {
+    content: "\e790";
+}
+
+.icon-tubiaozhizuomoban-:before {
+    content: "\e60a";
+}

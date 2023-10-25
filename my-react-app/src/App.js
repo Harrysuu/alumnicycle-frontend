@@ -37,6 +37,7 @@ import ViewOtherUser from './layouts/ViewOtherUser/ViewOtherUser'
 import ViewAcademic from './layouts/ViewOtherUser/components/ViewAcademic'
 import ViewLifePost from './layouts/ViewOtherUser/components/ViewLifePost'
 import ViewUniTrade from './layouts/ViewOtherUser/components/ViewUniTrade';
+import ShoppingCartCard from './layouts/ShoppingCart/components/ShoppingCartCard'
 
 const ProtectedRoute = ({ children }) => {
   if (localStorage.getItem('userId')) {
@@ -152,13 +153,13 @@ function App() {
 
 
 
-                  <Route path="/secondPost/page">
+                  <Route path="/secondpost/page">
                     <ProtectedRoute>
                       <SecondPostCard/>
                     </ProtectedRoute>
                   </Route>
 
-                  <Route path="/secondPost/:id">
+                  <Route path="/secondpost/:id">
                     <ProtectedRoute>
                       <SecondPostShow/>
                     </ProtectedRoute>
@@ -251,6 +252,12 @@ function App() {
                   <Route path="/ViewUniTrade/:userId">
                     <ProtectedRoute>
                       <ViewUniTrade/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/shopping/cartCard">
+                    <ProtectedRoute>
+                      <ShoppingCartCard/>
                     </ProtectedRoute>
                   </Route>
                   

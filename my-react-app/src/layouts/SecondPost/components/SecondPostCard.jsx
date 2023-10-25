@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Pagination } from 'antd';
 import axios from 'axios';
 import { Card, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import "../css/SecondPostCard.css";
 
 function SecondPostCard() {
+  const history = useHistory();
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const [pageSize, setPageSize] = useState(3);
   const [current, setCurrent] = useState(1);
   const [category, setCategory] = useState(0);
 
-  const categories = ["All Category", "Articles for daily use", "Electronic goods", "Clothing and personal adornment"];
+  const categories = ["All Category", "Articles for daily use", "Electronic goods", "Clothing"];
 
   const fetchData = async () => {
     try {
@@ -53,9 +55,33 @@ function SecondPostCard() {
       case 2:
         return "Electronic goods";
       case 3:
-        return "Clothing and personal adornment";
+        return "Clothing";
       default:
         return "All Second Posts"; // 处理未知的类别值
+    }
+  }
+
+  const addCart = async (id) => {
+    
+    try {
+
+      const _active = data.find(item => item.id === id);
+      const res = await axios.post('/shoppingCart/add', {
+        id:'',
+        userId: 99,
+        goodsId: _active.id,
+        number: 1,
+        unitPrice: _active.price,
+        picture: _active.picture,
+        createTime: _active.createTime
+      })
+      if (res.data.resMsg === "operate success") {
+        history.push('/shopping/cartCard');
+    return;
+      }
+      console.log('error message'+res);
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -87,13 +113,16 @@ function SecondPostCard() {
         {data.map((secondPost) => (
           <Card className="mb-3" style={{ width: '50rem' }} key={secondPost.id}>
             <Card.Body>
-              <img src={`/common/download?name=${secondPost.picture}`}  alt='Second Post'></img>
+              {/* <img src={`/common/download?name=${secondPost.picture}`} alt='Second Post'></img> */}
+              <img className='cart-img' src={`${secondPost.picture}`} alt='Second Post'></img>
               <Card.Title>{secondPost.commodityName}</Card.Title>
               <Card.Text>Price: {secondPost.price}</Card.Text>
               <Card.Text>Create Time: {secondPost.createTime}</Card.Text>
               <Link to={`/secondpost/${secondPost.id}`}>
                 <Button variant="primary">View Details</Button>
               </Link>
+              {/* to={`/shopping/cartCard/${secondPost.id}}`}  */}
+              <span onClick={() => addCart(secondPost.id)} className='add-icon'></span>
             </Card.Body>
           </Card>
         ))}

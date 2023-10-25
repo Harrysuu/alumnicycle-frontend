@@ -20,7 +20,7 @@ import bg3 from './bg3.png'
 import bg4 from './bg4.png'
 import bg5 from './bg5.png'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export default function Navigator() {
   const [searchKeyword, setSearchKeyword] = useState('')
@@ -118,6 +118,7 @@ export default function Navigator() {
             <Nav.Link href="/lifepost/page">LifePost</Nav.Link>
             <Nav.Link href="/academic/page">AcademicPost</Nav.Link>
             <Nav.Link href="/secondPost/page">SecondPost</Nav.Link>
+            <Nav.Link href="/shopping/cartCard">ShoppingCart</Nav.Link>
           </Nav>
 
           <Form className="d-flex">

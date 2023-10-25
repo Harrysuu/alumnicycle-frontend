@@ -129,7 +129,7 @@ export default function AcademicPostAdd() {
             onChange={handleChange}
           />
         </Form.Group>
-
+        
         <Form.Group controlId="picture">
           <Form.Label>Picture</Form.Label>
           <Form.Control

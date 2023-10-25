@@ -44,7 +44,7 @@ function ViewLifePost(props) {
         </Nav.Item>
 
         <Nav.Item>
-          <Nav.Link as={Link} to={`/ViewLifePost/${userId}`}  active>Life Posts</Nav.Link>
+          <Nav.Link as={Link} to={`/ViewLifePost/${userId}`} active>Life Posts</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link as={Link} to={`/ViewAcademic/${userId}`} >Academic</Nav.Link>
@@ -59,11 +59,17 @@ function ViewLifePost(props) {
 
       <div className="life-post-cards" style={{ width: '50rem' }}>
         {posts.map((post) => (
-<Card className="mb-3" style={{ width: '50rem' }} key={post.id}>
+          <Card className="mb-3" style={{ width: '50rem' }} key={post.id}>
             <Card.Body style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ flexGrow: 1 }}>
-
-                <img src={`/common/download?name=${post.picture}`} alt='Life Post' style={{ maxWidth: '400px', maxHeight: '300px' }}></img>
+              {post.picture && (
+                    <img
+                      src={`/common/download?name=${post.picture}`}
+                      alt='Life Post'
+                      style={{ maxWidth: '400px', maxHeight: '300px' }}
+                    />
+                  )}
+                {/* <img src={`/common/download?name=${post.picture}`} alt='Life Post' style={{ maxWidth: '400px', maxHeight: '300px' }}></img> */}
                 <div className="mb-4"></div>
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text>{post.content}</Card.Text>
