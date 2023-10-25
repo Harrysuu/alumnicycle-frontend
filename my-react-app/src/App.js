@@ -37,7 +37,7 @@ import ViewOtherUser from './layouts/ViewOtherUser/ViewOtherUser'
 import ViewAcademic from './layouts/ViewOtherUser/components/ViewAcademic'
 import ViewLifePost from './layouts/ViewOtherUser/components/ViewLifePost'
 import ViewUniTrade from './layouts/ViewOtherUser/components/ViewUniTrade';
-import ShoppingCartCard from './layouts/ShoppingCart/components/ShoppingCartCard'
+import CurrentWeather from './layouts/CurrentWeather/CurrentWeather';
 
 const ProtectedRoute = ({ children }) => {
   if (localStorage.getItem('userId')) {
@@ -69,6 +69,7 @@ function App() {
     <>
     {isLoggedIn && <Navigator/>}
       <div className="container-fluid  " style= {customStyle}>
+        <div className='container'> <CurrentWeather/></div>
       <div className="d-flex justify-content-center">
           <div className="col-md-10" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             <div>
@@ -153,13 +154,13 @@ function App() {
 
 
 
-                  <Route path="/secondpost/page">
+                  <Route path="/secondPost/page">
                     <ProtectedRoute>
                       <SecondPostCard/>
                     </ProtectedRoute>
                   </Route>
 
-                  <Route path="/secondpost/:id">
+                  <Route path="/secondPost/:id">
                     <ProtectedRoute>
                       <SecondPostShow/>
                     </ProtectedRoute>
@@ -254,12 +255,6 @@ function App() {
                       <ViewUniTrade/>
                     </ProtectedRoute>
                   </Route>
-
-                  <Route path="/shopping/cartCard">
-                    <ProtectedRoute>
-                      <ShoppingCartCard/>
-                    </ProtectedRoute>
-                  </Route>
                   
                   <Route> <NotFound /></Route>
                 </Switch>
@@ -269,13 +264,13 @@ function App() {
           </div>
 
 
-          <div className="col-md-2" style={{ marginLeft: 'auto', marginRight: 'auto' }} >
+          {/* <div className="col-md-2" style={{ marginLeft: 'auto', marginRight: 'auto' }} >
             {isLoggedIn &&
               <div className="d-flex justify-content-end align-items-start" style={{ minHeight: '100vh' }}>
               <GuideSide />
             </div>
             }
-          </div>
+          </div> */}
         </div>
 
 

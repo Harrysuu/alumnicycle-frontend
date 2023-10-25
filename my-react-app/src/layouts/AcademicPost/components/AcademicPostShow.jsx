@@ -146,15 +146,18 @@ import { withRouter } from 'react-router-dom';
                 <Card.Text>Category: {getCategoryName(academicPost.category)}</Card.Text>
               </div>
 
+              <div className="mb-2"></div>
+
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src="/college.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
                 <Card.Text>College: {getCollegeName(academicPost.college)}</Card.Text>
               </div>
 
               <div className="mb-2"></div>
-
               <div className="mb-2"></div>
               <Card.Text>{academicPost.content}</Card.Text>
+
+              
 
               <div className="mb-2"></div>
 
@@ -167,9 +170,7 @@ import { withRouter } from 'react-router-dom';
                 <Card.Text>Post Time: {academicPost.postTime}</Card.Text>
               </div>
 
-              <div className="mb-4"></div>
-
-              <div className="mb-4"></div>
+              <div className="mb-2"></div>
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src="/creator.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />

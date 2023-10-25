@@ -93,7 +93,13 @@ export default function UserAcademic() {
             <Card.Body style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ flexGrow: 1 }}>
 
-                <img src={`/common/download?name=${post.picture}`} alt='Academic Post' style={{ maxWidth: '400px', maxHeight: '300px' }}></img>
+              {post.picture && (
+                    <img
+                      src={`/common/download?name=${post.picture}`}
+                      alt='Academic Post'
+                      style={{ maxWidth: '400px', maxHeight: '300px' }}
+                    />
+                  )}
                 <div className="mb-4"></div>
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text>{post.content}</Card.Text>

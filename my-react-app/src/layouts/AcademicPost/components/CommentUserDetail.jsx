@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Image } from 'react-bootstrap';
 
 function CommentUserDetail({ userId }) {
   const [userDetail, setUserDetail] = useState(null);
@@ -22,22 +23,35 @@ function CommentUserDetail({ userId }) {
 
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      {userDetail.picture ? (
-        <img 
-          src={userDetail.picture} 
-          alt={userDetail.username} 
-          style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} 
-        />
-      ) : (
-        <img 
-          src="/userprofile.png" // 这里是你的默认图片路径
-          alt="Default User" 
-          style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }}
-        />
-      )}
-      <span>{userDetail.username}</span>
+    <div>
+      {userDetail ? (
+        <div className="d-flex align-items-center">
+        {/* User Avatar */}
+        <div className="circular-image mr-3" style={{ width: '50px', height: '50px', overflow: 'hidden' }}> {/* Adjust the width and height as needed */}
+            {userDetail.picture ? (
+                <Image
+                    src={`/common/download?name=${userDetail.picture}`}
+                    fluid
+                    roundedCircle
+                />
+            ) : (
+                <img
+                    src="/userprofile.png"  // 替换为实际的默认图片路径
+                    alt="User"
+                    style={{ maxWidth: '100%', maxHeight: '100%' }}
+                />
+            )}
+        </div>
+        
+        {/* Username */}
+        <p className="mb-0">{userDetail.username}</p>
     </div>
+    ) : (
+      <p>Loading...</p>
+    )
+    }
+    </div>
+    
   );
 }
 

@@ -44,10 +44,10 @@ function ViewAcademic(props) {
         </Nav.Item>
 
         <Nav.Item>
-          <Nav.Link as={Link} to={`/ViewLifePost/${userId}`}  active>Life Posts</Nav.Link>
+          <Nav.Link as={Link} to={`/ViewLifePost/${userId}`} >Life Posts</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link as={Link} to={`/ViewAcademic/${userId}`} >Academic</Nav.Link>
+          <Nav.Link as={Link} to={`/ViewAcademic/${userId}`} active>Academic</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link as={Link} to={`/ViewUniTrade/${userId}`} >UniTrade</Nav.Link>
@@ -59,14 +59,28 @@ function ViewAcademic(props) {
 
       <div className="academic-post-cards" style={{ width: '50rem' }}>
         {posts.map((post) => (
-<Card className="mb-3" style={{ width: '50rem' }} key={post.id}>
+          <Card className="mb-3" style={{ width: '50rem' }} key={post.id}>
             <Card.Body style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ flexGrow: 1 }}>
+              {post.picture && (
+                    <img
+                      src={`/common/download?name=${post.picture}`}
+                      alt='Academic Post'
+                      style={{ maxWidth: '400px', maxHeight: '300px' }}
+                    />
+                  )}
 
-                <img src={`/common/download?name=${post.picture}`} alt='Academic Post' style={{ maxWidth: '400px', maxHeight: '300px' }}></img>
+        
                 <div className="mb-4"></div>
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text>{post.content}</Card.Text>
+
+                <div className="mb-2"></div>
+
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img src="/editTime.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                  <Card.Text>Post Time: {post.postTime}</Card.Text>
+                </div>
 
                 <div className="mb-4"></div>
 
