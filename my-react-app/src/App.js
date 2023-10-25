@@ -69,7 +69,7 @@ function App() {
     <>
     {isLoggedIn && <Navigator/>}
       <div className="container-fluid  " style= {customStyle}>
-        <div className='container'> <CurrentWeather/></div>
+        {/* <div className='container'> <CurrentWeather/></div> */}
       <div className="d-flex justify-content-center">
           <div className="col-md-10" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             <div>
@@ -264,13 +264,13 @@ function App() {
           </div>
 
 
-          {/* <div className="col-md-2" style={{ marginLeft: 'auto', marginRight: 'auto' }} >
+          <div className="col-md-2" style={{ marginLeft: '0', marginRight: '0' }} >
             {isLoggedIn &&
               <div className="d-flex justify-content-end align-items-start" style={{ minHeight: '100vh' }}>
               <GuideSide />
             </div>
             }
-          </div> */}
+          </div>
         </div>
 
 

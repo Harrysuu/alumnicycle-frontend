@@ -29,10 +29,9 @@ export default function GuideSide() {
 
       <div className="mb-4"></div>
 
-      <Container className="d-flex justify-content-center align-items-center">
-        <CurrentWeather/>
-        <CardGroup className="my-card-group">
-          <Card className="mb-3 bg-light" style={{ width: '18rem', marginTop: '10px' }} >
+      <Container className="d-flex justify-content-center align-items-end">
+        <CardGroup className="weather">
+          <Card className="weather" >
             <Card.Body>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src="/star.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
@@ -58,7 +57,7 @@ export default function GuideSide() {
           </Card>
 
           <div>
-            <Card className="mb-3 bg-light" style={{ width: '18rem' }} >
+            <Card className="weather" >
               <Card.Body>
                 <Card.Title>Link to USYD</Card.Title>
                 <Card.Text>
@@ -78,6 +77,9 @@ export default function GuideSide() {
                 </Card.Body>
               </Card.Body>
             </Card>
+          </div>
+          <div>
+            <CurrentWeather />
           </div>
         </CardGroup>
       </Container>
