@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios';
 import { Card, CardGroup, Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
+import CurrentWeather from '../CurrentWeather/CurrentWeather';
 
 export default function GuideSide() {
 
@@ -24,12 +25,12 @@ export default function GuideSide() {
   // };
 
   return (
-
     <div >
 
       <div className="mb-4"></div>
 
       <Container className="d-flex justify-content-center align-items-center">
+        <CurrentWeather/>
         <CardGroup className="my-card-group">
           <Card className="mb-3 bg-light" style={{ width: '18rem', marginTop: '10px' }} >
             <Card.Body>
