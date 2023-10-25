@@ -20,7 +20,7 @@ import bg3 from './bg3.png'
 import bg4 from './bg4.png'
 import bg5 from './bg5.png'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export default function Navigator() {
   const [searchKeyword, setSearchKeyword] = useState('')
