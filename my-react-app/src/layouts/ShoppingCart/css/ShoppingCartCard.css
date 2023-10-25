@@ -41,8 +41,8 @@
 }
 
 .cart-img {
-    width: 80px;
-    height: 80px;
+    max-width: 400px;
+     max-height: 300px;
 }
 
 .close {
@@ -130,6 +130,10 @@
 
 .pt-20{
     padding-top: 20px;
+}
+
+.ant-message{
+    z-index: 1060 !important;
 }
 
 

@@ -17,15 +17,7 @@ export default function SecondPostShow(props) {
       .catch(error => {
         console.error('Error fetching SecondPost:', error);
       });
-
-    // 发送请求来检查是否已经enrol
-    axios.get(`/secondPost/enrolCheck?secondPostId=${secondPostId}`)
-      .then(response => {
-        setEnrolled(response.data); // 设置是否已经enrol的状态
-      })
-      .catch(error => {
-        console.error('Error checking enrol status:', error);
-      });
+      
   }, [secondPostId, enrolled]);
 
   const handleEnrolClick = () => {

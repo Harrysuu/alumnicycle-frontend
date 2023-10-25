@@ -37,6 +37,8 @@ import ViewOtherUser from './layouts/ViewOtherUser/ViewOtherUser'
 import ViewAcademic from './layouts/ViewOtherUser/components/ViewAcademic'
 import ViewLifePost from './layouts/ViewOtherUser/components/ViewLifePost'
 import ViewUniTrade from './layouts/ViewOtherUser/components/ViewUniTrade';
+import ShoppingCartCard from './layouts/ShoppingCart/components/ShoppingCartCard';
+import SecondPostDetail from './layouts/SecondPost/components/SecondPostDetail';
 
 
 const ProtectedRoute = ({ children }) => {
@@ -254,7 +256,19 @@ function App() {
                       <ViewUniTrade/>
                     </ProtectedRoute>
                   </Route>
-                  
+
+                  <Route path="/shopping/cartCard">
+                    <ProtectedRoute>
+                      <ShoppingCartCard/>
+                    </ProtectedRoute>
+                  </Route>
+
+                  <Route path="/secondPostDetail/:id">
+                    <ProtectedRoute>
+                      <SecondPostDetail/>
+                    </ProtectedRoute>
+                  </Route>
+
                   <Route> <NotFound /></Route>
                 </Switch>
               </Router>

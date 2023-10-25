@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Row, Col, Image, Form,Modal } from 'react-bootstrap';
+import {message} from 'antd';
 import axios from 'axios';
 
 import "../css/ShoppingCartCard.css";
@@ -13,10 +14,10 @@ function ShoppingCartCard() {
     const [modal, setModal] = useState(false);
     const [total, setTotal] = useState(0);
     const [carts, setCarts] = useState([]);
-    const [userBalance, setUserBalance] = useState(null);
+    const userId = localStorage.getItem('userId');
 
     const getCartList = async () => {
-        const userId = 99;
+        // const userId = 99;
         const res = await axios.post('/shoppingCart/getByUserId', {
             userId,
             page: cartParams
@@ -36,32 +37,19 @@ function ShoppingCartCard() {
         getCartList();
     }, [])
 
-    useEffect(() => {
-        const fetchUserBalance = async () => {
-            try {
-                const response = await axios.get('/user/getBalance', {
-                    params: { userId: 99 } // 请根据实际需要传递用户ID
-                });
-                setUserBalance(response.data.balance); // 假设后端返回的余额在 response.data.balance 中
-            } catch (error) {
-                console.error('Error fetching user balance:', error);
-            }
-        };
-    
-        fetchUserBalance();
-    }, []);
 
     const numChange = async (e, id) => {
         if(!e.target.value) return;
         let _active = carts.find(item=>item.id === id);
         const res = await axios.post('/shoppingCart/update', {
-            userId: 99,
+            userId: userId,
             goodsId: _active.goodsId,
             id,
             number: e.target.value,
             unitPrice: _active.unitPrice,
             picture: _active.picture,
-            createTime: _active.createTime
+            createTime: _active.createTime,
+            commodityName: _active.commodityName
         })
         if(res.status === 200){
             carts.splice(0, carts.length);
@@ -83,11 +71,16 @@ function ShoppingCartCard() {
     }
 
     const checkOut = async () =>{
-        const res = await axios.get('/trade/submit?userId=99');
-        carts.splice(0, carts.length);
+        const res = await axios.get('/trade/submit');
+        if(res.data.res==1){
+            carts.splice(0, carts.length);
             setCarts(carts);
             getCartList();
-        handleClose();
+            handleClose();
+            return;
+        }
+        message.warning(res.data.resMsg);
+        
     }
     const showModal = () => {
         setModal(true);
@@ -95,7 +88,7 @@ function ShoppingCartCard() {
     const handleClose = () => {
         setModal(false);
     }
-
+    
     return (<div className="shopping-cart-card" style={{ width: '70rem' }}>
         <Form>
             {carts.map((item, idx) => (<div>
@@ -106,16 +99,15 @@ function ShoppingCartCard() {
                 </Row>
                 <Row className='goods'>
 
-                    {carts.picture && (
-                    <img
-                      src={`/common/download?name=${carts.picture}`}
+                    {item.picture && (
+                    <img className='cart-img'
+                      src={`/common/download?name=${item.picture}`}
                       alt=''
-                    //   style={{ maxWidth: '400px', maxHeight: '300px' }}
                     />
                   )}
 
                     <Col xs={4}>
-                        <div className='inline-center pt-20'>CHINESE GALA</div>
+                        <div className='inline-center pt-20'>{item.commodityName}</div>
                         <div className='inline-center'>{item.unitPrice}AU</div>
                     </Col>
                     <Col><Form.Control className='count block-center' defaultValue={item.number} onChange={(e)=>numChange(e,item.id)} /></Col>
