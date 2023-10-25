@@ -75,6 +75,13 @@ function ViewAcademic(props) {
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text>{post.content}</Card.Text>
 
+                <div className="mb-2"></div>
+
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img src="/editTime.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                  <Card.Text>Post Time: {post.postTime}</Card.Text>
+                </div>
+
                 <div className="mb-4"></div>
 
 
