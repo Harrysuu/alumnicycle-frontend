@@ -9,9 +9,9 @@ export default function SecondPostDelete() {
   useEffect(() => {
     // 发起删除帖子的请求
     axios
-      .delete(`/secondPost/delete/${postId}`)
+      .get(`/secondPost/delete/?id=${postId}`)
       .then((response) => {
-        history.push('/user/secondPosts');
+        history.push('/user/uniTradePost');
       })
       .catch((error) => {
         console.error('Error deleting second post:', error);

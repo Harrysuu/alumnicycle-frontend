@@ -5,6 +5,7 @@ import { useHistory, useParams } from 'react-router-dom';
 
 export default function SecondPostUpdate() {
   const { postId } = useParams();
+  console.log(postId);
   const [secondPost, setSecondPost] = useState({
     posterId: null,
     category: 0,
@@ -18,7 +19,7 @@ export default function SecondPostUpdate() {
 
   useEffect(() => {
     // Fetch the secondPost data using postId when component mounts
-    axios.get(`/secondPost/getById?id=${postId}`)
+    axios.get(`/secondPost/getCommodityById?id=${postId}`)
       .then(response => {
         setSecondPost(response.data.result);
       })
@@ -36,9 +37,9 @@ export default function SecondPostUpdate() {
       console.log(response.data);
     
       // Redirect to the appropriate page after successful update
-      history.push('/secondPost'); // Redirect to secondPost page, modify the route as needed
+      history.push('/user/uniTradePost'); // Redirect to secondPost page, modify the route as needed
     } catch (error) {
-      console.error('Error updating secondPost:', error);
+      console.error(error);
     }
   };
 
