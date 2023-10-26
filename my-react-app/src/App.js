@@ -26,6 +26,7 @@ import AcademicPostShow from './layouts/AcademicPost/components/AcademicPostShow
 import AcademicPostCard from './layouts/AcademicPost/components/AcademicPostCard';
 import AcademicPostAdd from './layouts/AcademicPost/components/AcademicPostAdd';
 import UserAcademic from './layouts/UserPage/components/UserAcademic';
+import UserUniTrade from './layouts/UserPage/components/UserUniTrade';
 import Login from './layouts/Login/Login';
 import SecondPostCard from './layouts/SecondPost/components/SecondPostCard';
 import SecondPostShow from './layouts/SecondPost/components/SecondPostShow';
@@ -223,7 +224,7 @@ function App() {
 
                   <Route path="/user/uniTradePost">
                     <ProtectedRoute>
-                      <SecondPost/>
+                      <UserUniTrade/>
                     </ProtectedRoute>
                   </Route>
 

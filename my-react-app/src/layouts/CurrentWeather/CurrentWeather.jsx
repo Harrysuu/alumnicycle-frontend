@@ -42,18 +42,18 @@ export default function CurrentWeather() {
         const apiUrl = `https://devapi.qweather.com/v7/weather/now?location=${longtitude},${latitude}&key=f28f14e55f8f453b9ea95843ee302ea1`;
 
         // 使用axios进行API请求
-        axios.get(apiUrl)
-            .then(response => {
-                setWeatherData(response.data);
-                setTemperature(response.data.now.temp);
-                setWind(response.data.now.windSpeed);
-                setHumidity(response.data.now.humidity);
-                setPressure(response.data.now.pressure);
-                setWeatherCondition(response.data.now.text)
-            })
-            .catch(error => {
-                console.error('Error fetching weather data:', error);
-            });
+        // axios.get(apiUrl)
+        //     .then(response => {
+        //         setWeatherData(response.data);
+        //         setTemperature(response.data.now.temp);
+        //         setWind(response.data.now.windSpeed);
+        //         setHumidity(response.data.now.humidity);
+        //         setPressure(response.data.now.pressure);
+        //         setWeatherCondition(response.data.now.text)
+        //     })
+        //     .catch(error => {
+        //         console.error('Error fetching weather data:', error);
+        //     });
     }, [selectedCity]);
 
     const weatherCondition = {

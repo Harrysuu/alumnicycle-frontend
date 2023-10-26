@@ -44,7 +44,7 @@ function ShoppingCartCard() {
     useEffect(() => {
         // Call the function to fetch user information when the component mounts
         fetchUserData();
-    }, [userId]);
+    }, []);
 
     const getCartList = async () => {
         // const userId = 99;
