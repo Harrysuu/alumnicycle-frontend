@@ -20,7 +20,6 @@ import bg3 from './bg3.png'
 import bg4 from './bg4.png'
 import bg5 from './bg5.png'
 import axios from 'axios'
-// import { Link } from 'react-router-dom';
 
 export default function Navigator() {
   const [searchKeyword, setSearchKeyword] = useState('')
@@ -52,12 +51,10 @@ export default function Navigator() {
 
   const history = useHistory()
 
-  // 函数用于执行退出登录
   const handleLogout = async (e) => {
     try {
       await axios.get('/user/logout')
       localStorage.removeItem('userId')
-      // history.push('login/page')
     } catch (error) {
       console.error('Error logging out:', error)
     }
