@@ -135,6 +135,7 @@ function SecondPostCard() {
                 <img src="/calendar.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
                 <Card.Text>Create Time: {secondPost.createTime}</Card.Text>
               </div>
+
               <Link to={`/secondPostDetail/${secondPost.id}`}>
                 <Button variant="primary">View Details</Button>
               </Link>

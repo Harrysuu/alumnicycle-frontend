@@ -57,7 +57,7 @@ export default function SecondPostUpdate() {
         <h3>Update your Second Post</h3>
       </div>
       <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="posterId">
+      {/* <Form.Group controlId="posterId">
           <Form.Label>Poster ID</Form.Label>
           <Form.Control
             type="text"
@@ -65,7 +65,7 @@ export default function SecondPostUpdate() {
             value={secondPost.posterId}
             onChange={handleChange}
           />
-        </Form.Group>
+        </Form.Group> */}
 
         <Form.Group controlId="category">
           <Form.Label>Category</Form.Label>
@@ -103,7 +103,18 @@ export default function SecondPostUpdate() {
           />
         </Form.Group>
 
-        <Form.Group controlId="createTime">
+        <Form.Group controlId="newness">
+           <Form.Label>Newness</Form.Label>
+           <Form.Control
+           type="text"
+           name="newness"
+          //  placeholder="Enter newness (e.g., 90% new)"
+           value={secondPost.newness}
+           onChange={handleChange}
+           />
+        </Form.Group>
+
+        {/* <Form.Group controlId="createTime">
           <Form.Label>Create Time</Form.Label>
           <Form.Control
             type="datetime-local"
@@ -111,19 +122,19 @@ export default function SecondPostUpdate() {
             value={secondPost.createTime}
             onChange={handleChange}
           />
-        </Form.Group>
+        </Form.Group> */}
 
-        <Form.Group controlId="picture">
+        {/* <Form.Group controlId="picture">
           <Form.Label>Picture</Form.Label>
           <Form.Control
             type="text"
             name="picture"
             onChange={handleChange}
           />
-        </Form.Group>
+        </Form.Group> */}
 
         
-        <Button variant="outline-primary" type="submit">
+        <Button variant="dark" type="submit">
           Update
         </Button>
       </Form>

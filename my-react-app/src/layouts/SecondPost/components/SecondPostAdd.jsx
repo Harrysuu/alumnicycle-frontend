@@ -28,10 +28,14 @@ export default function SecondPostAdd() {
 
     axios.post("/common/upload", formData)
       .then(response => {
+        console.log("before" + secondPost.picture);
+        console.log("File uploaded:", response.data.result);
+        // 更新 academicPost 对象中的 picture 字段为文件名
         setSecondPost((prevSecondPost) => ({
           ...prevSecondPost,
           picture: response.data.result
         }));
+        console.log("after" + secondPost.picture);
       })
       .catch(error => {
         console.error("Error uploading file:", error);
@@ -67,7 +71,7 @@ export default function SecondPostAdd() {
       </div>
       <Form onSubmit={handleSubmit}>
 
-        <Form.Group controlId="posterId">
+        {/* <Form.Group controlId="posterId">
           <Form.Label>Poster ID</Form.Label>
           <Form.Control
             type="text"
@@ -75,7 +79,7 @@ export default function SecondPostAdd() {
             value={secondPost.posterId}
             onChange={handleChange}
           />
-        </Form.Group>
+        </Form.Group> */}
 
         <Form.Group controlId="category">
           <Form.Label>Category</Form.Label>
@@ -125,7 +129,7 @@ export default function SecondPostAdd() {
         </Form.Group>
 
 
-        <Form.Group controlId="createTime">
+        {/* <Form.Group controlId="createTime">
           <Form.Label>Create Time</Form.Label>
           <Form.Control
             type="datetime-local"
@@ -133,7 +137,7 @@ export default function SecondPostAdd() {
             value={secondPost.createTime}
             onChange={handleChange}
           />
-        </Form.Group>
+        </Form.Group> */}
 
         <Form.Group controlId="picture">
           <Form.Label>Picture</Form.Label>
@@ -143,8 +147,11 @@ export default function SecondPostAdd() {
             onChange={handleFileChange}
           />
         </Form.Group>
-
-        <Button onClick={handleUpload} variant="outline-primary" type="submit">
+        <Button onClick={handleUpload} variant="dark" style={{ marginTop: '10px' }}>
+          upload
+        </Button>
+        <div className="mb-4"></div>
+        <Button variant="dark" type="submit" style={{ marginTop: '10px'}}>
           Create
         </Button>
       </Form>
