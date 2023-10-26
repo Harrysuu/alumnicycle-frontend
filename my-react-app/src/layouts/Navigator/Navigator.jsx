@@ -57,7 +57,7 @@ export default function Navigator() {
     try {
       await axios.get('/user/logout')
       localStorage.removeItem('userId')
-      history.push('login/page')
+      // history.push('login/page')
     } catch (error) {
       console.error('Error logging out:', error)
     }
