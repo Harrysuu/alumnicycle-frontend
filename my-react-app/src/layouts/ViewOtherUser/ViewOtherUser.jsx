@@ -39,9 +39,9 @@ function ViewOtherUser(props) {
         <Nav.Item>
           <Nav.Link as={Link}  to={`/ViewAcademic/${userId}`} >Academic</Nav.Link>
         </Nav.Item>
-        <Nav.Item>
+        {/* <Nav.Item>
           <Nav.Link as={Link}  to={`/ViewUniTrade/${userId}`} >UniTrade</Nav.Link>
-        </Nav.Item>
+        </Nav.Item> */}
 
       </Nav>
 

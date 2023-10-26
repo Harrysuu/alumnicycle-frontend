@@ -22,9 +22,9 @@ function ViewUniTrade(props) {
         <Nav.Item>
           <Nav.Link as={Link}  to={`/ViewAcademic/${userId}`} >Academic</Nav.Link>
         </Nav.Item>
-        <Nav.Item>
+        {/* <Nav.Item>
           <Nav.Link as={Link}  to={`/ViewUniTrade/${userId}`}  active>UniTrade</Nav.Link>
-        </Nav.Item>
+        </Nav.Item> */}
 
       </Nav>
 

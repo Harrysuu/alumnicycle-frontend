@@ -72,9 +72,9 @@ export default function UserPosts() {
         <Nav.Item>
           <Nav.Link as={Link} to="/user/academicPost" style={{ color: 'white' }}>Academic</Nav.Link>
         </Nav.Item>
-        <Nav.Item>
+        {/* <Nav.Item>
           <Nav.Link as={Link} to="/user/uniTradePost" style={{ color: 'white' }}>UniTrade</Nav.Link>
-        </Nav.Item>
+        </Nav.Item> */}
       </Nav>
 
       <div className="mb-4"></div>
