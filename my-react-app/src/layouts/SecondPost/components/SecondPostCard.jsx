@@ -63,12 +63,12 @@ function SecondPostCard() {
   }
 
   const addCart = async (id) => {
-    
+
     try {
 
       const _active = data.find(item => item.id === id);
       const res = await axios.post('/shoppingCart/add', {
-        id:'',
+        id: '',
         userId: localStorage.getItem("userId"),
         goodsId: _active.id,
         number: 1,
@@ -79,9 +79,9 @@ function SecondPostCard() {
       })
       if (res.data.resMsg === "operate success") {
         history.push('/shopping/cartCard');
-    return;
+        return;
       }
-      console.log('error message'+res);
+      console.log('error message' + res);
     } catch (error) {
       console.log(error)
     }
@@ -117,23 +117,23 @@ function SecondPostCard() {
         {data.map((secondPost) => (
           <Card className="mb-3" style={{ width: '50rem' }} key={secondPost.id}>
             <Card.Body>
-            {secondPost.picture && (
-                    <img
-                      src={`/common/download?name=${secondPost.picture}`}
-                      alt=''
-                      style={{ maxWidth: '400px', maxHeight: '300px' }}
-                    />
-                  )}
+              {secondPost.picture && (
+                <img
+                  src={`/common/download?name=${secondPost.picture}`}
+                  alt=''
+                  style={{ maxWidth: '400px', maxHeight: '300px' }}
+                />
+              )}
 
               {/* <img className='cart-img' src={`${secondPost.picture}`} alt='Second Post'></img> */}
               <Card.Title>{secondPost.commodityName}</Card.Title>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src="/price.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
-              <Card.Text>Price: {secondPost.price}</Card.Text>
+                <img src="/price.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <Card.Text>Price: {secondPost.price}</Card.Text>
               </div>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src="/calendar.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
-              <Card.Text>Create Time: {secondPost.createTime}</Card.Text>
+                <img src="/calendar.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
+                <Card.Text>Create Time: {secondPost.createTime}</Card.Text>
               </div>
               <Link to={`/secondPostDetail/${secondPost.id}`}>
                 <Button variant="primary">View Details</Button>
