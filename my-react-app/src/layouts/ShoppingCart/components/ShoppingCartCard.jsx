@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Row, Col, Image, Form,Modal } from 'react-bootstrap';
-import {message} from 'antd';
+import { Button, Row, Col, Image, Form, Modal } from 'react-bootstrap';
+import { message } from 'antd';
 import axios from 'axios';
 
 import "../css/ShoppingCartCard.css";
@@ -14,7 +14,37 @@ function ShoppingCartCard() {
     const [modal, setModal] = useState(false);
     const [total, setTotal] = useState(0);
     const [carts, setCarts] = useState([]);
+    const [user, setUser] = useState(null);
+
     const userId = localStorage.getItem('userId');
+
+    // useEffect(() => {
+    //     // 发起HTTP请求来获取用户信息
+    //     axios.get('/user/getById', { params: { userId: userId } }) //根据需要传入实际的 userId
+    //         .then(response => {
+    //             console.log(response.data.result);
+    //             setUser(response.data.result); // 设置用户信息到状态
+    //         })
+    //         .catch(error => {
+    //             console.error('Error fetching user:', error);
+    //         });
+    //     // eslint-disable-next-line
+    // }, []); // 请确保只在组件挂载时获取用户信息，因此依赖为空数组
+
+    const fetchUserData = async () => {
+        try {
+            const response = await axios.get('/user/getById', { params: { userId: userId } });
+            console.log(response.data.result);
+            setUser(response.data.result);
+        } catch (error) {
+            console.error('Error fetching user:', error);
+        }
+    };
+
+    useEffect(() => {
+        // Call the function to fetch user information when the component mounts
+        fetchUserData();
+    }, [userId]);
 
     const getCartList = async () => {
         // const userId = 99;
@@ -24,7 +54,7 @@ function ShoppingCartCard() {
         })
         let _arr = res.data.result.records || [];
         let t = 0;
-        _arr.map(item=>{
+        _arr.map(item => {
             let _s = item.number * item.unitPrice;
             t += _s;
         })
@@ -39,8 +69,8 @@ function ShoppingCartCard() {
 
 
     const numChange = async (e, id) => {
-        if(!e.target.value) return;
-        let _active = carts.find(item=>item.id === id);
+        if (!e.target.value) return;
+        let _active = carts.find(item => item.id === id);
         const res = await axios.post('/shoppingCart/update', {
             userId: userId,
             goodsId: _active.goodsId,
@@ -51,7 +81,7 @@ function ShoppingCartCard() {
             createTime: _active.createTime,
             commodityName: _active.commodityName
         })
-        if(res.status === 200){
+        if (res.status === 200) {
             carts.splice(0, carts.length);
             setCarts(carts);
             getCartList();
@@ -63,24 +93,26 @@ function ShoppingCartCard() {
             goodsId,
             // userId: localStorage.getItem('userId')
         })
-        if(res.status === 200){
+        if (res.status === 200) {
             carts.splice(0, carts.length);
             setCarts(carts);
             getCartList();
         }
     }
 
-    const checkOut = async () =>{
+    const checkOut = async () => {
         const res = await axios.get('/trade/submit');
-        if(res.data.res===1){
+        if (res.data.res === 1) {
             carts.splice(0, carts.length);
             setCarts(carts);
             getCartList();
             handleClose();
+            fetchUserData();
+
             return;
         }
         message.warning(res.data.resMsg);
-        
+
     }
     const showModal = () => {
         setModal(true);
@@ -88,9 +120,16 @@ function ShoppingCartCard() {
     const handleClose = () => {
         setModal(false);
     }
-    
+
     return (<div className="shopping-cart-card" style={{ width: '58rem' }}>
         <Form>
+            <div>
+                {user && (
+                    <div>
+                        <h4>Current Credit: {user.credit}</h4>
+                    </div>
+                )}
+            </div>
             {carts.map((item, idx) => (<div>
                 <Row className='title'>
                     <Col xs={6}>Product</Col>
@@ -100,17 +139,17 @@ function ShoppingCartCard() {
                 <Row className='goods'>
 
                     {item.picture && (
-                    <img className='cart-img'
-                      src={`/common/download?name=${item.picture}`}
-                      alt=''
-                    />
-                  )}
+                        <img className='cart-img'
+                            src={`/common/download?name=${item.picture}`}
+                            alt=''
+                        />
+                    )}
 
                     <Col xs={4}>
                         <div className='inline-center pt-20'>{item.commodityName}</div>
                         <div className='inline-center'>{item.unitPrice}AU</div>
                     </Col>
-                    <Col><Form.Control className='count block-center' defaultValue={item.number} onChange={(e)=>numChange(e,item.id)} /></Col>
+                    <Col><Form.Control className='count block-center' defaultValue={item.number} onChange={(e) => numChange(e, item.id)} /></Col>
                     <Col><span className='close block-center' onClick={() => delCart(item.goodsId)}>×</span></Col>
                 </Row>
             </div>))}
@@ -137,14 +176,14 @@ function ShoppingCartCard() {
         <Modal show={modal} onHide={handleClose}>
             <Modal.Body>Are you sure you want to place an order</Modal.Body>
             <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-                cancel
-            </Button>
-            <Button variant="primary" onClick={checkOut}>
-                submit
-            </Button>
+                <Button variant="secondary" onClick={handleClose}>
+                    cancel
+                </Button>
+                <Button variant="primary" onClick={checkOut}>
+                    submit
+                </Button>
             </Modal.Footer>
-        </Modal>    
+        </Modal>
     </div>)
 }
 
