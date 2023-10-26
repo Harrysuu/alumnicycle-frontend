@@ -12,7 +12,6 @@ function SecondPostCard() {
   const [pageSize, setPageSize] = useState(3);
   const [current, setCurrent] = useState(1);
   const [category, setCategory] = useState(0);
-  const userId = localStorage.getItem('userId');
 
 
   const categories = ["All Category", "Articles for daily use", "Electronic goods", "Clothing"];

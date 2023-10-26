@@ -72,7 +72,7 @@ function ShoppingCartCard() {
 
     const checkOut = async () =>{
         const res = await axios.get('/trade/submit');
-        if(res.data.res==1){
+        if(res.data.res===1){
             carts.splice(0, carts.length);
             setCarts(carts);
             getCartList();
@@ -89,7 +89,7 @@ function ShoppingCartCard() {
         setModal(false);
     }
     
-    return (<div className="shopping-cart-card" style={{ width: '70rem' }}>
+    return (<div className="shopping-cart-card" style={{ width: '58rem' }}>
         <Form>
             {carts.map((item, idx) => (<div>
                 <Row className='title'>
