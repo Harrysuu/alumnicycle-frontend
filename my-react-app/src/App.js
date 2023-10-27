@@ -55,24 +55,27 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem('userId')) {
       setIsLoggedIn(true);
-    } else{
+    } else {
       setIsLoggedIn(false);
     }
   }, []);
 
-    const customStyle = {
+  const customStyle = {
     backgroundColor: '#8d9da8', // 设置背景颜色为深蓝色 #55738a #ccdce8
     width: '100%',               // 设置宽度为100%
-    padding: '30px 300px',             // 设置padding值
+    padding: '30px 100px',             // 设置padding值
     boxSizing: 'border-box'      // 使用box-sizing: border-box;
 
   };
 
   return (
     <>
-    {isLoggedIn && <Navigator/>}
-      <div className="container-fluid  " style= {customStyle}>
-      <div className="d-flex justify-content-center">
+      <div style={{ width: '100%' }}>
+        {isLoggedIn && <Navigator />}
+      </div>
+
+      <div className="container-fluid  " style={customStyle}>
+        <div className="d-flex justify-content-center">
           <div className="col-md-10" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
             <div>
               <Router>
@@ -80,76 +83,76 @@ function App() {
                   <Route path="/login/page" component={Login} />
                   <Route exact path="/">
                     <ProtectedRoute>
-                      <HomePage/>
+                      <HomePage />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/announcement/:id">
                     <ProtectedRoute>
-                      <AnnouncementShow/>
+                      <AnnouncementShow />
                     </ProtectedRoute>
                   </Route>
-                
+
                   <Route path="/lifePost/page">
                     <ProtectedRoute>
-                      <LifePostCard/>
+                      <LifePostCard />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/lifepost/:id">
                     <ProtectedRoute>
-                      <LifePostShow/>
+                      <LifePostShow />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/addNewLifePost">
                     <ProtectedRoute>
-                      <LifePostAdd/>
+                      <LifePostAdd />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/updateLifePost/:postId">
                     <ProtectedRoute>
-                      <LifePostUpdate/>
+                      <LifePostUpdate />
                     </ProtectedRoute>
                   </Route>
-                  
+
                   <Route path="/deleteLifePost/:postId">
                     <ProtectedRoute>
-                      <LifePostDelete/>
+                      <LifePostDelete />
                     </ProtectedRoute>
                   </Route>
                   {/* <Route path="/ViewUser" component={EnrolledUser} /> */}
 
                   <Route path="/academic/page">
                     <ProtectedRoute>
-                      <AcademicPostCard/>
+                      <AcademicPostCard />
                     </ProtectedRoute>
                   </Route>
 
 
                   <Route path="/academicpost/:id">
                     <ProtectedRoute>
-                      <AcademicPostShow/>
+                      <AcademicPostShow />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/addNewAcademicPost">
                     <ProtectedRoute>
-                      <AcademicPostAdd/>
+                      <AcademicPostAdd />
                     </ProtectedRoute>
                   </Route>
 
-                  
+
                   <Route path="/updateAcademicPost/:postId">
                     <ProtectedRoute>
-                      <AcademicPostUpdate/>
+                      <AcademicPostUpdate />
                     </ProtectedRoute>
                   </Route>
-                  
+
                   <Route path="/deleteAcademicPost/:postId">
                     <ProtectedRoute>
-                      <AcademicPostDelete/>
+                      <AcademicPostDelete />
                     </ProtectedRoute>
                   </Route>
 
@@ -158,115 +161,115 @@ function App() {
 
                   <Route path="/secondPost/page">
                     <ProtectedRoute>
-                      <SecondPostCard/>
+                      <SecondPostCard />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/secondPost/:id">
                     <ProtectedRoute>
-                      <SecondPostShow/>
+                      <SecondPostShow />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/addNewSecondPost">
                     <ProtectedRoute>
-                      <SecondPostAdd/>
+                      <SecondPostAdd />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/updateSecondPost/:postId">
                     <ProtectedRoute>
-                      <SecondPostUpdate/>
+                      <SecondPostUpdate />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/deleteSecondPost/:postId">
                     <ProtectedRoute>
-                      <SecondPostDelete/>
+                      <SecondPostDelete />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/user/page">
                     <ProtectedRoute>
-                      <UserPage/>
+                      <UserPage />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/user/addCredit">
                     <ProtectedRoute>
-                      <UserCredit/>
+                      <UserCredit />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/user/updateProfile">
                     <ProtectedRoute>
-                      <UserUpdateProfile/>
+                      <UserUpdateProfile />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/user/reset">
                     <ProtectedRoute>
-                      <UserResetPassword/>
+                      <UserResetPassword />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/user/posts">
                     <ProtectedRoute>
-                      <UserPosts/>
+                      <UserPosts />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/user/academicPost">
                     <ProtectedRoute>
-                      <UserAcademic/>
+                      <UserAcademic />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/user/uniTradePost">
                     <ProtectedRoute>
-                      <UserUniTrade/>
+                      <UserUniTrade />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/user/picture">
                     <ProtectedRoute>
-                      <UserPicture/>
+                      <UserPicture />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/ViewOtherUser/:userId">
                     <ProtectedRoute>
-                      <ViewOtherUser/>
+                      <ViewOtherUser />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/ViewLifePost/:userId">
                     <ProtectedRoute>
-                      <ViewLifePost/>
+                      <ViewLifePost />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/ViewAcademic/:userId">
                     <ProtectedRoute>
-                      <ViewAcademic/>
+                      <ViewAcademic />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/ViewUniTrade/:userId">
                     <ProtectedRoute>
-                      <ViewUniTrade/>
+                      <ViewUniTrade />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/shopping/cartCard">
                     <ProtectedRoute>
-                      <ShoppingCartCard/>
+                      <ShoppingCartCard />
                     </ProtectedRoute>
                   </Route>
 
                   <Route path="/secondPostDetail/:id">
                     <ProtectedRoute>
-                      <SecondPostDetail/>
+                      <SecondPostDetail />
                     </ProtectedRoute>
                   </Route>
 
@@ -281,8 +284,8 @@ function App() {
           <div className="col-md-2" style={{ marginLeft: '0', marginRight: '0' }} >
             {isLoggedIn &&
               <div className="d-flex justify-content-end align-items-start" style={{ minHeight: '100vh' }}>
-              <GuideSide />
-            </div>
+                <GuideSide />
+              </div>
             }
           </div>
         </div>

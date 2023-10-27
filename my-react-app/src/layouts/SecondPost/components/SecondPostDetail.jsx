@@ -59,8 +59,10 @@ function SecondPostDetail(props){
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src="/commodity.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
-                <Card.Text>CommodityName: {detail.commodityName}</Card.Text>
+                <Card.Text>Product Name: {detail.commodityName}</Card.Text>
               </div>
+
+              <div className="mb-2"></div>
 
               {/* <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src="/count.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
@@ -69,25 +71,23 @@ function SecondPostDetail(props){
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src="/createTime.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
-                <Card.Text>createTime: {detail.createTime}</Card.Text>
+                <Card.Text>Create Time: {detail.createTime}</Card.Text>
               </div>
+
+              <div className="mb-2"></div>
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src="/newness.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
-                <Card.Text>newness: {detail.newness}</Card.Text>
+                <Card.Text>Newness: {detail.newness}</Card.Text>
               </div>
+
+              <div className="mb-2"></div>
 
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <img src="/price.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
-                <Card.Text>price: {detail.price}AU</Card.Text>
+                <Card.Text>Price: {detail.price}AU</Card.Text>
               </div>
 
-
-
-              <div className="mb-2"></div>
-              <div className="mb-2"></div>
-              
-                
             </div>
           ) : (
             <p>Loading...</p>

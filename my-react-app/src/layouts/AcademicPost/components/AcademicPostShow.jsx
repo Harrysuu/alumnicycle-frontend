@@ -181,6 +181,8 @@ import { withRouter } from 'react-router-dom';
                 <AcademicPostUserCreator postId={academicPost.id} />
               </div>
 
+              <div className="mb-4"></div>
+
               <h3>Comments</h3>
               {comments.map(comment => (
                 <div key={comment.id}>

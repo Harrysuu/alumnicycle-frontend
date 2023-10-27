@@ -125,6 +125,8 @@ function SecondPostCard() {
                 />
               )}
 
+              <div className="mb-4"></div>
+
               {/* <img className='cart-img' src={`${secondPost.picture}`} alt='Second Post'></img> */}
               <Card.Title>{secondPost.commodityName}</Card.Title>
               <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -135,6 +137,8 @@ function SecondPostCard() {
                 <img src="/calendar.png" alt="" style={{ maxWidth: '30px', maxHeight: '30px', marginRight: '10px' }} />
                 <Card.Text>Create Time: {secondPost.createTime}</Card.Text>
               </div>
+
+              <div className="mb-4"></div>
 
               <Link to={`/secondPostDetail/${secondPost.id}`}>
                 <Button variant="primary">View Details</Button>

@@ -27,7 +27,7 @@ function CommentUserDetail({ userId }) {
       {userDetail ? (
         <div className="d-flex align-items-center">
         {/* User Avatar */}
-        <div className="circular-image mr-3" style={{ width: '50px', height: '50px', overflow: 'hidden' }}> {/* Adjust the width and height as needed */}
+        <div className="circular-image mr-3" style={{ width: '50px', height: '50px', overflow: 'hidden',  marginRight: '10px' }}> {/* Adjust the width and height as needed */}
             {userDetail.picture ? (
                 <Image
                     src={`/common/download?name=${userDetail.picture}`}
@@ -42,8 +42,6 @@ function CommentUserDetail({ userId }) {
                 />
             )}
         </div>
-        
-        {/* Username */}
         <p className="mb-0">{userDetail.username}</p>
     </div>
     ) : (
