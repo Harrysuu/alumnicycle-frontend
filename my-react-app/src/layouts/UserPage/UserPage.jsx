@@ -13,17 +13,17 @@ export default function UserPage() {
 
 
   useEffect(() => {
-    // 发起HTTP请求来获取用户信息
-    axios.get('/user/getById', { params: { userId: userId } }) //根据需要传入实际的 userId
+    
+    axios.get('/user/getById', { params: { userId: userId } }) 
       .then(response => {
         console.log(response.data.result);
-        setUser(response.data.result); // 设置用户信息到状态
+        setUser(response.data.result); 
       })
       .catch(error => {
         console.error('Error fetching user:', error);
       });
     // eslint-disable-next-line
-  }, []); // 请确保只在组件挂载时获取用户信息，因此依赖为空数组
+  }, []); 
 
   return (
 
@@ -74,7 +74,7 @@ export default function UserPage() {
                     />
                   ) : (
                     <img
-                      src="/userprofile.png"  // 替换为实际的默认图片路径
+                      src="/userprofile.png"  
                       alt="User"
                       style={{ maxWidth: '400px', maxHeight: '300px' }}
                     />

@@ -14,8 +14,8 @@ export default function UserUpdateProfile() {
   const userId = localStorage.getItem('userId');
 
   useEffect(() => {
-    // 发起HTTP请求来获取用户信息
-    axios.get('/user/getById', { params: { userId: userId } }) // 根据需要传入实际的 userId
+    
+    axios.get('/user/getById', { params: { userId: userId } }) 
       .then(response => {
         console.log(response.data.result);
         setUser(response.data.result);
@@ -28,7 +28,7 @@ export default function UserUpdateProfile() {
         console.error('Error fetching user:', error);
       });
     // eslint-disable-next-line
-  }, []); // 请确保只在组件挂载时获取用户信息，因此依赖为空数组
+  }, []); 
 
 
   const handleUpdate = () => {
@@ -36,10 +36,10 @@ export default function UserUpdateProfile() {
     axios.post('/user/updateUser', { ...user, college: college, description: description, email: email })
       .then(response => {
         setUser(response.data.result);
-        setCollege(''); // 清空输入字段
-        setDescription(''); // 清空输入字段
-        setEmail(''); // 清空输入字段
-        // setPicture(''); // 清空输入字段
+        setCollege(''); 
+        setDescription(''); 
+        setEmail(''); 
+        // setPicture(''); 
         window.location.reload();
       })
       .catch(error => {
@@ -51,7 +51,7 @@ export default function UserUpdateProfile() {
 
   return (
     <div style={{ width: '50rem' }}>
-      {/* ... 标签导航栏等 ... */}
+     
       <Nav fill variant="tabs" defaultActiveKey="/user/updateProfile" style={{ fontSize: '16px', padding: '10px' }}>
         <Nav.Item >
           <Nav.Link as={Link} to="/user/page" style={{ color: 'white' }} >Profile</Nav.Link>
@@ -124,7 +124,7 @@ export default function UserUpdateProfile() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Form.Group>
-              {/* 可以根据需要添加其他表单字段 */}
+              
               <Button onClick={handleUpdate}>Update</Button>
             </div>
           )}

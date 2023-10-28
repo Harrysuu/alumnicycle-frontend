@@ -7,41 +7,41 @@ import { withRouter } from 'react-router-dom';
 
 function LifePostShow(props) {
   const [lifePost, setLifePost] = useState(null);
-  const [enrolled, setEnrolled] = useState(false); // 是否已经enrol的状态
+  const [enrolled, setEnrolled] = useState(false); 
   const lifePostId = props.match.params.id; // Get the ID from the route parameters
-  const [enrolledUsers, setEnrolledUsers] = useState([]); // 创建一个用户列表
+  const [enrolledUsers, setEnrolledUsers] = useState([]); 
 
   useEffect(() => {
-    // 发送 GET 请求来获取 LifePost 数据
+    
     axios.get(`/lifePost/getPostById?id=${lifePostId}`)
       .then(response => {
         console.log(response.data.result);
-        setLifePost(response.data.result); // 设置 LifePost 数据到状态
+        setLifePost(response.data.result); 
       })
       .catch(error => {
         console.error('Error fetching LifePost:', error);
       });
 
-    // 发送请求来检查是否已经注册
+    
     axios.get(`/lifePost/enrolCheck?lifePostId=${lifePostId}`)
       .then(response => {
-        setEnrolled(response.data); // 设置是否已经注册的状态
+        setEnrolled(response.data); 
       })
       .catch(error => {
         console.error('Error checking enrol status:', error);
       });
 
-    // 发送请求来获取所有已注册用户
+    
     axios.get(`/lifePost/getAllEnrolledUser?id=${lifePostId}`)
       .then(response => {
         const users = response.data.result;
-        setEnrolledUsers(users); // 将用户信息添加到用户列表
+        setEnrolledUsers(users); 
 
         console.log("line34 test" + response.data.result);
         users.forEach(user => {
           console.log("User ID:", user.id);
           console.log("User Name:", user.username);
-          // 在这里添加其他属性的打印
+          
         });
 
       })
@@ -52,21 +52,21 @@ function LifePostShow(props) {
 
   const handleEnrolClick = () => {
     if (enrolled) {
-      // 如果已经enrol，取消enrol
+      
       axios.get(`/lifePost/cancelEnrolById?lifePostId=${lifePostId}`)
         .then(response => {
           console.log('Unregistered:', response.data);
-          setEnrolled(false); // 更新状态为未enrol
+          setEnrolled(false); 
         })
         .catch(error => {
           console.error('Error canceling enrol:', error);
         });
     } else {
-      // 如果未enrol，进行enrol
+      
       axios.get(`/lifePost/enrolById?lifePostId=${lifePostId}`)
         .then(response => {
           console.log('Registered:', response.data);
-          setEnrolled(true); // 更新状态为已enrol
+          setEnrolled(true); 
         })
         .catch(error => {
           console.error('Error enrolling:', error);
@@ -83,7 +83,7 @@ function LifePostShow(props) {
       case 3:
         return "Sports";
       default:
-        return "Unknown"; // 处理未知的类别值
+        return "Unknown"; 
     }
   }
 

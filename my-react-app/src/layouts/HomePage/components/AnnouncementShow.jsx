@@ -5,13 +5,13 @@ import { withRouter } from 'react-router-dom';
 
 function AnnouncementShow(props) {
   const [announcement, setAnnouncement] = useState(null);
-  const announcementId = props.match.params.id; // 从路由参数中获取 ID
+  const announcementId = props.match.params.id; // 
 
   useEffect(() => {
-    // 发送 GET 请求以获取公告
+    // 
     axios.get(`/announcement/getAnnouncementById?id=${announcementId}`)
       .then(response => {
-        setAnnouncement(response.data.result); // 设置公告数据到状态中
+        setAnnouncement(response.data.result); // 
       })
       .catch(error => {
         console.error('Error fetching announcement:', error);

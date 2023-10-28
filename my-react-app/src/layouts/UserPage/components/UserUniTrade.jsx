@@ -100,10 +100,10 @@ export default function UserUniTrade() {
                                               </Link>
                                               </div>
                                               <div style={{ alignSelf: 'flex-end' }}>
-                                                <Link to={`/updateSecondPost/${secondPost.id}`}> {/* 传递 post.id */}
+                                                <Link to={`/updateSecondPost/${secondPost.id}`}> 
                                                 <Button variant="dark">Update</Button>
                                                 </Link>
-                                                <Link to={`/deleteSecondPost/${secondPost.id}`}> {/* 传递 post.id */}
+                                                <Link to={`/deleteSecondPost/${secondPost.id}`}> 
                                                 <Button variant="dark">Delete</Button>
                                                 </Link>
                                                 </div>

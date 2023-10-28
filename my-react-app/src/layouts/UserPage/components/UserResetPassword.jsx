@@ -15,12 +15,12 @@ export default function UserResetPassword() {
   // const userId = localStorage.getItem('userId');
 
   const handleReset = () => {
-    // 发起HTTP请求来更改用户密码
+    
     axios.post('/user/changePassword', { oldPassword, newPassword })
       .then(response => {
         console.log(response.data.res);
         if (response.data.res) {
-          // 密码更改成功
+          
           setOldPassword('');
           setNewPassword('');
           alert("Successful Reset");
@@ -31,7 +31,7 @@ export default function UserResetPassword() {
         }
       })
       .catch(error => {
-        // 处理错误，例如密码更改失败
+        
         console.error('Error changing password:', error);
       });
   };

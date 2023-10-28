@@ -122,10 +122,10 @@ export default function UserAcademic() {
               </div>
               <div style={{ alignSelf: 'flex-end' }}>
 
-                <Link to={`/updateAcademicPost/${post.id}`}> {/* 传递 post.id */}
+                <Link to={`/updateAcademicPost/${post.id}`}> 
                   <Button variant="dark">Update</Button>
                 </Link>
-                <Link to={`/deleteAcademicPost/${post.id}`}> {/* 传递 post.id */}
+                <Link to={`/deleteAcademicPost/${post.id}`}> 
                   <Button variant="dark">Delete</Button>
                 </Link>
               </div>

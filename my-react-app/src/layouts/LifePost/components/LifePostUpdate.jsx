@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-import { useHistory, useParams } from 'react-router-dom'; // 导入 useParams
+import { useHistory, useParams } from 'react-router-dom'; 
 
 export default function LifePostUpdate() {
-  const { postId } = useParams(); // 从 URL 中获取 post.id
+  const { postId } = useParams(); 
   console.log(postId);
   const [lifePost, setLifePost] = useState({
     category: 0,
@@ -18,7 +18,7 @@ export default function LifePostUpdate() {
   const history = useHistory();
 
   useEffect(() => {
-    // 在此处获取要更新的帖子信息
+    
     axios.get(`/lifePost/getPostById?id=${postId}`)
       .then(response => {
 
@@ -27,7 +27,7 @@ export default function LifePostUpdate() {
       .catch(error => {
         console.error('Error fetching post:', error);
       });
-  }, [postId]); // 在 postId 更改时重新获取帖子信息
+  }, [postId]); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();

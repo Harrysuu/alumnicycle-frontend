@@ -30,7 +30,7 @@ function AcademicPostCard() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post('/forumPost/page', { // 根据你的后端 API 地址修改
+      const response = await axios.post('/forumPost/page', { 
         category: category,
         college: college,
         page: current,
@@ -69,7 +69,7 @@ function AcademicPostCard() {
 
 
   const buttonStyle = {
-    marginRight: '10px', // 添加右侧外边距
+    marginRight: '10px', 
   };
 
   function getCategoryName(category) {
@@ -79,7 +79,7 @@ function AcademicPostCard() {
       case 2:
         return "Work";
       default:
-        return "All Forum Posts"; // 处理未知的类别值
+        return "All Forum Posts"; 
     }
   }
 
@@ -106,7 +106,7 @@ function AcademicPostCard() {
           case 10:
             return "Science";
       default:
-        return "All College"; // 处理未知的类别值
+        return "All College"; 
     }
   }
 
@@ -208,7 +208,6 @@ function AcademicPostCard() {
 
                 </Col>
                 <Col xs={3}>
-                  {/* 放置 academicPostUserCreator 组件在右上角 */}
                   <div className="d-flex justify-content-end">
                     <AcademicPostUserCreator postId={academicPost.id} />
                   </div>

@@ -14,13 +14,13 @@ function AnnouncementCard() {
   // const fetchData = async () => {
   //   try {
   //     const response = await axios.post('/announcement/page', {
-  //       // 发送的请求数据，根据需要进行更改
+  //       //
   //       page: current,
   //       pageSize: pageSize,
   //     });
   //     const { records, total } = response.data.result;
-  //     setData(records); // 假设返回的数据包含在 response.data.results 中
-  //     setTotal(total); // 假设总记录数在 response.data.total 中
+  //     setData(records); //
+  //     setTotal(total); // 
   //   } catch (error) {
   //     console.error('Error fetching data:', error);
   //   }
@@ -47,7 +47,7 @@ function AnnouncementCard() {
       }
     };
 
-    fetchData(); // 在 useEffect 中直接调用 fetchData，确保只在组件挂载后调用一次
+    fetchData(); // 
   }, [current, pageSize]);
 
   const handlePageChange = (page, pageSize) => {

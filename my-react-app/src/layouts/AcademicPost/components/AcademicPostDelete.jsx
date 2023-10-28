@@ -7,7 +7,6 @@ export default function AcademicPostDelete() {
   const history = useHistory();
 
   useEffect(() => {
-    // 发起删除帖子的请求
     axios
       .get(`/forumPost/delete/?id=${postId}`)
       .then((response) => {

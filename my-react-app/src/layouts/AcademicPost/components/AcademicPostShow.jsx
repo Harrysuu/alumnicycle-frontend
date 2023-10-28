@@ -10,7 +10,6 @@ import { withRouter } from 'react-router-dom';
   const initialState = {
     id: '',
     title: '',
-    // 注意，没有category和college属性
     category: 0,
     college: 0,
     content: '',
@@ -21,11 +20,11 @@ import { withRouter } from 'react-router-dom';
 
   const [academicPost, setAcademicPost] = useState(initialState);
   const [comments, setComments] = useState([]);
-  const [comment, setComment] = useState(''); // 当前用户输入的评论
+  const [comment, setComment] = useState(''); 
   const academicPostId = props.match.params.id; // Get the ID from the route parameters
   const userId = props.match.params.userId; // Get the ID from the route parameters
-  const [current, setCurrent] = useState(1);  // 默认是第一页
-  const [pageSize, setPageSize] = useState(3); // 假设每页10条评论
+  const [current, setCurrent] = useState(1); 
+  const [pageSize, setPageSize] = useState(3); 
   const [total, setTotal] = useState(0);
 
   const fetchComments = () => {
@@ -42,11 +41,11 @@ import { withRouter } from 'react-router-dom';
   };
 
   useEffect(() => {
-    // 发送 GET 请求来获取 AcademicPost 数据
+    
     axios.get(`/forumPost/getPostById?id=${academicPostId}`)
       .then(response => {
         console.log(response.data.result);
-        setAcademicPost(response.data.result); // 设置 Post 数据到状态
+        setAcademicPost(response.data.result); 
       })
       .catch(error => {
         console.error('Error fetching AcademicPost:', error);
@@ -63,7 +62,7 @@ import { withRouter } from 'react-router-dom';
       case '2':
         return "Work";
       default:
-        return "Unknown"; // 处理未知的类别值
+        return "Unknown"; 
     }
   }
 
@@ -96,7 +95,7 @@ import { withRouter } from 'react-router-dom';
       case 10:
         return "Science";
       default:
-        return "Unknown"; // 处理未知的类别值
+        return "Unknown"; 
     }
   }
 
@@ -110,10 +109,10 @@ import { withRouter } from 'react-router-dom';
       }
     })
     .then(response => {
-      const newComment = response.data.result; // 假设后端返回的完整评论对象在 `result` 字段中
+      const newComment = response.data.result; 
       setComments(prevComments => [...prevComments, newComment]);
-      setComment(''); // 清空评论输入框
-      fetchComments(); // 添加评论成功后重新获取评论
+      setComment(''); 
+      fetchComments(); 
     })
     .catch(error => {
       console.error('Error adding comment:', error);

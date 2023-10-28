@@ -30,7 +30,7 @@ export default function SecondPostAdd() {
       .then(response => {
         console.log("before" + secondPost.picture);
         console.log("File uploaded:", response.data.result);
-        // 更新 academicPost 对象中的 picture 字段为文件名
+       
         setSecondPost((prevSecondPost) => ({
           ...prevSecondPost,
           picture: response.data.result
@@ -46,10 +46,10 @@ export default function SecondPostAdd() {
     e.preventDefault();
 
     try {
-      // 发送 POST 请求将 secondPost 数据保存到后端
+      
       const response = await axios.post('/secondPost/add', secondPost);
       console.log(response.data.result);
-      // 成功后重定向到指定页面
+      
       history.push('/secondpost/page');
     } catch (error) {
       console.error(error);

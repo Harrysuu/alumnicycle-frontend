@@ -7,7 +7,7 @@ export default function LifePostDelete() {
   const history = useHistory();
 
   useEffect(() => {
-    // 发起删除帖子的请求
+    
     axios
       .get(`/lifePost/delete/?id=${postId}`)
       .then((response) => {

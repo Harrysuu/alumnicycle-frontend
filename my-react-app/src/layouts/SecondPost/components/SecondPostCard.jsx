@@ -46,7 +46,7 @@ function SecondPostCard() {
     setCategory(newCategory);
   };
   const buttonStyle = {
-    marginRight: '10px', // 添加右侧外边距
+    marginRight: '10px', 
   };
 
   function getCategoryName(category) {
@@ -58,7 +58,7 @@ function SecondPostCard() {
       case 3:
         return "Clothing";
       default:
-        return "All Second Posts"; // 处理未知的类别值
+        return "All Second Posts"; 
     }
   }
 

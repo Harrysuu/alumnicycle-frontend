@@ -28,20 +28,19 @@ export default function CurrentWeather() {
             Canberra:{longtitude:149.07,latitude:-35.17},
             Brisbane:{longtitude:153.02,latitude:-27.28},
             NewYork:{longtitude:-74.00,latitude:40.43}
-            // 添加其他城市的坐标
+       
         };
         
 
-        // 从cityCoordinates对象获取所选城市的经纬度
         const {longtitude,latitude  } = cityCoordinates[selectedCity];
 
-        // 设置密钥
+     
         const apiKey = 'f28f14e55f8f453b9ea95843ee302ea1';
 
-        // 构建API请求URL
+     
         const apiUrl = `https://devapi.qweather.com/v7/weather/now?location=${longtitude},${latitude}&key=f28f14e55f8f453b9ea95843ee302ea1`;
 
-        // 使用axios进行API请求
+       
         // axios.get(apiUrl)
         //     .then(response => {
         //         setWeatherData(response.data);
@@ -69,7 +68,7 @@ export default function CurrentWeather() {
         "雪": "snow",
         "雨雪天气":"snow"
 
-        // 其他天气情况的映射
+       
     };
     
     return (

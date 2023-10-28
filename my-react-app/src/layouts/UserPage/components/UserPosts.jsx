@@ -133,10 +133,10 @@ export default function UserPosts() {
               </div>
               <div style={{ alignSelf: 'flex-end' }}>
 
-                <Link to={`/updateLifePost/${post.id}`}> {/* 传递 post.id */}
+                <Link to={`/updateLifePost/${post.id}`}> 
                   <Button variant="dark">Update</Button>
                 </Link>
-                <Link to={`/deleteLifePost/${post.id}`}> {/* 传递 post.id */}
+                <Link to={`/deleteLifePost/${post.id}`}> 
                   <Button variant="dark">Delete</Button>
                 </Link>
               </div>

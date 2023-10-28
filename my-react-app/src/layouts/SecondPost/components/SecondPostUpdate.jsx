@@ -57,15 +57,7 @@ export default function SecondPostUpdate() {
         <h3>Update your Second Post</h3>
       </div>
       <Form onSubmit={handleSubmit}>
-      {/* <Form.Group controlId="posterId">
-          <Form.Label>Poster ID</Form.Label>
-          <Form.Control
-            type="text"
-            name="posterId"
-            value={secondPost.posterId}
-            onChange={handleChange}
-          />
-        </Form.Group> */}
+  
 
         <Form.Group controlId="category">
           <Form.Label>Category</Form.Label>
@@ -114,15 +106,7 @@ export default function SecondPostUpdate() {
            />
         </Form.Group>
 
-        {/* <Form.Group controlId="createTime">
-          <Form.Label>Create Time</Form.Label>
-          <Form.Control
-            type="datetime-local"
-            name="createTime"
-            value={secondPost.createTime}
-            onChange={handleChange}
-          />
-        </Form.Group> */}
+  
 
         {/* <Form.Group controlId="picture">
           <Form.Label>Picture</Form.Label>

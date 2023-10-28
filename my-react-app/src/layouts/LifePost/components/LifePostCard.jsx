@@ -16,7 +16,7 @@ function LifePostCard() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post('/lifePost/page', { // 根据你的后端 API 地址修改
+      const response = await axios.post('/lifePost/page', { 
         category: category,
         page: current,
         pageSize: pageSize,
@@ -45,7 +45,7 @@ function LifePostCard() {
   };
 
   const buttonStyle = {
-    marginRight: '10px', // 添加右侧外边距
+    marginRight: '10px', 
   };
 
   function getCategoryName(category) {
@@ -57,7 +57,7 @@ function LifePostCard() {
       case 3:
         return "Sports";
       default:
-        return "All Life Posts"; // 处理未知的类别值
+        return "All Life Posts"; 
     }
   }
 
@@ -149,7 +149,7 @@ function LifePostCard() {
 
                 </Col>
                 <Col xs={3}>
-                  {/* 放置 LifePostUserCreator 组件在右上角 */}
+                
                   <div className="d-flex justify-content-end">
                     <LifePostUserCreator postId={lifePost.id} />
                   </div>

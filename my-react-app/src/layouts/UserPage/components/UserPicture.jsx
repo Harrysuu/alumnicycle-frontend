@@ -25,7 +25,7 @@ export default function UserPicture() {
       .then(response => {
         console.log("before" + user.picture);
         console.log("File uploaded:", response.data.result);
-        // 更新 lifePost 对象中的 picture 字段为文件名
+       
 
         setUser((prevUser) => ({
           ...prevUser,
@@ -51,22 +51,22 @@ export default function UserPicture() {
 
     } catch (error) {
       console.error(error);
-      // 处理错误
+      
     }
   };
 
   useEffect(() => {
-    // 发起HTTP请求来获取用户信息
-    axios.get('/user/getById', { params: { userId: userId } }) // 1 是示例的 userId，您可以根据需要传入实际的 userId
+    
+    axios.get('/user/getById', { params: { userId: userId } }) 
       .then(response => {
         console.log(response.data.result);
-        setUser(response.data.result); // 设置用户信息到状态
+        setUser(response.data.result); 
       })
       .catch(error => {
         console.error('Error fetching user:', error);
       });
       // eslint-disable-next-line
-  }, []); // 请确保只在组件挂载时获取用户信息，因此依赖为空数组
+  }, []); 
 
 
 
@@ -117,7 +117,7 @@ export default function UserPicture() {
               <Form.Label>Set new photo:</Form.Label>
               <Form.Control
                 type="file"
-                name="picture" // 注意此处的 name 属性应与 User 实体中的属性名匹配
+                name="picture" 
                 onChange={handleFileChange}
               />
             </Form.Group>

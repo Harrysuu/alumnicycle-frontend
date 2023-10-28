@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom'; // 导入 useHistory
+import { useHistory } from 'react-router-dom'; 
 
 export default function LifePostAdd() {
   const [lifePost, setLifePost] = useState({
@@ -16,7 +16,7 @@ export default function LifePostAdd() {
 
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const history = useHistory(); // 获取 history 对象
+  const history = useHistory(); 
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -32,7 +32,7 @@ export default function LifePostAdd() {
       .then(response => {
         console.log("before" + lifePost.picture);
         console.log("File uploaded:", response.data.result);
-        // 更新 lifePost 对象中的 picture 字段为文件名
+        
 
         setLifePost((prevLifePost) => ({
           ...prevLifePost,
@@ -52,12 +52,12 @@ export default function LifePostAdd() {
     try {
       const response = await axios.post('/lifePost/add', lifePost);
       console.log(response.data.result);
-      // 清除表单或进行其他操作
+      
       //go back to history page
       history.push('/lifepost/page');
     } catch (error) {
       console.error(error);
-      // 处理错误
+     
     }
   };
 
@@ -116,7 +116,7 @@ export default function LifePostAdd() {
           <Form.Label>Address</Form.Label>
           <Form.Control
             type="text"
-            name="address" // 注意此处的 name 属性应与 LifePost 实体中的属性名匹配
+            name="address" 
             value={lifePost.address}
             onChange={handleChange}
           />
@@ -125,8 +125,8 @@ export default function LifePostAdd() {
         <Form.Group controlId="activityTime">
           <Form.Label>Activity Time</Form.Label>
           <Form.Control
-            type="datetime-local" // 根据需要选择适当的输入类型
-            name="activityTime" // 注意此处的 name 属性应与 LifePost 实体中的属性名匹配
+            type="datetime-local" 
+            name="activityTime" 
             value={lifePost.activityTime}
             onChange={handleChange}
           />
@@ -136,7 +136,7 @@ export default function LifePostAdd() {
           <Form.Label>Picture</Form.Label>
           <Form.Control
             type="file"
-            name="picture" // 注意此处的 name 属性应与 LifePost 实体中的属性名匹配
+            name="picture" 
             // value={lifePost.picture}
             onChange={handleFileChange}
           />

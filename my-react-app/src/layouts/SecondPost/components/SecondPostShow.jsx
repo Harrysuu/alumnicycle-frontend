@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Button from 'react-bootstrap/Button';
 
 export default function SecondPostShow(props) {
   const [secondPost, setSecondPost] = useState(null);
-  const [enrolled, setEnrolled] = useState(false); // 是否已经enrol的状态
   const secondPostId = props.match.params.id; // Get the ID from the route parameters
 
   useEffect(() => {
@@ -18,31 +16,9 @@ export default function SecondPostShow(props) {
         console.error('Error fetching SecondPost:', error);
       });
       
-  }, [secondPostId, enrolled]);
+  }, [secondPostId]);
 
-  // const handleEnrolClick = () => {
-  //   if (enrolled) {
-  //     // 如果已经enrol，取消enrol
-  //     axios.get(`/secondPost/cancelEnrolById?secondPostId=${secondPostId}`)
-  //       .then(response => {
-  //         console.log('Unregistered:', response.data);
-  //         setEnrolled(false); // 更新状态为未enrol
-  //       })
-  //       .catch(error => {
-  //         console.error('Error canceling enrol:', error);
-  //       });
-  //   } else {
-  //     // 如果未enrol，进行enrol
-  //     axios.get(`/secondPost/enrolById?secondPostId=${secondPostId}`)
-  //       .then(response => {
-  //         console.log('Registered:', response.data);
-  //         setEnrolled(true); // 更新状态为已enrol
-  //       })
-  //       .catch(error => {
-  //         console.error('Error enrolling:', error);
-  //       });
-  //   }
-  // };
+
 
   function getCategoryName(category) {
     switch (category) {
@@ -53,7 +29,7 @@ export default function SecondPostShow(props) {
       case 3:
         return "Clothing";
       default:
-        return "Unknown"; // 处理未知的类别值
+        return "Unknown"; 
     }
   }
 
@@ -69,7 +45,6 @@ export default function SecondPostShow(props) {
             <p>Commodity Name: {secondPost.commodityName}</p>
             <p>Price: {secondPost.price}</p>
             <p>Create Time: {secondPost.createTime}</p>
-            <p>{secondPost.enrollees} people enrolled</p>
             {/* Display other SecondPost information */}
           </div>
         ) : (
@@ -77,11 +52,7 @@ export default function SecondPostShow(props) {
         )}
       </div>
 
-      {/* <div>
-        <Button variant="primary" onClick={handleEnrolClick}>
-          {enrolled ? 'Unregister' : 'Register'}
-        </Button>
-      </div> */}
+
     </div>
   );
 }

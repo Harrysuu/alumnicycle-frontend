@@ -13,25 +13,25 @@ export default function UserCredit() {
   const userId = localStorage.getItem('userId');
 
   useEffect(() => {
-    // 发起HTTP请求来获取用户信息
-    axios.get('/user/getById', { params: { userId: userId} }) // 根据需要传入实际的 userId
+    
+    axios.get('/user/getById', { params: { userId: userId} }) 
       .then(response => {
         console.log(response.data.result);
-        setUser(response.data.result); // 设置用户信息到状态
+        setUser(response.data.result); 
       })
       .catch(error => {
         console.error('Error fetching user:', error);
       });
       // eslint-disable-next-line
-  }, []); // 请确保只在组件挂载时获取用户信息，因此依赖为空数组
+  }, []); 
 
   const handleAddCredit = () => {
-    // 发送请求到后端来增加信用分数
+    
     axios.get('/user/addCredit', { params: { point: creditToAdd } })
       .then(response => {
-        // 更新信用分数
-        setUser(response.data.result); // 设置用户信息到状态
-        setCreditToAdd(0); // 重置输入字段
+        
+        setUser(response.data.result); 
+        setCreditToAdd(0); 
       })
       .catch(error => {
         console.error('Error adding credit:', error);
@@ -78,7 +78,7 @@ export default function UserCredit() {
           <div>
             <Card.Text>
               <p>Credit: {user.credit}</p>
-              {/* 可以根据需要渲染其他用户信息 */}
+              
             </Card.Text>
           </div>
         )}

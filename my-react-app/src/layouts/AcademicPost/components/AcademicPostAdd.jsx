@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom'; // 导入 useHistory
+import { useHistory } from 'react-router-dom';
 
 export default function AcademicPostAdd() {
   const [academicPost, setAcademicPost] = useState({
@@ -14,7 +14,7 @@ export default function AcademicPostAdd() {
 
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const history = useHistory(); // 获取 history 对象
+  const history = useHistory();
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -30,7 +30,6 @@ export default function AcademicPostAdd() {
       .then(response => {
         console.log("before" + academicPost.picture);
         console.log("File uploaded:", response.data.result);
-        // 更新 academicPost 对象中的 picture 字段为文件名
 
         setAcademicPost((prevAcademicPost) => ({
           ...prevAcademicPost,
@@ -50,12 +49,10 @@ export default function AcademicPostAdd() {
     try {
       const response = await axios.post('/forumPost/add', academicPost);
       console.log(response.data.result);
-      // 清除表单或进行其他操作
       //go back to history page
       history.push('/academic/page');
     } catch (error) {
       console.error(error);
-      // 处理错误
     }
   };
 
@@ -134,7 +131,7 @@ export default function AcademicPostAdd() {
           <Form.Label>Picture</Form.Label>
           <Form.Control
             type="file"
-            name="picture" // 注意此处的 name 属性应与 实体中的属性名匹配
+            name="picture" 
             // value={academicPost.picture}
             onChange={handleFileChange}
           />

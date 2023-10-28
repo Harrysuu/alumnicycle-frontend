@@ -21,7 +21,7 @@ import LifePostUpdate from './layouts/LifePost/components/LifePostUpdate';
 import LifePostDelete from './layouts/LifePost/components/LifePostDelete';
 import AcademicPostUpdate from './layouts/AcademicPost/components/AcademicPostUpdate';
 import AcademicPostDelete from './layouts/AcademicPost/components/AcademicPostDelete';
-import AcademicPost from './layouts/AcademicPost/AcademicPost';
+
 import AcademicPostShow from './layouts/AcademicPost/components/AcademicPostShow';
 import AcademicPostCard from './layouts/AcademicPost/components/AcademicPostCard';
 import AcademicPostAdd from './layouts/AcademicPost/components/AcademicPostAdd';
@@ -31,7 +31,7 @@ import Login from './layouts/Login/Login';
 import SecondPostCard from './layouts/SecondPost/components/SecondPostCard';
 import SecondPostShow from './layouts/SecondPost/components/SecondPostShow';
 import SecondPostAdd from './layouts/SecondPost/components/SecondPostAdd';
-import SecondPost from './layouts/SecondPost/SecondPost';
+
 import SecondPostUpdate from './layouts/SecondPost/components/SecondPostUpdate';
 import SecondPostDelete from './layouts/SecondPost/components/SecondPostDelete';
 import ViewOtherUser from './layouts/ViewOtherUser/ViewOtherUser'
@@ -61,10 +61,10 @@ function App() {
   }, []);
 
   const customStyle = {
-    backgroundColor: '#8d9da8', // 设置背景颜色为深蓝色 #55738a #ccdce8
-    width: '100%',               // 设置宽度为100%
-    padding: '30px 100px',             // 设置padding值
-    boxSizing: 'border-box'      // 使用box-sizing: border-box;
+    backgroundColor: '#8d9da8', 
+    width: '100%',               
+    padding: '30px 100px',             
+    boxSizing: 'border-box'      
 
   };
 

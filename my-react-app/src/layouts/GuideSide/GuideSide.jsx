@@ -9,7 +9,7 @@ export default function GuideSide() {
   const [staredAnnouncements, setStaredAnnouncements] = useState([]);
 
   useEffect(() => {
-    // 使用Axios从后端API获取已关注的公告
+  
     axios.get('/announcement/getStared')
       .then(response => {
         setStaredAnnouncements(response.data.result);
@@ -20,8 +20,8 @@ export default function GuideSide() {
   }, []);
 
   // const customStyle = {
-  //   backgroundColor: '#87CEEB', // 设置背景颜色为浅蓝色
-  //   // 可以添加其他样式属性，例如颜色、边框等
+  //   backgroundColor: '#87CEEB', 
+  //   
   // };
 
   return (

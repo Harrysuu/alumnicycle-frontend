@@ -28,7 +28,7 @@ function SecondPostDetail(props){
           case 3:
             return "Clothing";
           default:
-            return "All Second Posts"; // 处理未知的类别值
+            return "All Second Posts"; 
         }
       }
 

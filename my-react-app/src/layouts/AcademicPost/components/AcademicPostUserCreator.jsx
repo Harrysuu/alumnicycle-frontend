@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Image } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; // 导入 Link 组件
-import '../../../css/UserCreator.css'; // 导入样式文件
+import { Link } from 'react-router-dom'; 
+import '../../../css/UserCreator.css'; 
 
 function AcademicPostUserCreator({ postId }) {
   const [creator, setCreator] = useState(null);
@@ -37,7 +37,7 @@ function AcademicPostUserCreator({ postId }) {
               />
             ) : (
               <img
-                src="/userprofile.png"  // 替换为实际的默认图片路径
+                src="/userprofile.png"  
                 alt="User"
                 style={{ maxWidth: '400px', maxHeight: '300px' }}
               />

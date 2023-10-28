@@ -7,19 +7,19 @@ import "./Login.css"
 export default function Login() {
   const [isPhoneLogin, setIsPhoneLogin] = useState(false);
   const [showVerification, setShowVerification] = useState(false);
-  // 是否显示注册页面 true 为显示
+  
   const [isShowRegister,setIsShowRegister] = useState(false)
   const [countdown, setCountdown] = useState(180);
   const [timer, setTimer] = useState(null);
   const [isRegister, setIsRegister] = useState(false);
-  // 是否显示错误
+  
   const [isShowErrortips,setIsShowErrortips]=useState(false)
-  // 错误信息
+  
   const [tips,setTips] = useState("")
   const phoneRex = /^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\d{8}$/;
   const  regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,}$/;
 
-  // 切换注册或登录方
+  
   function toggleLogin  (){
     setIsShowRegister (!isShowRegister)
     setIsShowErrortips (false)
@@ -90,22 +90,22 @@ export default function Login() {
     try {
       const response = await axios.post('/user/login', loginData);
       console.log(response)
-      // 处理登录成功的逻辑，可能会存储用户信息等
+      
       console.log('Login successful:', response.data);
       if (response.data.res===0){
         setIsShowErrortips (true)
         setTips (response.data.resMsg)
       }else{
-        //id储存在localStorage中
+        
         localStorage.setItem('userId', response.data.result.id);
         sessionStorage.setItem('User',response.data.result.id);
-        // 重定向到其他页面，例如用户主页
+       
         history.push('/');
         window.location.reload()
       }
     } catch (error) {
       console.error('Login error:', error);
-      // 处理登录失败的逻辑，例如显示错误消息
+     
     }
 
   };
@@ -139,9 +139,9 @@ export default function Login() {
           setIsShowErrortips (true)
           setTips (response.data.resMsg)
         }else{
-          //id储存在localStorage中
+          
           localStorage.setItem('userId', response.data.result.id);
-          // 重定向到其他页面，例如用户主页
+        
           history.push('/');
           window.location.reload()
         }

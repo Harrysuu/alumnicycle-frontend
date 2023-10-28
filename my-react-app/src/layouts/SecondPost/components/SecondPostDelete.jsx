@@ -7,7 +7,7 @@ export default function SecondPostDelete() {
   const history = useHistory();
 
   useEffect(() => {
-    // 发起删除帖子的请求
+    
     axios
       .get(`/secondPost/delete/?id=${postId}`)
       .then((response) => {
@@ -21,7 +21,7 @@ export default function SecondPostDelete() {
 
   return (
     <div>
-      {/* 可以在这里添加删除中的 loading 状态或其他 UI 元素 */}
+      
     </div>
   );
 }
