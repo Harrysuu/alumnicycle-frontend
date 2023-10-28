@@ -37,5 +37,6 @@ For Windows OS: $env:NODE_OPTIONS='--openssl-legacy-provider'
 For Mac OS: export NODE_OPTIONS=--openssl-legacy-provider
 
 # to start 
+npm install
 cd my-react-app
 npm start 
