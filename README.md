@@ -1,4 +1,4 @@
-#Libraries and versions 
+# Libraries and versions 
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -13,7 +13,7 @@
     "react-table": "^7.8.0",
     "web-vitals": "^2.1.4"
 
-#Functionality
+# Functionality
 1.Website security
 2.Present information in pagination
 3.Global search 
@@ -31,11 +31,11 @@
 15.Content management
 
 # How to run alumnicycle-frontend
-#version 
+# version 
 Because of the conflict of the dependency version, a statement need to be executed in the terminal before the start of the program:
 For Windows OS: $env:NODE_OPTIONS='--openssl-legacy-provider'
 For Mac OS: export NODE_OPTIONS=--openssl-legacy-provider
 
-#to start 
+# to start 
 cd my-react-app
 npm start 
