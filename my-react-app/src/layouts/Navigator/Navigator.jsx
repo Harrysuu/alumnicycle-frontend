@@ -31,8 +31,6 @@ export default function Navigator() {
     backgroundPosition: 'center',
   })
 
-  // const history2 = useHistory()
-
   const handleSearch = async () => {
     try {
       console.log('line 31+' + searchKeyword)
@@ -52,6 +50,7 @@ export default function Navigator() {
     try {
       await axios.get('/user/logout')
       localStorage.removeItem('userId')
+      window.location.href='/'
     } catch (error) {
       console.error('Error logging out:', error)
     }
@@ -137,7 +136,7 @@ export default function Navigator() {
 
           <span style={{ margin: '0 10px' }}></span>
 
-          <Button href="/" onClick={handleLogout}>
+          <Button onClick={handleLogout}>
             Logout
           </Button>
         </Container>
