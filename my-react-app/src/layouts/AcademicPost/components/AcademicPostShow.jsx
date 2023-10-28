@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import AcademicPostUserCreator from './AcademicPostUserCreator';
 import CommentUserDetail from './CommentUserDetail';
 import { Pagination } from 'antd';
 import { withRouter } from 'react-router-dom';
 
- function AcademicPostShow(props) {
+function AcademicPostShow(props) {
   const initialState = {
     id: '',
     title: '',
@@ -20,11 +20,11 @@ import { withRouter } from 'react-router-dom';
 
   const [academicPost, setAcademicPost] = useState(initialState);
   const [comments, setComments] = useState([]);
-  const [comment, setComment] = useState(''); 
+  const [comment, setComment] = useState('');
   const academicPostId = props.match.params.id; // Get the ID from the route parameters
   const userId = props.match.params.userId; // Get the ID from the route parameters
-  const [current, setCurrent] = useState(1); 
-  const [pageSize, setPageSize] = useState(3); 
+  const [current, setCurrent] = useState(1);
+  const [pageSize, setPageSize] = useState(3);
   const [total, setTotal] = useState(0);
 
   const fetchComments = () => {
@@ -41,18 +41,19 @@ import { withRouter } from 'react-router-dom';
   };
 
   useEffect(() => {
-    
+
     axios.get(`/forumPost/getPostById?id=${academicPostId}`)
       .then(response => {
         console.log(response.data.result);
-        setAcademicPost(response.data.result); 
+        setAcademicPost(response.data.result);
       })
       .catch(error => {
         console.error('Error fetching AcademicPost:', error);
       });
 
     fetchComments();
-}, [academicPostId, current, pageSize, userId]);
+    // eslint-disable-next-line
+  }, [academicPostId, current, pageSize, userId]);
 
   function getCategoryName(category) {
     console.log("Function called with:", category);
@@ -62,7 +63,7 @@ import { withRouter } from 'react-router-dom';
       case '2':
         return "Work";
       default:
-        return "Unknown"; 
+        return "Unknown";
     }
   }
 
@@ -95,7 +96,7 @@ import { withRouter } from 'react-router-dom';
       case 10:
         return "Science";
       default:
-        return "Unknown"; 
+        return "Unknown";
     }
   }
 
@@ -108,15 +109,15 @@ import { withRouter } from 'react-router-dom';
         userId: userId1
       }
     })
-    .then(response => {
-      const newComment = response.data.result; 
-      setComments(prevComments => [...prevComments, newComment]);
-      setComment(''); 
-      fetchComments(); 
-    })
-    .catch(error => {
-      console.error('Error adding comment:', error);
-    });
+      .then(response => {
+        const newComment = response.data.result;
+        setComments(prevComments => [...prevComments, newComment]);
+        setComment('');
+        fetchComments();
+      })
+      .catch(error => {
+        console.error('Error adding comment:', error);
+      });
   }
 
 
@@ -156,7 +157,7 @@ import { withRouter } from 'react-router-dom';
               <div className="mb-2"></div>
               <Card.Text>{academicPost.content}</Card.Text>
 
-              
+
 
               <div className="mb-2"></div>
 
@@ -192,17 +193,17 @@ import { withRouter } from 'react-router-dom';
 
               <div className="d-flex justify-content-center">
                 <Pagination
-                current={current}
-                pageSize={pageSize}
-                total={total}
-                showQuickJumper
-                onChange={handlePageChange}
+                  current={current}
+                  pageSize={pageSize}
+                  total={total}
+                  showQuickJumper
+                  onChange={handlePageChange}
                 />
               </div>
 
-              <textarea 
-                value={comment} 
-                onChange={e => setComment(e.target.value)} 
+              <textarea
+                value={comment}
+                onChange={e => setComment(e.target.value)}
                 placeholder="Write a comment..."
               ></textarea>
               <div>

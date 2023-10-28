@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export default function CurrentWeather() {
     const [selectedCity, setSelectedCity] = useState('Sydney');
+    // eslint-disable-next-line
     const [weatherData, setWeatherData] = useState(null);
     const [temperature, setTemperature] = useState('');
     const [windSpeed, setWind] = useState('');
@@ -34,25 +35,25 @@ export default function CurrentWeather() {
 
         const {longtitude,latitude  } = cityCoordinates[selectedCity];
 
-     
+        // eslint-disable-next-line
         const apiKey = 'f28f14e55f8f453b9ea95843ee302ea1';
 
      
         const apiUrl = `https://devapi.qweather.com/v7/weather/now?location=${longtitude},${latitude}&key=f28f14e55f8f453b9ea95843ee302ea1`;
 
        
-        // axios.get(apiUrl)
-        //     .then(response => {
-        //         setWeatherData(response.data);
-        //         setTemperature(response.data.now.temp);
-        //         setWind(response.data.now.windSpeed);
-        //         setHumidity(response.data.now.humidity);
-        //         setPressure(response.data.now.pressure);
-        //         setWeatherCondition(response.data.now.text)
-        //     })
-        //     .catch(error => {
-        //         console.error('Error fetching weather data:', error);
-        //     });
+        axios.get(apiUrl)
+            .then(response => {
+                setWeatherData(response.data);
+                setTemperature(response.data.now.temp);
+                setWind(response.data.now.windSpeed);
+                setHumidity(response.data.now.humidity);
+                setPressure(response.data.now.pressure);
+                setWeatherCondition(response.data.now.text)
+            })
+            .catch(error => {
+                console.error('Error fetching weather data:', error);
+            });
     }, [selectedCity]);
 
     const weatherCondition = {

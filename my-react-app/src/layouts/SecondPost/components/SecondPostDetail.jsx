@@ -17,6 +17,7 @@ function SecondPostDetail(props){
 
     useEffect(()=>{
         getDetail();
+        // eslint-disable-next-line 
     },[])
 
     function getCategoryName(category) {

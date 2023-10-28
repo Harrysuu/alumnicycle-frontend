@@ -12,7 +12,6 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  useHistory,
 } from 'react-router-dom'
 import bg1 from './bg1.png'
 import bg2 from './bg2.png'
@@ -48,8 +47,6 @@ export default function Navigator() {
       console.error('Error searching:', error)
     }
   }
-
-  const history = useHistory()
 
   const handleLogout = async (e) => {
     try {

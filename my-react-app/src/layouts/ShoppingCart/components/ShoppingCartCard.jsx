@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Row, Col, Image, Form, Modal } from 'react-bootstrap';
+import { Button, Row, Col, Form, Modal } from 'react-bootstrap';
 import { message } from 'antd';
 import axios from 'axios';
 
@@ -44,6 +44,7 @@ function ShoppingCartCard() {
     useEffect(() => {
         // Call the function to fetch user information when the component mounts
         fetchUserData();
+        // eslint-disable-next-line 
     }, []);
 
     const getCartList = async () => {
@@ -57,6 +58,7 @@ function ShoppingCartCard() {
         _arr.map(item => {
             let _s = item.number * item.unitPrice;
             t += _s;
+            return null;
         })
         setTotal(t);
         setCarts([...carts, ..._arr]);
@@ -65,6 +67,7 @@ function ShoppingCartCard() {
 
     useEffect(() => {
         getCartList();
+        // eslint-disable-next-line 
     }, [])
 
 
